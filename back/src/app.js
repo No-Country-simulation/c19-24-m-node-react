@@ -28,4 +28,4 @@ app.use("/auth", authRoutes);
 
 const server = app.listen(PORT, ()=>{
     console.log(`Escuchando el puerto ${PORT}, iniciando express en http://localhost:${PORT}/`);
-})
+});
