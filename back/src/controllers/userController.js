@@ -46,7 +46,7 @@ class User {
         }
     };
 
-    static createPet = async (req, res) => {
+    static createUser = async (req, res) => {
         try {
             const newUser = await UM.createUser();
 
@@ -92,7 +92,7 @@ class User {
         }
     };
 
-    static deletePet = async (req, res) => {
+    static deleteUser = async (req, res) => {
         try {
             const id = req.params.id;
 
