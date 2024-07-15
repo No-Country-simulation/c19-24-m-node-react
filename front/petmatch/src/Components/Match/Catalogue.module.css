@@ -1,0 +1,43 @@
+.catalogue {
+    background-color: #f4f4f4;
+}
+
+.catalogue__section {
+    border-radius: 20px;
+}
+
+.catalogue__title {
+    color: var(--main-color);
+}
+
+.catalogue__text {
+    color: #464647;
+    margin-top: 13px;
+    max-width: 580px;
+}
+
+.button {
+    border-radius: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 24px 8px 10px;
+    border: 1px solid #735858;
+    color: gray;
+    font-weight: 600;
+}
+
+.button__active {
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
+    color: #fcfcfc;
+    font-weight: 700;
+}
+
+.button__icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+    object-fit: cover;
+    border-radius: 50%;
+}
