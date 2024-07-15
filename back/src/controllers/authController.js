@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken';
 import { createHashPassword, isValidPassword } from "../utils/handlerPassword.js";
 import { options } from "../config/config.js";
 import { emailSender } from "../utils/emailService.js";
+import { ClientError } from "../errors/Errors.js";
+import { tryCatch } from "../utils/tryCatch.js";
 
 const UM = new UserManager();
 
@@ -147,27 +149,17 @@ class Auth {
         }
     }
 
-    static logout = async (req, res) => {
-        try {
-            if (req.cookies[process.env.COOKIE_WORD]) {
+    static ejemploManejoDeErrores = tryCatch(async (req, res) => {
+        const { username, password } = req.body
 
-                res.clearCookie(process.env.COOKIE_WORD);
-
-                res.redirect('/');
-
-            } else {
-                res.status(401).send({
-                    status: "error",
-                    payload: "No se logro desloguear con exito"
-                })
-            }
-        } catch (error) {
-            res.status(500).send({
-                status: "error",
-                message: "No se logro cerrar sesion"
-            })
+        if (!username) {
+            throw new ClientError("username not found", 403)
         }
-    }
+
+        res.json({ message: "no errors" })
+    })
 }
+
+
 
 export { Auth };
