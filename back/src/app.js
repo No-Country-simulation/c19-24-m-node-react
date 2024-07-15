@@ -1,9 +1,10 @@
-import express from 'express';
-import {connectDB} from './config/dbConfig.js';
-import {options} from './config/config.js';
-import __dirname from './utils.js';
-import authRoutes from './routes/authRoutes.js';
-import cors from 'cors';
+import express from "express";
+import { connectDB } from "./config/dbConfig.js";
+import { options } from "./config/config.js";
+import __dirname from "./utils.js";
+import authRoutes from "./routes/authRoutes.js";
+import { errorHandler } from "./middelwares/errorHandler.js";
+import cors from "cors";
 
 const PORT = options.PORT || 8080;
 
@@ -14,8 +15,8 @@ connectDB();
 
 //esto para axios o fetch dependera del front
 const corsOptions = {
-    origin: true,
-    credentials: true,
+  origin: true,
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
@@ -26,6 +27,10 @@ app.use(express.static(__dirname + "/public"));
 
 app.use("/auth", authRoutes);
 
-const server = app.listen(PORT, ()=>{
-    console.log(`Escuchando el puerto ${PORT}, iniciando express en http://localhost:${PORT}/`);
+app.use(errorHandler);
+
+const server = app.listen(PORT, () => {
+  console.log(
+    `Escuchando el puerto ${PORT}, iniciando express en http://localhost:${PORT}/`
+  );
 });
