@@ -23,9 +23,20 @@ class UserManager {
         }
     };
 
-    createUser = async () => {
+    getUserByEmail = async (email) => {
         try {
-            const newUser = await UserModel.create({});
+            const user = await UserModel.findOne({ email }); //puede ser q tengas q pasar el objeto como {_id : id}
+
+            return user;
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    createUser = async (user) => {
+        try {
+            const newUser = await UserModel.create(user);
 
             return newUser;
 
