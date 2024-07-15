@@ -2,6 +2,7 @@ import { UserManager } from "../managers/userManagerDB.js";
 import jwt from 'jsonwebtoken';
 import { createHashPassword, isValidPassword } from "../utils/handlerPassword.js";
 import { options } from "../config/config.js";
+import { emailSender } from "../utils/emailService.js";
 
 const UM = new UserManager();
 
@@ -38,6 +39,8 @@ class Auth {
             else {
                 const userFind = await UM.getUserByEmail(email);
 
+                console.log(userFind);
+
                 if (!userFind) {
                     return res.status(400).send({
                         status: "error",
@@ -63,6 +66,8 @@ class Auth {
                 }
             }
 
+            console.log(user);
+
 
             const token = jwt.sign(user, "jwt-secret-word", { expiresIn: "8h" }); //el exprire podriamos sacarlo, es mas q nada para q se te desconecte automaticamente pasada cierta cantidad de tiempo
 
@@ -74,6 +79,11 @@ class Auth {
             res.cookie("jwt-cookie", token, { httpOnly: true, maxAge: 3600000 }).json({
                 status: "success",
                 payload: token
+            });
+
+            res.send({
+                status: "success",
+                payload: user
             });
 
         } catch (error) {
@@ -131,6 +141,8 @@ class Auth {
             const newUser = await UM.createUser(user);
 
             const response = await emailSender(email, "Te incirbiste con exito a PetMatch", "Registro con existoso");
+
+            console.log(response);
 
             res.send({
                 status: "success",
