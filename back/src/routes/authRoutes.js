@@ -7,6 +7,4 @@ router.post("/login", Auth.login);
 
 router.post("/register", Auth.register);
 
-router.get("/pruebaManager", Auth.prueba);
-
 export default router;

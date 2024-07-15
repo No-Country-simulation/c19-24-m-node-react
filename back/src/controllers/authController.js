@@ -1,4 +1,6 @@
-import { User } from "../managers/userManagerDB.js";
+import { UserManager } from "../managers/userManagerDB.js";
+
+const UM = new UserManager();
 
 class Auth {
     static login = async(req,res)=>{
@@ -15,10 +17,6 @@ class Auth {
         } catch (error) {
             console.log(error);
         }
-    }
-
-    static prueba = async(req,res)=>{
-        const userInstance = new User();
     }
 }
 
