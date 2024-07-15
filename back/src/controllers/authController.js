@@ -3,15 +3,13 @@ import { UserManager } from "../managers/userManagerDB.js";
 import { tryCatch } from "../utils/tryCatch.js";
 
 class Auth {
-    static login = tryCatch(async(req,res)=>{
-        const {username, password} = req.body
-
-        if(!username) {
-             throw new ClientError("username not found", 403)
+    static login = async(req,res)=>{
+        try {
+        
+        } catch (error) {
+            console.log(error);
         }
-
-        res.json({message: "no errors"})
-    })
+    }
 
     static register = async(req,res)=>{
         try {
@@ -24,6 +22,18 @@ class Auth {
     static prueba = async(req,res)=>{
         const userInstance = new UserManager();
     }
+
+    static ejemploManejoDeErrores = tryCatch(async(req,res)=>{
+        const {username, password} = req.body
+    
+        if(!username) {
+             throw new ClientError("username not found", 403)
+        }
+    
+        res.json({message: "no errors"})
+    })
 }
+
+
 
 export {Auth};
