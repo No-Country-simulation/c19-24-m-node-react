@@ -20,7 +20,6 @@ const PORT = options.PORT || 8080;
 
 const app = express();
 
-//como la URL de la DB no esta lita si corres el server va a dar error
 connectDB();
 
 //esto para axios o fetch dependera del front

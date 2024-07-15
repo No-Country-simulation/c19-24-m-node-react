@@ -2,8 +2,8 @@ import nodemailer from 'nodemailer';
 import {options} from '../config/config.js';
 
 // PetMatchNoCountry123
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || options.ADMIN_EMAIL;
-const ADMIN_PASSWORD_NODEMAILER = process.env.ADMIN_PASSWORD_NODEMAILER || options.ADMIN_PASSWORD_NODEMAILER;
+const ADMIN_EMAIL = options.ADMIN_EMAIL || "petmatchnocountry@gmail.com";
+const ADMIN_PASSWORD_NODEMAILER = options.ADMIN_PASSWORD_NODEMAILER || "lucmbqckeilagssm";
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
