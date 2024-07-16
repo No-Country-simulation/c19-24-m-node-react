@@ -153,11 +153,11 @@ function Catalogue() {
     };
 
     return (
-        <section className={` ${styles.catalogue} lg:px-8 lg:py-16 p-4`}>
+        <section className={` ${styles.catalogue} lg:px-8 lg:py-16 p-0`}>
             <section
                 className={`bg-white border lg:py-12 lg:px-10 p-6 ${styles.catalogue__section} flex justify-between items-center flex-col`}>
                 <section className='flex items-center justify-between w-full lg:flex-nowrap flex-wrap'>
-                    <section className='lg:w-3/4 w-full'>
+                    <section className='xl:w-3/4 lg:w-1/2 w-full'>
                         <h3
                             className={`${styles.catalogue__title} font-bold text-2xl`}>
                             Tus mascotas
@@ -171,8 +171,8 @@ function Catalogue() {
                             rechazadas.
                         </p>
                     </section>
-                    <section className='flex items-center justify-center flex-wrap lg:w-1/3 w-full gap-2 lg:pt-0 pt-4'>
-                        <section className='w-full'>
+                    <section className='flex items-center justify-center lg:flex-wrap md:flex-nowrap flex-wrap xl:w-1/3 lg:w-2/5 w-full gap-2 lg:pt-0 pt-4'>
+                        <section className='lg:w-full md:w-2/4 w-full'>
                             <button
                                 className={`${
                                     pets === "all" ? styles.button__active : ""
@@ -186,7 +186,7 @@ function Catalogue() {
                                 Todos los corazones enviados
                             </button>
                         </section>
-                        <section className='w-full flex lg:flex-nowrap flex-wrap items-center justify-between gap-x-2 lg:gap-y-0 gap-y-2'>
+                        <section className='w-full md:w-2/3 lg:w-full flex md:flex-nowrap flex-wrap items-center justify-between gap-x-2 lg:gap-y-0 gap-y-2'>
                             <button
                                 className={`${
                                     pets === "approved"
@@ -223,7 +223,7 @@ function Catalogue() {
                     </section>
                 </section>
                 <section
-                    className={`lg:pt-12 pt-6 flex items-center justify-evenly flex-wrap w-full lg:gap-x-6 gap-x-2 gap-y-8`}>
+                    className={`lg:pt-12 pt-6 flex items-center justify-start flex-wrap w-full xl:gap-x-12 md:gap-x-8 gap-x-2 gap-y-8`}>
                     {pets === "all" &&
                         randomPets.map((pet, index) => {
                             return (
