@@ -1,0 +1,28 @@
+.matchBanner__rectangle_icon {
+    position: absolute;
+    z-index: 1;
+}
+
+.matchBanner__rectangle_icon:nth-child(2) {
+    transform: translate(93%, 10%);
+}
+
+@media only screen and (min-width: 1024px) {
+    .matchBanner__rectangle_icon:nth-child(1) {
+        transform: translate(-13%, -5%);
+    }
+
+    .matchBanner__rectangle_icon:nth-child(2) {
+        transform: translate(80%, 10%);
+    }
+
+    .matchBanner__text {
+        transform: translateX(50px);
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .matchBanner__rectangle_icon:nth-child(2) {
+        transform: translate(106%, 10%);
+    }
+}
