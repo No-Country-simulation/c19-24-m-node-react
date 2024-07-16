@@ -1,11 +1,5 @@
 import express from "express";
-import { connectDB } from "./config/dbConfig.js";
-import { options } from "./config/config.js";
-import __dirname from "./utils.js";
-import authRoutes from "./routes/authRoutes.js";
 import { errorHandler } from "./middelwares/errorHandler.js";
-import cors from "cors";
-import express from 'express';
 import {connectDB} from './config/dbConfig.js';
 import {options} from './config/config.js';
 import __dirname from './utils.js';

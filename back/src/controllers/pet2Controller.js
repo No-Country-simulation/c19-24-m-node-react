@@ -1,10 +1,12 @@
-import Pet from '../models/pet2Model.js'; // Asegúrate de que la ruta sea correcta
+import {PetManager} from '../managers/pet2ManagerDB.js'
 
+const PM = new PetManager();
 // Crear una nueva mascota
 export const createPet = async (req, res) => {
     try {
         const petData = req.body;
-        const newPet = await Pet.create(petData);
+        const newPet = await PM.createPet(petData);
+
         return res.status(201).json(newPet);
     } catch (error) {
         return res.status(500).json({ message: 'Error creando la mascota', error });
@@ -14,7 +16,8 @@ export const createPet = async (req, res) => {
 // Obtener todas las mascotas
 export const getPets = async (req, res) => {
     try {
-        const pets = await Pet.find(); // Usando Mongoose
+        const pets = await PM.getPets();
+        
         return res.status(200).json(pets);
     } catch (error) {
         return res.status(500).json({ message: 'Error obteniendo las mascotas', error });
@@ -25,7 +28,7 @@ export const getPets = async (req, res) => {
 export const getPetById = async (req, res) => {
     try {
         const { id } = req.params;
-        const pet = await Pet.findById(id);
+        const pet = await PM.getPetById(id);
 
         if (!pet) {
             return res.status(404).json({ message: 'Mascota no encontrada' });
@@ -41,13 +44,13 @@ export const getPetById = async (req, res) => {
 export const deletePet = async (req, res) => {
     try {
         const { id } = req.params;
-        const pet = await Pet.findById(id);
+        const pet = await PM.deletePet(id)
 
         if (!pet) {
             return res.status(404).json({ message: 'Mascota no encontrada' });
         }
 
-        await pet.remove();
+        // await pet.remove();
         return res.status(204).send(); // Sin contenido
     } catch (error) {
         return res.status(500).json({ message: 'Error eliminando la mascota', error });
@@ -60,7 +63,7 @@ export const updatePet = async (req, res) => {
         const { id } = req.params;
         const petData = req.body;
 
-        const updatedPet = await Pet.findByIdAndUpdate(id, petData, { new: true, runValidators: true });
+        const updatedPet = await PM.updatePet(id, petData);
 
         if (!updatedPet) {
             return res.status(404).json({ message: 'Mascota no encontrada' });

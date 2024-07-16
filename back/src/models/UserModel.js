@@ -13,24 +13,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-<<<<<<< HEAD
-    date_of_birth: {
-        type: Date,
-        required: true
-    },
-    address: {
-        street: {
-            type: String,
-            required: false
-        },
-        number: {
-            type: Number,
-            required: false
-        },
-        city: {
-            type: String,
-            required: true
-=======
     /*age: {
         type: Number,
         required: true
@@ -51,22 +33,13 @@ const userSchema = new mongoose.Schema({
         city: {
             type: String,
             required: true // Es obligatorio
->>>>>>> 7025583f7eeb042eaeae08c93b14702ef2b4d747
         }
     },
     password: {
         type: String,
-<<<<<<< HEAD
-=======
         required: true
     },
-    cart: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "carts",
->>>>>>> 7025583f7eeb042eaeae08c93b14702ef2b4d747
-        required: true
-    },
-    pets : {
+    pets: {
         type : Array,
         default : []
     },
@@ -75,8 +48,7 @@ const userSchema = new mongoose.Schema({
         enum: ["user", "premium", "admin"],
         default: "user"
     },
-<<<<<<< HEAD
-=======
+
     documents: [
         {
             name: String, //nombre del documento
@@ -118,7 +90,6 @@ const userSchema = new mongoose.Schema({
             enum: ['tranquilo', 'enérgico'] // Valores permitidos para personalidad (ver que más se puede agregar)
         }
     }*/
->>>>>>> 7025583f7eeb042eaeae08c93b14702ef2b4d747
 });
 
 const UserModel = mongoose.model("Users",userSchema);
