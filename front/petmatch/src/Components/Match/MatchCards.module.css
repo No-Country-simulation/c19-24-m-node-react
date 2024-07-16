@@ -23,16 +23,41 @@
     max-height: 116px;
     width: 100%;
     object-fit: cover;
+    height: 100%;
 }
 
 @media only screen and (min-width: 768px) {
-    .card__image {
-        width: 172px;
-    }
-
     .card {
         width: 100%;
-        max-width: 172px;
-        height: 192px;
+        max-width: 206px;
+        height: 200px;
+    }
+
+    .card__image {
+        max-height: 125px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .card {
+        width: 100%;
+        max-width: 195px;
+        height: 220px;
+    }
+
+    .card__image {
+        max-height: 145px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .card {
+        width: 100%;
+        max-width: 219px;
+        height: 220px;
+    }
+
+    .card__image {
+        max-height: 145px;
     }
 }
