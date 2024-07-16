@@ -8,7 +8,7 @@ function MatchBanner() {
         <section className='relative overflow-hidden py-16'>
             <figure className={`${styles.matchBanner__rectangle_icon}`}>
                 <svg
-                    width='704'
+                    width='804'
                     height='544'
                     viewBox='0 0 904 544'
                     fill='none'
