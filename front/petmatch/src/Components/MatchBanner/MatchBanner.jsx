@@ -53,11 +53,11 @@ function MatchBanner() {
                 </svg>
             </figure>
             <section
-                className={`z-10 relative flex items-center lg:justify-end justify-center  w-full px-6 md:flex-nowrap flex-wrap ${styles.matchBanner__text}`}>
+                className={`z-10 relative flex items-center lg:justify-end justify-center  w-full md:px-6 px-4 md:flex-nowrap flex-wrap ${styles.matchBanner__text}`}>
                 <section className='lg:w-1/2 md:w-2/3 w-full'>
                     <div className='flex items-center justify-start'>
                         <h1
-                            className='lg:text-5xl md:text-3xl font-extrabold capitalize'
+                            className='lg:text-5xl md:text-3xl text-2xl font-extrabold capitalize'
                             style={{ color: "var(--main-color)" }}>
                             adopta
                         </h1>
@@ -68,7 +68,7 @@ function MatchBanner() {
                         />
                     </div>
                     <h2
-                        className='lg:text-3xl md:text-xl font-bold capitalize'
+                        className='lg:text-3xl md:text-xl text-lg font-bold capitalize'
                         style={{ color: "var(--main-color)" }}>
                         cambia una vida para siempre
                     </h2>

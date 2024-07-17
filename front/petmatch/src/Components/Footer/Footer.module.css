@@ -1,9 +1,17 @@
 .footer {
     background-color: #bad6af;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .footer__form {
     background-color: var(--main-color);
+}
+
+@media only screen and (min-width: 768px) {
+    .footer {
+        background-color: #bad6af;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
 }

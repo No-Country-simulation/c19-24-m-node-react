@@ -153,9 +153,9 @@ function Catalogue() {
     };
 
     return (
-        <section className={` ${styles.catalogue} lg:px-8 lg:py-16 p-0`}>
+        <section className={` ${styles.catalogue} lg:px-8 py-16 p-0`}>
             <section
-                className={`bg-white border lg:py-12 lg:px-10 p-6 ${styles.catalogue__section} flex justify-between items-center flex-col`}>
+                className={`bg-white border lg:py-12 lg:px-10 md:px-6 px-4 py-12 ${styles.catalogue__section} flex justify-between items-center flex-col`}>
                 <section className='flex items-center justify-between w-full lg:flex-nowrap flex-wrap'>
                     <section className='xl:w-3/4 lg:w-1/2 w-full'>
                         <h3

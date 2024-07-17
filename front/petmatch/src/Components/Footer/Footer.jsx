@@ -12,10 +12,10 @@ function Footer() {
     };
 
     return (
-        <footer className={`${styles.footer} md:px-8 px-4 md:pt-16 pt-8 pb-4`}>
-            <section>
+        <footer className={`${styles.footer} md:px-8 px-4 md:pt-16 pt-16 pb-4`}>
+            <section className='md:pb-0 pb-4'>
                 <form
-                    className={`${styles.footer__form} lg:flex-nowrap flex-wrap md:px-8 px-4 py-8 lg:pt-8 md:pt-5 rounded-2xl w-full flex items-center lg:justify-between justify-center`}
+                    className={`${styles.footer__form} lg:flex-nowrap flex-wrap md:px-8 px-4 py-8 lg:pt-8 md:pt-5 md:rounded-2xl rounded-lg w-full flex items-center lg:justify-between justify-center`}
                     onSubmit={handleSubmit}>
                     <div className='xl:w-1/3 lg:w-2/5 w-full lg:pb-0 pb-5 lg:text-left text-center'>
                         <label
@@ -24,15 +24,15 @@ function Footer() {
                             Regístrate ahora para no perderte Novedades
                         </label>
                     </div>
-                    <div className='lg:w-2/3 w-full bg-white rounded-xl md:gap-x-5 gap-x-2 lg:p-3.5 p-2 flex items-center justify-between'>
+                    <div className='lg:w-2/3 w-full bg-white md:rounded-xl rounded-lg md:gap-x-5 gap-x-2 lg:p-3.5 pt-3.5 pb-3 px-2 flex items-center md:justify-between justify-center md:flex-nowrap flex-wrap'>
                         <input
                             id='Subscribete'
                             type='text'
                             placeholder='Ingresa tu correo electrónico'
-                            className='outline-gray-400 outline-1 md:w-4/5 w-full lg:py-3 py-2 rounded-xl px-5'
+                            className='outline-gray-400 outline-1 md:w-4/5 w-full lg:py-3 py-2 md:rounded-xl rounded-lg px-5'
                         />
                         <button
-                            className='rounded-xl lg:py-3 py-2 md:px-10 px-5 text-white'
+                            className='rounded-xl lg:py-3 py-2 md:px-10 px-5 text-white md:mt-0 mt-4'
                             style={{ backgroundColor: "#416A32" }}>
                             ¡Suscríbete!
                         </button>
