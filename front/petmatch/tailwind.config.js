@@ -5,10 +5,10 @@ module.exports = {
         extend: {
             colors: {
                 bgPrincipal: '#E0E7DE',
+                bgGreen: '#416A32'
             },
             backgroundImage: {
                 'custom-bg': "url('./src/images/fondo.png')",
-                'custom2-bg': "url('./src/images/perrito.png')"
               },
         },
     },

@@ -2,26 +2,31 @@ import React from "react";
 import divide from "../../images/rectangle.svg";
 import huella from "../../images/Huella.svg";
 import perrito from "../../images/perrito.png";
-import fondo from '../../images/fondo.png'
+import fondo from "../../images/fondo.png";
 import Footer from "../../Components/Footer/Footer";
 
 function Home() {
   return (
     <div className="App">
       <main className="bg-bgPrincipal">
-        <header className="bg-contain bg-no-repeat bg-center min-h-screen flex flex-col justify-between" style={{ backgroundImage: `url(${fondo})` }}>
+        <header
+          className="bg-contain bg-no-repeat bg-center min-h-screen flex flex-col justify-between"
+          style={{ backgroundImage: `url(${fondo})` }}
+        >
           <section className="mt-52 max-w-3xl mx-32 text-left">
-            <h1 className="text-6xl font-bold text-green-700">
+            <h1 className="text-6xl font-bold text-bgGreen">
               ¡Swipe, Match Y Adopta Con PetMatch!
             </h1>
             <p className="mt-4 text-lg text-black font-semibold">
-              Adopta adorables mascotas que te acompañarán fielmente, te apoyarán y alegrarán cada día. ¡Empieza hoy y dale a una mascota la oportunidad de ser parte de tu familia!
+              Adopta adorables mascotas que te acompañarán fielmente, te
+              apoyarán y alegrarán cada día. ¡Empieza hoy y dale a una mascota
+              la oportunidad de ser parte de tu familia!
             </p>
             <div className="mt-6 space-x-4">
-              <button className="bg-white text-green-700 border border-green-700 rounded-full px-6 py-2">
+              <button className="bg-white text-bgGreen border border-bgGreen rounded-full px-6 py-2">
                 ¡Haz Match!
               </button>
-              <button className="bg-green-700 text-white rounded-full px-6 py-2">
+              <button className="bg-bgGreen text-white rounded-full px-6 py-2">
                 Ver Catálogo
               </button>
             </div>
@@ -31,11 +36,11 @@ function Home() {
           </div>
         </header>
       </main>
-      <section className="bg-white">
+      <section className="bg-white bg-contain bg-no-repeat">
         <img src={huella} alt="huella de perro" />
         <div className="flex items-center justify-between mb-20">
           <div className="flex-auto p-10 mt-12 max-w-3xl mx-32 text-left">
-            <h1 className="text-6xl font-bold text-green-700">
+            <h1 className="text-6xl font-bold text-bgGreen">
               Acerca De Nosotros
             </h1>
             <p className="mt-4 text-lg text-black font-semibold">
@@ -44,19 +49,19 @@ function Home() {
               encontrarles un hogar para que puedan ser felices y tengan una
               mejor vida.
             </p>
-            <button className="mt-4 bg-green-600 text-white py-2 px-4 rounded">
+            <button className="mt-4 bg-bgGreen text-white py-2 px-4 rounded">
               ¡Conócenos!
             </button>
           </div>
           <div className="flex-shrink-0 mr-32">
-            <img src={perrito} className="h-80 mr-6" alt="perro front" />
+            <img src={perrito} className=" mr-6" alt="perro front" />
           </div>
         </div>
       </section>
       <section>
         <div className="flex items-start justify-between p-6 bg-bgPrincipal">
           <div className="flex-auto p-10 mt-12 max-w-3xl mx-32 text-left">
-            <h1 className="text-6xl font-bold text-green-700">Contáctanos</h1>
+            <h1 className="text-6xl font-bold text-bgGreen">Contáctanos</h1>
             <p className="mt-4 text-gray-700">
               ¿Quieres adoptar una mascota o formar parte del equipo? Llena el
               siguiente formulario y nos pondremos en contacto para responderte
@@ -65,7 +70,7 @@ function Home() {
               Correo:{" "}
               <span className="font-bold">petmatchnocountry@gmail.com</span>
             </p>
-            <button className="mt-4 bg-green-600 text-white py-2 px-4 rounded">
+            <button className="mt-4 bg-bgGreen text-white py-2 px-4 rounded">
               ¡Conócenos!
             </button>
           </div>
@@ -97,7 +102,7 @@ function Home() {
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-green-600 text-white py-4 px-4 rounded"
+                className="w-full bg-bgGreen text-white py-4 px-4 rounded"
               >
                 ¡Enviar Mensaje!
               </button>
@@ -106,7 +111,7 @@ function Home() {
         </div>
       </section>
       <section>
-        <Footer/>
+        <Footer />
       </section>
     </div>
   );
