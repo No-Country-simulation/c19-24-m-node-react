@@ -6,6 +6,10 @@ module.exports = {
             colors: {
                 bgPrincipal: '#E0E7DE',
             },
+            backgroundImage: {
+                'custom-bg': "url('./src/images/fondo.png')",
+                'custom2-bg': "url('./src/images/perrito.png')"
+              },
         },
     },
     plugins: [],
