@@ -8,7 +8,7 @@ function Matches() {
     return (
         <>
             <section className={`${styles.Matches}`}>
-                <header>header</header>
+                {/* Aqui iria el Header */}
                 <MatchBanner />
             </section>
             <Catalogue />
