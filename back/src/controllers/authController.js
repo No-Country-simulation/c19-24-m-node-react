@@ -18,6 +18,7 @@ class Auth {
                     status: "error",
                     payload: "Usuario no encontrado"
                 });
+                // throw new ClientError("Usuario no encontrado",400);
             }
 
             if (!password) {
@@ -25,6 +26,8 @@ class Auth {
                     status: "error",
                     payload: "Contraseña invalida"
                 });
+
+                // throw new ClientError("Contraseña invalida",400);
             }
 
             let user = {
@@ -45,7 +48,9 @@ class Auth {
                     return res.status(400).send({
                         status: "error",
                         payload: "El usuari no se encuentra registrado"
-                    })
+                    });
+
+                    // throw new ClientError("El usuari no se encuentra registrado",400);
                 }
 
                 const { id } = userFind;
@@ -56,7 +61,9 @@ class Auth {
                     return res.status(400).send({
                         status: "error",
                         payload: "La contraseña es invalida"
-                    })
+                    });
+
+                    // throw new ClientError("La contraseña es invalida",400);
                 }
 
                 user = {

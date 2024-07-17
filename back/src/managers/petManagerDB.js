@@ -5,7 +5,7 @@ class PetManager {
         try {
             const pets = await PetModel.find();
 
-            return pets
+            return pets;
 
         } catch (error) {
             console.log(error);
