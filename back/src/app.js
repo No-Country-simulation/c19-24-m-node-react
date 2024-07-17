@@ -6,6 +6,7 @@ import __dirname from './utils.js';
 import authRoutes from './routes/authRoutes.js';
 import cors from 'cors';
 import userRoutes from './routes/usersRoutes.js';
+import testimonialsRoutes from './routes/testimonialsRoutes.js';
 import matchRoutes from './routes/matchRoutes.js'; 
 import petsRoutes from './routes/petsRoutes.js'
 import pet2Routes from './routes/pet2Routes.js';  //nueva ruta -- se va a dejar una sola o pet o pets pero hay que ajustar el codigo , pet esta ajustado al match
@@ -30,6 +31,7 @@ app.use(express.static(__dirname + "/public"));
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/testimonials", testimonialsRoutes);
 app.use("/pets", petsRoutes);
 app.use("/pet", pet2Routes);
 
