@@ -40,7 +40,7 @@ function Footer() {
                 </form>
                 <section className='w-full flex justify-center items-center pb-7 pt-8 px-3'>
                     <nav className='w-full flex justify-between items-center md:flex-nowrap flex-wrap'>
-                        <ul className='md:w-1/2 w-full flex md:justify-start justify-center lg:gap-x-12 gap-x-6 items-center'>
+                        <ul className='md:w-1/2 w-full flex md:justify-start justify-center lg:gap-x-12 gap-x-6 items-center md:flex-nowrap flex-wrap gap-y-2'>
                             <li
                                 className='font-bold lg:text-base text-sm cursor-pointer'
                                 style={{ color: "var(--main-color)" }}>
