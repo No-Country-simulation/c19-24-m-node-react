@@ -1,13 +1,16 @@
-import logo from "./Assets/logo.svg";
+
 import "./App.css";
+import Login from "./Components/Auth/Login";
+import Register from "./Components/Auth/Register";
+import Header from "./Components/Header/Header";
 
 function App() {
     return (
         <div className='App'>
-            <header className='App-header'>
-                <img src={logo} className='App-logo' alt='logo' />
-                <h1 className='text-3xl font-bold underline'>Hello world!</h1>
-            </header>
+            <Header />
+            <Register />
+            <Login />
+
         </div>
     );
 }
