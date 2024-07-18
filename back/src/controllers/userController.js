@@ -28,7 +28,7 @@ class User {
             const id = req.params.id;
             // const {idUser} = req.body; esto dependera por donde se mande el id de la mascota
 
-            const user = await UM.getUserById({ id }); //puede ser q tengas q pasar el objeto como {_id : id}
+            const user = await UM.getUserById(id); //puede ser q tengas q pasar el objeto como {_id : id}
 
             if (!user) {
                 return res.status(500).send({
@@ -45,10 +45,12 @@ class User {
             console.log(error);
         }
     };
-
-    static createPet = async (req, res) => {
+    //! para probar habria que crear la coleccion carts a la que se referencia en los
+    //! usuarios
+    static createUser = async (req, res) => {
         try {
-            const newUser = await UM.createUser();
+            const user = {...req.body};
+            const newUser = await UM.createUser(user);
 
             if (!newUser) {
                 return res.status(500).send({
@@ -71,7 +73,7 @@ class User {
             const id = req.params.id;
             // const {idPet} = req.body;
 
-            const filter = { id }; //puede ser q tengas q pasar el objeto como {_id : id}
+            const filter = { _id: id }; //puede ser q tengas q pasar el objeto como {_id : id}
             const update = { ...req.body };
 
             const updatedUser = await UM.updateUser(filter, update);
@@ -92,7 +94,7 @@ class User {
         }
     };
 
-    static deletePet = async (req, res) => {
+    static deleteUser = async (req, res) => {
         try {
             const id = req.params.id;
 
