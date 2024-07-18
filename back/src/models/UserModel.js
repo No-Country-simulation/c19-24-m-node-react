@@ -39,16 +39,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    cart: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "carts",
-        required: true
+    pets: {
+        type : Array,
+        default : []
     },
     rol: {
         type: String,
         enum: ["user", "premium", "admin"],
         default: "user"
     },
+
     documents: [
         {
             name: String, //nombre del documento
