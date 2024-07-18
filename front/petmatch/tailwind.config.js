@@ -10,6 +10,9 @@ module.exports = {
             backgroundImage: {
                 'custom-bg': "url('./src/images/fondo.png')",
               },
+            fontFamily: {
+                sans: ["Inter", 'sans-serif']
+            },
         },
     },
     plugins: [],
