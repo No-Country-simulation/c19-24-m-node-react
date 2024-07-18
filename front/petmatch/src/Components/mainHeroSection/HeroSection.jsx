@@ -4,6 +4,7 @@ import divide from "../../images/rectangle.svg";
 
 function HeroSection (){
     return(
+      <main className="bg-bgPrincipal">
         <header
           className="bg-contain bg-no-repeat bg-center min-h-screen flex flex-col justify-between"
           style={{ backgroundImage: `url(${fondo})` }}>
@@ -29,6 +30,7 @@ function HeroSection (){
             <img src={divide} className="w-full" alt="Section divided" />
           </div>
         </header>
+      </main>
     )
 }
 
