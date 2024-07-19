@@ -1,5 +1,14 @@
 import TestimonialCard from "./TestimonialCard";
 
+// Import Swiper React components
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css/bundle";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 const testomios = [
     {
         dueño: "John Smith",
@@ -65,35 +74,36 @@ const testomios = [
 
 function Testimonials() {
     return (
-        <section className='bg-[#D1E0CB] py-16'>
+        <section className='bg-[#D1E0CB] py-28'>
             <h3 className='text-[#416A32] text-5xl text-center font-bold lg:pb-16'>
                 Testimonios
             </h3>
-            <section>
-                {testomios &&
-                    testomios.map((test, index) => {
-                        return (
-                            <TestimonialCard
-                                key={index}
-                                owner={test.dueño}
-                                pet={test.mascota}
-                                testimonial={test.testimonio}
-                                img={
-                                    "https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"
-                                }
-                            />
-                        );
-                    })}
-                {/* <TestimonialCard
-                    owner={"Sam Smith"}
-                    pet={"Ron"}
-                    testimonial={
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, molestias omnis autem sunt consequuntur ab rerum praesentium? Blanditiis, nobis pariatur."
-                    }
-                    img={
-                        "https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"
-                    }
-                /> */}
+            <section className='mx-auto max-w-screen-xl rounded-2xl'>
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    navigation
+                    // pagination={{ clickable: true }}
+                    spaceBetween={120}
+                    slidesPerView={4}
+                    onSlideChange={() => console.log("slide change")}
+                    onSwiper={(swiper) => console.log(swiper)}>
+                    {testomios &&
+                        testomios.map((test, index) => {
+                            return (
+                                <SwiperSlide>
+                                    <TestimonialCard
+                                        key={index}
+                                        owner={test.dueño}
+                                        pet={test.mascota}
+                                        testimonial={test.testimonio}
+                                        img={
+                                            "https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"
+                                        }
+                                    />
+                                </SwiperSlide>
+                            );
+                        })}
+                </Swiper>
             </section>
         </section>
     );
