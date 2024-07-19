@@ -33,7 +33,7 @@ function Footer() {
                             name='email'
                             title='Invalid Email'
                             pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$'
-                            autocomplete='off'
+                            autoComplete='off'
                             required
                             placeholder='Ingresa tu correo electrónico'
                             className='outline-gray-400 outline-1 md:w-4/5 w-full lg:py-3 py-2 md:rounded-xl rounded-lg px-5'
