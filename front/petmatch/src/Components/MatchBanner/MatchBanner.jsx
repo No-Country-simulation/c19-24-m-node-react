@@ -5,7 +5,7 @@ import styles from "./MatchBanner.module.css";
 
 function MatchBanner() {
     return (
-        <section className='relative overflow-hidden py-16'>
+        <section className='relative overflow-hidden'>
             <figure className={`${styles.matchBanner__rectangle_icon}`}>
                 <svg
                     width='804'
