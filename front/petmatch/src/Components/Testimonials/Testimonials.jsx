@@ -75,18 +75,33 @@ const testomios = [
 function Testimonials() {
     return (
         <section className='bg-[#D1E0CB] py-28'>
-            <h3 className='text-[#416A32] text-5xl text-center font-bold lg:pb-16'>
+            <h3 className='text-[#416A32] text-5xl text-center font-bold md:pb-16 pb-10'>
                 Testimonios
             </h3>
-            <section className='mx-auto max-w-screen-xl rounded-2xl'>
+            <section className='mx-auto max-w-screen-xl rounded-2xl px-8'>
                 <Swiper
                     modules={[Navigation, Pagination]}
                     navigation
                     // pagination={{ clickable: true }}
-                    spaceBetween={120}
-                    slidesPerView={4}
-                    onSlideChange={() => console.log("slide change")}
-                    onSwiper={(swiper) => console.log(swiper)}>
+                    spaceBetween={10}
+                    slidesPerView={1}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 50,
+                        },
+                    }}
+                    // onSlideChange={() => console.log("slide change")}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                >
                     {testomios &&
                         testomios.map((test, index) => {
                             return (
