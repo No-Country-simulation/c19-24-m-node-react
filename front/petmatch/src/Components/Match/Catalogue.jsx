@@ -232,7 +232,9 @@ function Catalogue() {
                                     name={pet.name}
                                     age={pet.age}
                                     breed={pet.breed}
-                                    img={"https://picsum.photos/200/300"}
+                                    img={
+                                        "https://images.dog.ceo/breeds/pitbull/dog-3981540_1280.jpg"
+                                    }
                                 />
                             );
                         })}
@@ -244,7 +246,9 @@ function Catalogue() {
                                     name={pet.name}
                                     age={pet.age}
                                     breed={pet.breed}
-                                    img={"https://picsum.photos/200/300"}
+                                    img={
+                                        "https://images.dog.ceo/breeds/pitbull/dog-3981540_1280.jpg"
+                                    }
                                 />
                             );
                         })}
@@ -256,7 +260,9 @@ function Catalogue() {
                                     name={pet.name}
                                     age={pet.age}
                                     breed={pet.breed}
-                                    img={"https://picsum.photos/200/300"}
+                                    img={
+                                        "https://images.dog.ceo/breeds/pitbull/dog-3981540_1280.jpg"
+                                    }
                                 />
                             );
                         })}
