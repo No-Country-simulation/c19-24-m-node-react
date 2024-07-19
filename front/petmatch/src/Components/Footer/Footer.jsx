@@ -29,7 +29,12 @@ function Footer() {
                     <div className='lg:w-2/3 w-full bg-white md:rounded-xl rounded-lg md:gap-x-5 gap-x-2 lg:p-3.5 pt-3.5 pb-3 px-2 flex items-center md:justify-between justify-center md:flex-nowrap flex-wrap'>
                         <input
                             id='Subscribete'
-                            type='text'
+                            type='email'
+                            name='email'
+                            title='Invalid Email'
+                            pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$'
+                            autocomplete='off'
+                            required
                             placeholder='Ingresa tu correo electrónico'
                             className='outline-gray-400 outline-1 md:w-4/5 w-full lg:py-3 py-2 md:rounded-xl rounded-lg px-5'
                         />
