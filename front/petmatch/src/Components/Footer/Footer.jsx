@@ -5,6 +5,7 @@ import Facebook from "../../Assets/facebook.svg";
 import Twitter from "../../Assets/twitter.svg";
 import Instagram from "../../Assets/instagram.svg";
 import Youtube from "../../Assets/youtube.svg";
+import { Link } from "react-router-dom";
 
 function Footer() {
     const handleSubmit = (e) => {
@@ -12,8 +13,9 @@ function Footer() {
     };
 
     return (
-        <footer className={`${styles.footer} md:px-8 px-4 md:pt-16 pt-16 pb-4`}>
-            <section className='md:pb-0 pb-4'>
+        <footer
+            className={`${styles.footer} md:px-8 px-4 md:pt-16 pt-16 pb-4 w-full`}>
+            <section className='md:pb-0 pb-4 mx-auto max-w-screen-xl'>
                 <form
                     className={`${styles.footer__form} lg:flex-nowrap flex-wrap md:px-8 px-4 py-8 lg:pt-8 md:pt-5 md:rounded-2xl rounded-lg w-full flex items-center lg:justify-between justify-center`}
                     onSubmit={handleSubmit}>
@@ -44,27 +46,27 @@ function Footer() {
                             <li
                                 className='font-bold lg:text-base text-sm cursor-pointer'
                                 style={{ color: "var(--main-color)" }}>
-                                Inicio
+                                <Link to='/'></Link>
                             </li>
                             <li
                                 className='font-bold lg:text-base text-sm cursor-pointer'
                                 style={{ color: "var(--main-color)" }}>
-                                Match
+                                <Link to='/Matches'>Match</Link>
                             </li>
                             <li
                                 className='font-bold lg:text-base text-sm cursor-pointer'
                                 style={{ color: "var(--main-color)" }}>
-                                Nosotros
+                                <Link to='/About Us'>Nosotros</Link>
                             </li>
                             <li
                                 className='font-bold lg:text-base text-sm cursor-pointer'
                                 style={{ color: "var(--main-color)" }}>
-                                Testimonios
+                                <Link to='/Testimonials'>Testimonios</Link>
                             </li>
                             <li
                                 className='font-bold lg:text-base text-sm cursor-pointer'
                                 style={{ color: "var(--main-color)" }}>
-                                Blog
+                                <Link to='/Blog'>Blog</Link>
                             </li>
                         </ul>
                         <ul className='md:w-1/3 w-full flex items-center md:justify-end justify-center lg:gap-x-12 gap-x-6 md:pt-0 pt-5'>
@@ -85,7 +87,7 @@ function Footer() {
                 </section>
             </section>
             <hr className='w-full mx-auto mt-2' />
-            <section className='flex md:justify-between justify-center items-center lg:py-8 py-4 md:flex-nowrap flex-wrap'>
+            <section className='flex md:justify-between justify-center items-center lg:py-8 py-4 md:flex-nowrap flex-wrap mx-auto max-w-screen-xl'>
                 <p
                     className='pt-2 xl:text-base lg:text-sm text-xs'
                     style={{ color: "#667479" }}>
