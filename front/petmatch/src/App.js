@@ -1,9 +1,13 @@
 import "./App.css";
+// import Testimonials from "./Components/Testimonials/Testimonials";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./Routes/Routes";
+
 function App() {
     return (
-        <div className='App'>
-            <Testimonials />
-        </div>
+        <Router>
+            <AppRoutes />
+        </Router>
     );
 }
 
