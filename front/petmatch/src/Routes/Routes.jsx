@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../Pages/Home/Home";
 import LoginPage from "../Pages/Auth/LoginPage";
-import RegisterPager from "../Pages/Auth/RegisterPage";
+import RegisterPage from "../Pages/Auth/RegisterPage";
 import Matches from "../Pages/Matches/Matches";
 import ComingSoon from "../Pages/Comming Soon/CommingSoon";
 
@@ -12,7 +12,7 @@ function AppRoutes() {
             <Route path='/' element={<Home />} />
             <Route path='/Matches' element={<Matches />} />
             <Route path='/Match' element={<ComingSoon />} />
-            <Route path='/Sign-Up' element={<RegisterPager />} />
+            <Route path='/Sign-Up' element={<RegisterPage />} />
             <Route path='/Log-In' element={<LoginPage />} />
             <Route path='/Catalogue' element={<ComingSoon />} />
             <Route path='/About-Us' element={<ComingSoon />} />
