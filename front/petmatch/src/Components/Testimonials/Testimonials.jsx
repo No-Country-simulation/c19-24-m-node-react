@@ -74,14 +74,18 @@ const testomios = [
 
 function Testimonials() {
     return (
-        <section className='bg-[#D1E0CB] py-28'>
-            <h3 className='text-[#416A32] text-5xl text-center font-bold md:pb-16 pb-10'>
+        <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16'>
+            <h3 className='text-[#416A32] lg:text-5xl text-3xl text-center font-bold md:pb-16 pb-10'>
                 Testimonios
             </h3>
-            <section className='mx-auto max-w-screen-xl rounded-2xl px-8'>
+            <section className='mx-auto max-w-screen-xl rounded-2xl px-8 relative'>
                 <Swiper
                     modules={[Navigation, Pagination]}
-                    navigation
+                    navigation={{
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    }}
+                    // navigation
                     // pagination={{ clickable: true }}
                     spaceBetween={10}
                     slidesPerView={1}
@@ -119,6 +123,9 @@ function Testimonials() {
                             );
                         })}
                 </Swiper>
+                {/* Custom styled navigation buttons */}
+                <div className='swiper-button-next bg-[#416a32] hover:bg-[#5b9248] w-[45px] h-[45px] text-white font-bold py-2 px-4 rounded-full'></div>
+                <div className='swiper-button-prev bg-[#416a32] hover:bg-[#5b9248] w-[45px] h-[45px] text-white font-bold py-2 px-4 rounded-full'></div>
             </section>
         </section>
     );
