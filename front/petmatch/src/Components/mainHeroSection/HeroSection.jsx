@@ -9,7 +9,7 @@ function HeroSection() {
             <section
                 // className='bg-contain bg-no-repeat bg-center min-h-screen flex flex-col justify-between'
                 // Te dejo arriba las clases originales del componente, asi sabes que cambie
-                className='bg-contain bg-no-repeat bg-bottom flex md:flex-nowrap flex-wrap justify-center items-center pt-16'
+                className='bg-contain bg-no-repeat bg-bottom flex md:flex-nowrap flex-wrap justify-center items-center pt-16 max-w-screen-xl mx-auto'
                 // style={{ backgroundImage: `url(${fondo})` }}
             >
                 {/* <section className='mt-20 sm:mt-32 md:mt-40 lg:mt-52 max-w-xl sm:max-w-2xl md:max-w-3xl mx-4 sm:mx-12 md:mx-24 lg:mx-32 text-left'> */}
