@@ -1,15 +1,13 @@
-import styles from "./MatchCards.module.css";
-
 function MatchCards({ name, age, breed, img }) {
     return (
-        <figure className={`${styles.card}`}>
+        <figure className='w-[48%] h-[192px] rounded-2xl relative text-[#2b2b2e] shadow-md md:w-full md:max-w-[206px] md:h-[200px] lg:max-w-[195px] lg:h-[220px] xl:max-w-[21.5%]'>
             <img
-                className={`${styles.card__image}`}
+                className='lg:max-h-[145px] md:max-h-[125px] h-full object-cover object-center w-full rounded-2xl max-h-[116px]'
                 src={img}
                 alt={name}
                 loading='lazy'
             />
-            <button className={`${styles.card__button}`}>
+            <button className='absolute top-2 right-2 bg-[#ffffff40] rounded-full p-[2px]'>
                 <svg
                     width='24'
                     height='24'
