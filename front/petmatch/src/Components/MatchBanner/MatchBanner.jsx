@@ -1,64 +1,17 @@
 import HeroImage from "../../Assets/matchBannerImage.webp";
 import PawIcon from "../../Assets/paw.svg";
 
-import styles from "./MatchBanner.module.css";
+import RectangleIcon from "../../Assets/rectangle.webp";
 
 function MatchBanner() {
     return (
-        <section className='relative overflow-hidden py-16'>
-            <figure className={`${styles.matchBanner__rectangle_icon}`}>
-                <svg
-                    width='804'
-                    height='544'
-                    viewBox='0 0 904 544'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'>
-                    <rect
-                        width='782.292'
-                        height='635'
-                        rx='99'
-                        transform='matrix(-0.904604 0.426252 0.426252 0.904604 665.665 -222)'
-                        fill='#BAD6AF'
-                    />
-                </svg>
-            </figure>
-            <figure className={`${styles.matchBanner__rectangle_icon}`}>
-                <svg
-                    width='701'
-                    height='425'
-                    viewBox='0 0 701 325'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'>
-                    <rect
-                        opacity='0.3'
-                        width='787.54'
-                        height='787.54'
-                        rx='99'
-                        transform='matrix(-0.880881 0.473338 0.473338 0.880881 659.507 -34.2795)'
-                        fill='url(#paint0_linear_146_1715)'
-                    />
-                    <defs>
-                        <linearGradient
-                            id='paint0_linear_146_1715'
-                            x1='0'
-                            y1='0'
-                            x2='958.452'
-                            y2='218.934'
-                            gradientUnits='userSpaceOnUse'>
-                            <stop offset='0.0616933' stop-color='#FCEED5' />
-                            <stop offset='0.751415' stop-color='#FCEED5' />
-                            <stop offset='1' stop-color='#FFE7BA' />
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </figure>
-            <section
-                className={`z-10 relative flex items-center lg:justify-end justify-center  w-full md:px-6 px-4 md:flex-nowrap flex-wrap ${styles.matchBanner__text}`}>
-                <section className='lg:w-1/2 md:w-2/3 w-full'>
+        <section
+            className='relative overflow-hidden max-w-screen-xl mx-auto bg-no-repeat bg-scroll bg-cover bg-bottom bg-clip-padding'
+            style={{ backgroundImage: `url(${RectangleIcon})` }}>
+            <section className='z-10 relative flex lg:items-center md:items-end items-center lg:justify-end justify-center w-full lg:pr-6 lg:pl-[4.5rem] px-4 md:flex-nowrap flex-wrap'>
+                <section className='md:w-1/2 w-full lg:py- md:py-16 py-8'>
                     <div className='flex items-center justify-start'>
-                        <h1
-                            className='lg:text-5xl md:text-3xl text-2xl font-extrabold capitalize'
-                            style={{ color: "var(--main-color)" }}>
+                        <h1 className='lg:text-5xl md:text-3xl text-2xl font-extrabold capitalize text-[#416a32]'>
                             adopta
                         </h1>
                         <img
@@ -67,23 +20,21 @@ function MatchBanner() {
                             alt='Paw Icon'
                         />
                     </div>
-                    <h2
-                        className='lg:text-3xl md:text-xl text-lg font-bold capitalize'
-                        style={{ color: "var(--main-color)" }}>
+                    <h2 className='lg:text-3xl md:text-xl text-lg font-bold capitalize text-[#416a32]'>
                         cambia una vida para siempre
                     </h2>
-                    <p className='mt-4' style={{ color: "#242B33" }}>
+                    <p className='mt-4 text-[#242B33]'>
                         Adoptar es un acto de amor que cambia vidas. Al adoptar,
                         no solo le das un hogar a una mascota necesitada, sino
                         que también llenas tu vida de alegría, lealtad y
                         compañía.
                     </p>
-                    <p className='font-bold mt-6' style={{ color: "#242B33" }}>
+                    <p className='font-bold mt-6 text-[#242B33]'>
                         ¡Adopta ahora y sé parte de esta hermosa experiencia!
                     </p>
                 </section>
                 <figure className='lg:w-1/2 md:w-2/5 w-full'>
-                    <img src={HeroImage} alt='' />
+                    <img src={HeroImage} alt='Hand shake' />
                 </figure>
             </section>
         </section>
