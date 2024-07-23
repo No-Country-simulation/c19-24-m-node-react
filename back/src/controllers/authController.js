@@ -130,13 +130,15 @@ class Auth {
                 first_name,
                 last_name,
                 email,
-                date_of_birth,
+                date_of_birth, //aca podria cambiarse por edad
                 password: hashPassword,
                 address: {
                     street,
                     number,
                     city
                 },
+                pets_like : [],
+                pets_not_like : [],
             }
 
             //creamos el usuario y lo guardamos en la DB
