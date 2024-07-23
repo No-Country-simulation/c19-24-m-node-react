@@ -3,6 +3,8 @@ import {MatchController} from '../controllers/matchController.js';
 
 const router = Router();
 
-router.put("/:id", MatchController.addPetLike);
+router.put("/like/:id", MatchController.addPetLike);
+
+router.put("/notlike/:id", MatchController.addPetNotLike);
 
 export default router;
