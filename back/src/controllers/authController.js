@@ -83,6 +83,13 @@ class Auth {
                 payload: token
             });
 
+            // res.cookie('jwt-cookie', token, {
+            //     httpOnly: true,
+            //     expiresIn: "2h",
+            //     secure:true,
+            //     sameSite:'none', --> aca capaz no hace falta ya q se deploya el front en render tambien
+            //     }).status(200).json({ status : "success", token})
+
             res.send({
                 status: "success",
                 payload: user
@@ -145,8 +152,6 @@ class Auth {
             const newUser = await UM.createUser(user);
 
             const response = await emailSender(email, "Te incirbiste con exito a PetMatch", "Registro con existoso");
-
-            console.log(response);
 
             res.send({
                 status: "success",
