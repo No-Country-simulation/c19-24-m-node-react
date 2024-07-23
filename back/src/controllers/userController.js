@@ -51,7 +51,11 @@ class User {
     static createUser = async (req, res) => {
         try {
             const {password} = req.body;
-            const user = {...req.body};
+            const user = {
+                ...req.body,
+                pets_like: [],
+                pets_not_like: []
+            };
 
             const hashPassword = await createHashPassword(password);
 

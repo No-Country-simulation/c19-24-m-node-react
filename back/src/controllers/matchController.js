@@ -12,13 +12,13 @@ class MatchController {
 
             // const { petId } = req.body;
 
-            // const tokenInfo = req.cookies["jwt-cookie"];
+            const tokenInfo = req.cookies["jwt-cookie"];
 
-            // const decodedInfo = jwt.decode(tokenInfo);
+            const decodedInfo = jwt.decode(tokenInfo);
 
-            // const { id, rol, email } = decodedInfo; //id de usuario
+            const { id, rol, email } = decodedInfo; //id de usuario
 
-            let id = "669faf2661d609c77d3e789e";
+            // let id = "669faf2661d609c77d3e789e";
 
             let aux = "";
 
@@ -42,13 +42,13 @@ class MatchController {
 
             // const { petId } = req.body;
 
-            // const tokenInfo = req.cookies["jwt-cookie"];
+            const tokenInfo = req.cookies["jwt-cookie"];
 
-            // const decodedInfo = jwt.decode(tokenInfo);
+            const decodedInfo = jwt.decode(tokenInfo);
 
-            // const { id, rol, email } = decodedInfo; //id de usuario
+            const { id, rol, email } = decodedInfo; //id de usuario
 
-            let id = "669faf2661d609c77d3e789e";
+            // let id = "669faf2661d609c77d3e789e";
 
             let aux = "";
 
