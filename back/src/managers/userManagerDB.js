@@ -14,7 +14,7 @@ class UserManager {
 
     getUserById = async (id) => {
         try {
-            const user = await UserModel.findOne({ id }); //puede ser q tengas q pasar el objeto como {_id : id}
+            const user = await UserModel.findOne({_id: id}); //puede ser q tengas q pasar el objeto como {_id : id}
 
             return user;
 
@@ -23,9 +23,20 @@ class UserManager {
         }
     };
 
-    createUser = async () => {
+    getUserByEmail = async (email) => {
         try {
-            const newUser = await UserModel.create({});
+            const user = await UserModel.findOne({ email }); //puede ser q tengas q pasar el objeto como {_id : id}
+
+            return user;
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    createUser = async (user) => {
+        try {
+            const newUser = await UserModel.create(user);
 
             return newUser;
 
@@ -48,7 +59,7 @@ class UserManager {
 
     deleteUser = async (id) => {
         try {
-            const deletedUser = await UserModel.deleteOne({ id });
+            const deletedUser = await UserModel.deleteOne({ _id: id });
 
             return deletedUser;
 

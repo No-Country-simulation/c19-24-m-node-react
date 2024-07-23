@@ -3,52 +3,77 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
     first_name: {
         type: String,
-        require: true
+        required: true
     },
     last_name: {
         type: String,
-        require: true
+        required: true
     },
     email: {
         type: String,
-        require: true
+        required: true,
     },
-    age: {
-        type: Number,
-        require: true
+    date_of_birth: { // Agregado el campo fecha de nacimiento
+        type: String,
+        required: true
+    },
+    address: { // Agregado el campo domicilio
+        street: {
+            type: String,
+            required: false // No es obligatorio
+        },
+        number: {
+            type: Number,
+            required: true // No es obligatorio
+        },
+        city: {
+            type: String,
+            required: true // Es obligatorio
+        }
     },
     password: {
         type: String,
-        require: true
-    },
-    cart: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "carts",
         required: true
     },
+    pets_like: [
+        {
+            like: {
+                type : mongoose.Schema.Types.ObjectId,
+                ref : "Pets",
+            }
+        }
+    ],
+    pets_not_like: [
+        {
+            not_like: {
+                type : mongoose.Schema.Types.ObjectId,
+                ref : "Pets",
+            }
+        }
+    ],
     rol: {
         type: String,
         enum: ["user", "premium", "admin"],
         default: "user"
     },
-    documents: [
-        {
-            name: String, //nombre del documento
-            reference: String//path donde esta guardado el documento
-        }
-    ],
-    last_connection: {
-        login: {
-            type: String,
-            default: ""
-        },
-        logout: {
-            type: String,
-            default: ""
-        }
-    }
+});
+
+userSchema.pre("find",function () {
+    this.populate("pets_like.like");
 })
 
-const UserModel = mongoose.model("Users",userSchema);
+userSchema.pre("findOne",function () {
+    this.populate("pets_like.like");
+})
+
+userSchema.pre("find",function () {
+    this.populate("pets_not_like.not_like");
+})
+
+userSchema.pre("findOne",function () {
+    this.populate("pets_not_like.not_like");
+})
+
+const UserModel = mongoose.model("Users", userSchema);
 
 export default UserModel;

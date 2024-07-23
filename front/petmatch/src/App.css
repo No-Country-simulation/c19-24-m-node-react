@@ -1,0 +1,19 @@
+:root {
+    --main-color: #416a32;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: #ffffff !important;
+    width: 45px !important;
+    height: 45px !important;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    font-size: 15px !important;
+}
+
+.swiper-slide {
+    flex-shrink: 1 !important;
+}

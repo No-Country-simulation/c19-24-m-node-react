@@ -1,14 +1,13 @@
-import logo from "./Assets/logo.svg";
 import "./App.css";
+// import Testimonials from "./Components/Testimonials/Testimonials";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./Routes/Routes";
 
 function App() {
     return (
-        <div className='App'>
-            <header className='App-header'>
-                <img src={logo} className='App-logo' alt='logo' />
-                <h1 className='text-3xl font-bold underline'>Hello world!</h1>
-            </header>
-        </div>
+        <Router>
+            <AppRoutes />
+        </Router>
     );
 }
 
