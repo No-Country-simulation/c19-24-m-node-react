@@ -32,7 +32,7 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/testimonials", testimonialsRoutes);
 app.use("/pets", petsRoutes);
-app.use('/match', matchRoutes);
+app.use("/match", matchRoutes);
 
 app.use(errorHandler);
 
