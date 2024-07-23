@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Details = ({ show, onClose}) => {
-    const [selectedTab, setSelectedTab] = useState('Datos');
+    const [selectedTab, setSelectedTab] = useState('Datos'); //manejador de estados para cambiar entre  secciones en details.
 
     if (!show) {
         return null;
