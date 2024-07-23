@@ -58,6 +58,22 @@ const userSchema = new mongoose.Schema({
     },
 });
 
+userSchema.pre("find",function () {
+    this.populate("pets_like.like");
+})
+
+userSchema.pre("findOne",function () {
+    this.populate("pets_like.like");
+})
+
+userSchema.pre("find",function () {
+    this.populate("pets_not_like.not_like");
+})
+
+userSchema.pre("findOne",function () {
+    this.populate("pets_not_like.not_like");
+})
+
 const UserModel = mongoose.model("Users", userSchema);
 
 export default UserModel;
