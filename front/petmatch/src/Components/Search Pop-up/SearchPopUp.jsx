@@ -38,16 +38,18 @@ function SearchPopUp({ searchQuery, searchResults }) {
                                 </svg>
                             </span>
                         </Link>
-                        <section className='flex gap-3 items-center justify-start'>
+                        <section className='flex gap-3 items-center justify-start flex-wrap'>
                             {searchResults.length === 0 ? (
                                 <p>
                                     Lo sentimos, no hay resultados para tu
                                     búsqueda
                                 </p>
                             ) : (
-                                searchResults.map((res, index) => (
-                                    <SearchCard key={index} data={res} />
-                                ))
+                                searchResults
+                                    .slice(0, 4)
+                                    .map((res, index) => (
+                                        <SearchCard key={index} data={res} />
+                                    ))
                             )}
                         </section>
                     </section>
