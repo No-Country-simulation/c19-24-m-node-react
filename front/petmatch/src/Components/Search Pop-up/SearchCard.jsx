@@ -1,6 +1,6 @@
 function SearchCard({ data }) {
-    console.log(data);
     const { img, name, personality } = data;
+    // console.log(img, name, personality);
 
     return (
         <figure className='flex flex-col justify-center items-center w-[150px] shadow-md border rounded-md relative group'>
