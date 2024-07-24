@@ -1,4 +1,5 @@
 import {UserManager} from "../managers/userManagerDB.js";
+import { createHashPassword } from "../utils/handlerPassword.js";
 
 const UM = new UserManager();
 
@@ -49,7 +50,17 @@ class User {
     //! usuarios
     static createUser = async (req, res) => {
         try {
-            const user = {...req.body};
+            const {password} = req.body;
+            const user = {
+                ...req.body,
+                pets_like: [],
+                pets_not_like: []
+            };
+
+            const hashPassword = await createHashPassword(password);
+
+            user.password = hashPassword;
+
             const newUser = await UM.createUser(user);
 
             if (!newUser) {

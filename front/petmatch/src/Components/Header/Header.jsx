@@ -175,7 +175,7 @@ function Header() {
                                     to='/'
                                     className='hover:underline block py-2 px-3 text-black rounded  md:p-0 md:dark:underline'
                                     aria-current='page'>
-                                    Incio
+                                    Inicio
                                 </Link>
                             </li>
                             <li>

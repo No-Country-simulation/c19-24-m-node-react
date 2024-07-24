@@ -1,17 +1,10 @@
-// routes/matchRoutes.js
-import express from 'express';
-import {
-    createMatch,
-    getMatches,
-    getMatchById,
-    deleteMatch,
-} from '../controllers/matchController.js';
+import { Router } from 'express';
+import {MatchController} from '../controllers/matchController.js';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/matches', createMatch); 
-router.get('/matches', getMatches);
-router.get('/matches/:id', getMatchById);
-router.delete('/matches/:id', deleteMatch);
+router.put("/like/:id", MatchController.addPetLike);
+
+router.put("/notlike/:id", MatchController.addPetNotLike);
 
 export default router;
