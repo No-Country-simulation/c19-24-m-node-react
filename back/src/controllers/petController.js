@@ -50,10 +50,12 @@ class PetController {
 
     static createPet = async (req, res) => {
         try {
-            // const {img, name, breed, age, sex, }
+            const {age, weight} = req.body;
 
             const pet = {
-                ...req.body
+                ...req.body,
+                age : parseInt(age),
+                weight : parseInt(weight)
             };
 
             const newPet = await PM.createPet(pet);
