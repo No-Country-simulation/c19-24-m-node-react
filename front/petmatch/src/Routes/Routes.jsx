@@ -3,7 +3,9 @@ import Home from "../Pages/Home/Home";
 import LoginPage from "../Pages/Auth/LoginPage";
 import RegisterPage from "../Pages/Auth/RegisterPage";
 import Matches from "../Pages/Matches/Matches";
+import MatchPage from "../Pages/matchPage/MatchPage";
 import ComingSoon from "../Pages/Comming Soon/CommingSoon";
+
 
 function AppRoutes() {
     return (
@@ -11,7 +13,7 @@ function AppRoutes() {
             <Route path='*' element={<ComingSoon />} />
             <Route path='/' element={<Home />} />
             <Route path='/Matches' element={<Matches />} />
-            <Route path='/Match' element={<ComingSoon />} />
+            <Route path='/Match' element={<MatchPage />} />
             <Route path='/Sign-Up' element={<RegisterPage />} />
             <Route path='/Log-In' element={<LoginPage />} />
             <Route path='/Catalogue' element={<ComingSoon />} />
