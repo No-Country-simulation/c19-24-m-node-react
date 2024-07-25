@@ -83,6 +83,13 @@ class Auth {
                 payload: token
             });
 
+            // res.cookie('jwt-cookie', token, {
+            //     httpOnly: true,
+            //     expiresIn: "2h",
+            //     secure:true,
+            //     sameSite:'none', --> aca capaz no hace falta ya q se deploya el front en render tambien
+            //     }).status(200).json({ status : "success", token})
+
             res.send({
                 status: "success",
                 payload: user
@@ -130,21 +137,21 @@ class Auth {
                 first_name,
                 last_name,
                 email,
-                date_of_birth,
+                date_of_birth, //aca podria cambiarse por edad
                 password: hashPassword,
                 address: {
                     street,
                     number,
                     city
                 },
+                pets_like : [],
+                pets_not_like : [],
             }
 
             //creamos el usuario y lo guardamos en la DB
             const newUser = await UM.createUser(user);
 
             const response = await emailSender(email, "Te incirbiste con exito a PetMatch", "Registro con existoso");
-
-            console.log(response);
 
             res.send({
                 status: "success",

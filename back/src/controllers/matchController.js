@@ -1,63 +1,76 @@
-// controllers/matchController.js
-import Pet from '../models/pet2Model.js';
-import Match from '../models/matchModel.js'; 
+import { UserManager } from "../managers/userManagerDB.js";
+import { MatchManager } from "../managers/matchManagerDB.js";
+import jwt from 'jsonwebtoken';
 
-// Crear un nuevo match
-export const createMatch = async (req, res) => {
-    try {
-        const { petId, userId } = req.body;
+const UM = new UserManager();
+const MM = new MatchManager();
 
-        const pet = await Pet.findById(petId);
-        if (!pet) {
-            return res.status(404).json({ message: 'Mascota no encontrada' });
+class MatchController {
+    static addPetLike = async (req, res) => {
+        try {
+            const petId = req.params.id;
+
+            // const { petId } = req.body;
+
+            const tokenInfo = req.cookies["jwt-cookie"];
+
+            const decodedInfo = jwt.decode(tokenInfo);
+
+            const { id, rol, email } = decodedInfo; //id de usuario
+
+            // let id = "669faf2661d609c77d3e789e";
+
+            let aux = "";
+
+            aux = await MM.addPetLike(id, petId); //pasarle toda la info y q el manager haga el cambio o hacer el cambio aca y q el manager de match actulize, si haces la 2 no te hace falta un match manager ya q podes usar el userupdate del user manager
+
+            console.log(aux);
+
+            res.send({
+                status : "success",
+                payload : aux
+            })
+
+        } catch (error) {
+            console.log(error);
         }
-
-        const match = await Match.create({ pet1Id: petId, userId });
-        return res.status(201).json(match);
-    } catch (error) {
-        return res.status(500).json({ message: 'Error creando el match', error });
     }
-};
 
-// Obtener todos los matches
-export const getMatches = async (req, res) => {
-    try {
-        const matches = await Match.find().populate('pet1Id userId');
-        return res.status(200).json(matches);
-    } catch (error) {
-        return res.status(500).json({ message: 'Error obteniendo los matches', error });
-    }
-};
+    static addPetNotLike = async (req, res) => {
+        try {
+            const petId = req.params.id;
 
-// Obtener un match específico
-export const getMatchById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const match = await Match.findById(id).populate('pet1Id userId');
+            // const { petId } = req.body;
 
-        if (!match) {
-            return res.status(404).json({ message: 'Match no encontrado' });
+            const tokenInfo = req.cookies["jwt-cookie"];
+
+            const decodedInfo = jwt.decode(tokenInfo);
+
+            const { id, rol, email } = decodedInfo; //id de usuario
+
+            // let id = "669faf2661d609c77d3e789e";
+
+            let aux = "";
+
+            // if (id !== undefined) {
+            //     aux = await MM.addPetNotLike(id, petId);
+            // }
+            // else {
+            //     aux = await MM.addPetNotLike(id, petId);
+            // }
+
+            aux = await MM.addPetNotLike(id, petId);
+
+
+            res.send({
+                status : "success",
+                payload : aux
+            })
+
+        } catch (error) {
+            console.log(error);
         }
-
-        return res.status(200).json(match);
-    } catch (error) {
-        return res.status(500).json({ message: 'Error obteniendo el match', error });
     }
-};
+}
 
-// Eliminar un match
-export const deleteMatch = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const match = await Match.findById(id);
-
-        if (!match) {
-            return res.status(404).json({ message: 'Match no encontrado' });
-        }
-
-        await match.remove();
-        return res.status(204).send(); // Sin contenido
-    } catch (error) {
-        return res.status(500).json({ message: 'Error eliminando el match', error });
-    }
-};
+export { MatchController };

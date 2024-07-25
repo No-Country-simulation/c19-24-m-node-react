@@ -14,7 +14,7 @@ class PetManager {
 
     getPetById = async (id) => {
         try {
-            const pet = await PetModel.findOne({ id }); //puede ser q tengas q pasar el objeto como {_id : id}
+            const pet = await PetModel.findOne({ _id : id }); //puede ser q tengas q pasar el objeto como {_id : id}
 
             return pet;
 
@@ -23,9 +23,9 @@ class PetManager {
         }
     }
 
-    createPet = async () => {
+    createPet = async (pet) => {
         try {
-            const newPet = await PetModel.create({});
+            const newPet = await PetModel.create(pet);
 
             return newPet;
 
@@ -48,7 +48,7 @@ class PetManager {
     deletePet = async (id) => {
         try {
 
-            const deletedPet = await PetModel.deleteOne({ id }); //puede ser q tengas q pasar el objeto como {_id : id}
+            const deletedPet = await PetModel.deleteOne({ _id : id }); //puede ser q tengas q pasar el objeto como {_id : id}
             return deletedPet;
 
         } catch (error) {

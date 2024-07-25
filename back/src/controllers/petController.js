@@ -50,7 +50,15 @@ class PetController {
 
     static createPet = async (req, res) => {
         try {
-            const newPet = await PM.createPet();
+            const {age, weight} = req.body;
+
+            const pet = {
+                ...req.body,
+                age : parseInt(age),
+                weight : parseInt(weight)
+            };
+
+            const newPet = await PM.createPet(pet);
 
             if (!newPet) {
                 return res.status(500).send({
@@ -74,7 +82,7 @@ class PetController {
             const id = req.params.id;
             // const {idPet} = req.body; 
 
-            const filter = { id }; //puede ser q tengas q pasar el objeto como {_id : id}
+            const filter = { _id : id }; //puede ser q tengas q pasar el objeto como {_id : id}
             const update = { ...req.body };
 
             const updatedPet = await PM.updatePet(filter, update);
