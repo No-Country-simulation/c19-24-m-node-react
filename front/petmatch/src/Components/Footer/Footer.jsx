@@ -1,10 +1,10 @@
-import Logo from "../../Assets/logo.svg";
+import Logo from "../../Assets/Logos/logo.svg";
 import styles from "./Footer.module.css";
 
-import Facebook from "../../Assets/facebook.svg";
-import Twitter from "../../Assets/twitter.svg";
-import Instagram from "../../Assets/instagram.svg";
-import Youtube from "../../Assets/youtube.svg";
+import Facebook from "../../Assets/Logos/SocialMedia/facebook.svg";
+import Twitter from "../../Assets/Logos/SocialMedia/twitter.svg";
+import Instagram from "../../Assets/Logos/SocialMedia/instagram.svg";
+import Youtube from "../../Assets/Logos/SocialMedia/youtube.svg";
 
 function Footer() {
     const handleSubmit = (e) => {

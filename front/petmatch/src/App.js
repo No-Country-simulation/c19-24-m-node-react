@@ -1,15 +1,23 @@
 import "./App.css";
-import Matches from "./Pages/Matches";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
 import Home from "./Pages/Home/Home";
+import CatalogueBanner from "./Components/Banners/Catalogue/CatalogueBanner";
+import Catalogue from "./Pages/Catalogue";
+import CatalogueFilter from "./Components/CatalogueFilter";
 
-import "./App.css"
+
 function App() {
     return (
-        <div className='App'>
-            {/* <Matches /> */}
-            <Home/>
+        <div className='bg-gray-100'>
+            <Header />
+          {/*   <Home /> */}
+          <CatalogueBanner/>
+
+          <Catalogue/>
+            <Footer />
         </div>
-        
+
     );
 }
 

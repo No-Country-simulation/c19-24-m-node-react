@@ -1,15 +1,14 @@
-import Logo from '../../Assets/Logos/Logo.png';
-import LogoName from '../../Assets/Logos/LogoName.png';
+import Logo from '../../Assets/Logos/logo.svg';
+
 
 function Header() {
     return (
         <header>
-            <nav className="bg-[#E0E7DE]">
+            <nav className='bg-transparent relative z-20'>
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
                     <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src={Logo} className='App-logo' alt='logo' />
-                        <img src={LogoName} className='App-logo w-28' alt='logo' />
+                        <img src={Logo} className='w-48' alt='logo' />
                     </a>
 
                     {/* Search button */}
