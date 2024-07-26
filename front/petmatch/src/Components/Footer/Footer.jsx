@@ -1,5 +1,4 @@
 import Logo from "../../Assets/Logos/logo.svg";
-import styles from "./Footer.module.css";
 
 import Facebook from "../../Assets/Logos/SocialMedia/facebook.svg";
 import Twitter from "../../Assets/Logos/SocialMedia/twitter.svg";
@@ -8,6 +7,8 @@ import Youtube from "../../Assets/Logos/SocialMedia/youtube.svg";
 
 import ConfettiGenerator from "confetti-js";
 import Swal from "sweetalert2";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
     const confettiRef = useRef(null);

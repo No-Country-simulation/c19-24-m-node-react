@@ -1,11 +1,11 @@
-import CatalogueGrid from "../Components/CatalogueGrid"
+import CatalogueGrid from "../../Components/CatalogueGrid";
 
 function Catalogue() {
     return (
         <div>
             <CatalogueGrid />
         </div>
-    )
+    );
 }
 
-export default Catalogue
+export default Catalogue;
