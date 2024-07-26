@@ -5,8 +5,7 @@ import Details from "../detailsPopUp/Details";
 import { useNavigate } from "react-router-dom";
 
 const MatchSection = () => {
-    const navigate = useNavigate;
-
+    const navigate = useNavigate();
     const [showDetails, setShowDetails] = useState(false); //manejador de estado para que haga el popup de details.
 
     const handleShowDetails = () => {
