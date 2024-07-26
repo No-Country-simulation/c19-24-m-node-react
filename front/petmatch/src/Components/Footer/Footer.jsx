@@ -1,14 +1,14 @@
-import Logo from "../../Assets/logo.svg";
+import Logo from "../../Assets/Logos/logo.svg";
+
+import Facebook from "../../Assets/Logos/SocialMedia/facebook.svg";
+import Twitter from "../../Assets/Logos/SocialMedia/twitter.svg";
+import Instagram from "../../Assets/Logos/SocialMedia/instagram.svg";
+import Youtube from "../../Assets/Logos/SocialMedia/youtube.svg";
 
 import ConfettiGenerator from "confetti-js";
 import Swal from "sweetalert2";
-
-import Facebook from "../../Assets/facebook.svg";
-import Twitter from "../../Assets/twitter.svg";
-import Instagram from "../../Assets/instagram.svg";
-import Youtube from "../../Assets/youtube.svg";
-import { Link } from "react-router-dom";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
     const confettiRef = useRef(null);

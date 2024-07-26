@@ -1,5 +1,5 @@
-import HeroImage from "../../Assets/matchBannerImage.webp";
-import PawIcon from "../../Assets/paw.svg";
+import HeroImage from "../../Assets/Banners/matchBannerImage.webp";
+import PawIcon from "../../Assets/GeneralImages/paw.svg";
 
 // import RectangleIcon from "../../Assets/rectangle.webp";
 import RectangleIcon from "../../Assets/attachment.png";
