@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import TestimonialCard from "./TestimonialCard";
 
 // Import Swiper React components
@@ -73,12 +76,19 @@ const testomios = [
 ];
 
 function Testimonials() {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, 
+        });
+    }, []);
+    
     return (
-        <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16'>
+        <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16' >
             <h3 className='text-[#416A32] lg:text-5xl text-3xl text-center font-bold md:pb-16 pb-10'>
                 Testimonios
             </h3>
-            <section className='mx-auto max-w-screen-xl rounded-2xl px-8 relative'>
+            <section className='mx-auto max-w-screen-xl rounded-2xl px-8 relative' data-aos="fade-up">
                 <Swiper
                     modules={[Navigation, Pagination]}
                     navigation={{
@@ -110,15 +120,15 @@ function Testimonials() {
                         testomios.map((test, index) => {
                             return (
                                 <SwiperSlide key={index}>
-                                    <TestimonialCard
-                                        key={index}
-                                        owner={test.dueño}
-                                        pet={test.mascota}
-                                        testimonial={test.testimonio}
-                                        img={
-                                            "https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"
-                                        }
-                                    />
+                                    <div data-aos="fade-up" data-aos-delay={index * 100}>
+                                        <TestimonialCard
+                                            key={index}
+                                            owner={test.dueño}
+                                            pet={test.mascota}
+                                            testimonial={test.testimonio}
+                                            img={"https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"}
+                                        />
+                                    </div>
                                 </SwiperSlide>
                             );
                         })}
