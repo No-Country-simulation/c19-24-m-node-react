@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import TestimonialCard from "./TestimonialCard";
 
-// Import Swiper React components
+/* // Import Swiper React components
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css/bundle";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
+import "swiper/css/pagination"; */
 
 const testomios = [
     {
@@ -75,6 +78,7 @@ const testomios = [
     },
 ];
 
+
 function Testimonials() {
 
     useEffect(() => {
@@ -82,13 +86,54 @@ function Testimonials() {
             duration: 1000, 
         });
     }, []);
-    
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 10000,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 0,
+        cssEase: "linear",
+        pauseOnHover: false
+    };
+
     return (
+        <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16'>
+            <h3 className='text-[#416A32] lg:text-5xl text-3xl text-center font-bold md:pb-16 pb-10'>
+                Testimonios
+            </h3>
+            <section className='mx-auto max-w-screen-xl rounded-2xl px-8 relative' data-aos="zoom-out-up">
+                <Slider {...settings}>
+                    {testomios &&
+                        testomios.map((test, index) => (
+                            <div key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                                <TestimonialCard
+                                    key={index}
+                                    owner={test.dueño}
+                                    pet={test.mascota}
+                                    testimonial={test.testimonio}
+                                    img={"https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"}
+                                />
+                            </div>
+                        ))}
+                </Slider>
+            </section>
+        </section>
+    );
+};
+
+export default Testimonials;
+
+//Te dejo el codigo que vos hiciste asi ves que es lo que cambie
+    
+    /* return (
         <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16' >
             <h3 className='text-[#416A32] lg:text-5xl text-3xl text-center font-bold md:pb-16 pb-10'>
                 Testimonios
             </h3>
-            <section className='mx-auto max-w-screen-xl rounded-2xl px-8 relative' data-aos="fade-up">
+            <section className='mx-auto max-w-screen-xl rounded-2xl px-8 relative'>
                 <Swiper
                     modules={[Navigation, Pagination]}
                     navigation={{
@@ -120,7 +165,6 @@ function Testimonials() {
                         testomios.map((test, index) => {
                             return (
                                 <SwiperSlide key={index}>
-                                    <div data-aos="fade-up" data-aos-delay={index * 100}>
                                         <TestimonialCard
                                             key={index}
                                             owner={test.dueño}
@@ -128,12 +172,10 @@ function Testimonials() {
                                             testimonial={test.testimonio}
                                             img={"https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"}
                                         />
-                                    </div>
                                 </SwiperSlide>
                             );
                         })}
                 </Swiper>
-                {/* Custom styled navigation buttons */}
                 <div className='swiper-button-next bg-[#416a32] hover:bg-[#5b9248] w-[45px] h-[45px] text-white font-bold py-2 px-4 rounded-full'></div>
                 <div className='swiper-button-prev bg-[#416a32] hover:bg-[#5b9248] w-[45px] h-[45px] text-white font-bold py-2 px-4 rounded-full'></div>
             </section>
@@ -141,4 +183,4 @@ function Testimonials() {
     );
 }
 
-export default Testimonials;
+export default Testimonials; */
