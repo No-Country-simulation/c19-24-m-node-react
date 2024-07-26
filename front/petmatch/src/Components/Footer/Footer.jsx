@@ -1,4 +1,3 @@
-
 import Logo from "../../Assets/Logos/logo.svg";
 import styles from "./Footer.module.css";
 
@@ -7,14 +6,35 @@ import Twitter from "../../Assets/Logos/SocialMedia/twitter.svg";
 import Instagram from "../../Assets/Logos/SocialMedia/instagram.svg";
 import Youtube from "../../Assets/Logos/SocialMedia/youtube.svg";
 
+import ConfettiGenerator from "confetti-js";
+import Swal from "sweetalert2";
+
 function Footer() {
+    const confettiRef = useRef(null);
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        Swal.fire({
+            title: "¡Muy bien!",
+            text: "Te has suscrito correctamente.",
+            icon: "success",
+        }).then(() => {
+            // Initialize confetti
+            const confettiSettings = { target: confettiRef.current };
+            const confetti = new ConfettiGenerator(confettiSettings);
+            confetti.render();
+
+            // Stop confetti after 5 seconds
+            setTimeout(() => {
+                confetti.clear();
+            }, 5000);
+        });
     };
 
     return (
         <footer
-            className={`bg-[#bad6af] md:rounded-t-[20px] rounded-t-none md:px-8 px-4 md:pt-16 pt-16 pb-4 w-full`}>
+            className={`bg-[#bad6af] md:rounded-t-[20px] rounded-t-none md:px-8 px-4 md:pt-16 pt-16 pb-4 w-full relative`}>
             <section className='md:pb-0 pb-4 mx-auto max-w-screen-xl'>
                 <form
                     className={`bg-[#416a32] lg:flex-nowrap flex-wrap md:px-8 px-4 py-8 lg:pt-8 md:pt-5 md:rounded-2xl rounded-lg w-full flex items-center lg:justify-between justify-center`}
@@ -32,7 +52,7 @@ function Footer() {
                             type='email'
                             name='email'
                             title='Invalid Email'
-                            pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$'
+                            pattern='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
                             autoComplete='off'
                             required
                             placeholder='Ingresa tu correo electrónico'
@@ -50,7 +70,7 @@ function Footer() {
                                 <Link to='/'></Link>
                             </li>
                             <li className='font-bold lg:text-base text-sm cursor-pointer text-[#416a32]'>
-                                <Link to='/Matches'>Match</Link>
+                                <Link to='/Match'>Match</Link>
                             </li>
                             <li className='font-bold lg:text-base text-sm cursor-pointer text-[#416a32]'>
                                 <Link to='/About Us'>Nosotros</Link>
@@ -96,6 +116,18 @@ function Footer() {
                     </p>
                 </div>
             </section>
+            <canvas
+                ref={confettiRef}
+                style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    zIndex: 10,
+                    pointerEvents: "none",
+                    width: "100%",
+                    height: "100vh",
+                }}
+            />
         </footer>
     );
 }

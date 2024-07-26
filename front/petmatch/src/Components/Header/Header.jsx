@@ -1,10 +1,60 @@
 
 import Logo from '../../Assets/Logos/logo.svg';
 import { Link, useNavigate } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import SearchPopUp from "../Search Pop-up/SearchPopUp";
 
 function Header() {
     const navigate = useNavigate();
+
+    const [petsForSearch, setPetsforsearch] = useState([]);
+    const [isVisible, setIsVisible] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
+    const handleClick = () => {
+        setIsVisible(!isVisible);
+    };
+
+    const handleInputChange = (event) => {
+        const query = event.target.value;
+        setSearchQuery(query);
+        const results = simulateSearch(query);
+        setSearchResults(results);
+    };
+
+    useEffect(() => {
+        try {
+            const getPets = async () => {
+                const res = await fetch(
+                    "https://c19-24-m-node.onrender.com/pets"
+                );
+                const data = await res.json();
+                // console.log(data);
+                if (data.status === "success") setPetsforsearch(data.payload);
+            };
+
+            getPets();
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
+
+    // console.log(petsForSearch, "PETS FOR SEARCH");
+    const simulateSearch = (query) => {
+        if (query === "") {
+            return [];
+        }
+
+        const lowerCaseQuery = query.toLowerCase();
+
+        return petsForSearch.filter(
+            (pet) =>
+                pet.sex.toLowerCase().includes(lowerCaseQuery) ||
+                pet.breed.toLowerCase().includes(lowerCaseQuery) ||
+                pet.specie.toLowerCase().includes(lowerCaseQuery)
+        );
+    };
 
     return (
         <header>
@@ -16,8 +66,9 @@ function Header() {
                     </a>
 
                     {/* Search button */}
-                    <div className='flex md:order-2 md:space-x-3'>
+                    <div className='flex md:order-2 md:space-x-3 relative'>
                         <button
+                            onClick={handleClick}
                             type='button'
                             data-collapse-toggle='navbar-search'
                             aria-controls='navbar-search'
@@ -31,9 +82,9 @@ function Header() {
                                 viewBox='0 0 20 20'>
                                 <path
                                     stroke='currentColor'
-                                    stroke-linecap='round'
-                                    stroke-linejoin='round'
-                                    stroke-width='2'
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    strokeWidth='2'
                                     d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
                                 />
                             </svg>
@@ -49,9 +100,9 @@ function Header() {
                                     viewBox='0 0 20 20'>
                                     <path
                                         stroke='currentColor'
-                                        stroke-linecap='round'
-                                        stroke-linejoin='round'
-                                        stroke-width='2'
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                        strokeWidth='2'
                                         d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
                                     />
                                 </svg>
@@ -59,12 +110,24 @@ function Header() {
                             </div>
 
                             <input
-                                type='text'
+                                type='search'
                                 id='search-navbar'
                                 className='block w-[280px] p-2 ps-10 text-sm border-gray-300 rounded-full bg-gray-50 dark:bg-white outline-none cursor-pointer  dark:placeholder-gray-400 dark:text-black  dark:focus:border-none'
                                 placeholder=' Adopción, apadrinar...'
+                                autoComplete='off'
+                                onClick={handleClick}
+                                onChange={handleInputChange}
                             />
                         </div>
+
+                        {/* Search Pop-up START */}
+                        {isVisible && (
+                            <SearchPopUp
+                                searchResults={searchResults}
+                                searchQuery={searchQuery}
+                            />
+                        )}
+                        {/* Search Pop-up END */}
 
                         <button
                             data-collapse-toggle='navbar-search'
@@ -81,9 +144,9 @@ function Header() {
                                 viewBox='0 0 17 14'>
                                 <path
                                     stroke='currentColor'
-                                    stroke-linecap='round'
-                                    stroke-linejoin='round'
-                                    stroke-width='2'
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    strokeWidth='2'
                                     d='M1 1h15M1 7h15M1 13h15'
                                 />
                             </svg>
@@ -91,7 +154,7 @@ function Header() {
                         <button
                             onClick={() => navigate("/Sign-Up")}
                             type='button'
-                            class='text-white bg-[#2C7B10] hidden md:block w-[240px] font-medium rounded-full text-sm px-4 py-2 text-center'>
+                            className='text-white bg-[#2C7B10] hidden md:block w-[240px] font-medium rounded-full text-sm px-4 py-2 text-center'>
                             ¡Adopta un compañero!
                         </button>
                     </div>
@@ -112,7 +175,7 @@ function Header() {
                             <li>
                                 {/* <a href="/" className="block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline">Match</a> */}
                                 <Link
-                                    to='/Matches'
+                                    to='/Match'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
                                     Match
                                 </Link>

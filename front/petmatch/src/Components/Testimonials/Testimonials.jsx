@@ -109,7 +109,7 @@ function Testimonials() {
                     {testomios &&
                         testomios.map((test, index) => {
                             return (
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     <TestimonialCard
                                         key={index}
                                         owner={test.dueño}
