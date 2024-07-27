@@ -31,10 +31,8 @@ function Login() {
             const data = await response.json();
 
             if (response.ok) {
-                // Asume que el token se encuentra en data.token
                 localStorage.setItem('token', data.token);
                 alert('Inicio de sesión exitoso');
-                // Redirige al usuario o realiza alguna acción después de un inicio de sesión exitoso
             } else {
                 alert(data.message || 'Error al iniciar sesión');
             }

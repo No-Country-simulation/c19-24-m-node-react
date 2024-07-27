@@ -27,7 +27,6 @@ class User {
     };
 
     static async loginUser(req, res) {
-        // Simplemente llama al método login de authController
         return Auth.login(req, res);
     }
 
