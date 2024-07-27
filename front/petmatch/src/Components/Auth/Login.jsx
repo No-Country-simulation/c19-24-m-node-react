@@ -1,7 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogInImg from "../../Assets/AuthImg/LogInImg.png";
 
 function Login() {
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        navigate("/Account-Settings");
+    };
+
     return (
         <section className='min-h-screen grid grid-cols-2 items-center p-8'>
             <div className='row-start-1 row-end-2 flex justify-center self-center mt-[2rem] pt-[2rem]'>
@@ -16,7 +24,9 @@ function Login() {
                     className='object-cover'
                 />
 
-                <form className='flex flex-col gap-y-5 w-[25rem]'>
+                <form
+                    onSubmit={handleSubmit}
+                    className='flex flex-col gap-y-5 w-[25rem]'>
                     <div>
                         <label
                             htmlFor='email'
@@ -28,6 +38,7 @@ function Login() {
                             id='email'
                             className='shadow-sm bg-transparent border border-[#9F9F9F] outline-none text-gray-900 text-sm rounded-lg block w-full p-2.5'
                             required
+                            autoComplete='off'
                         />
                     </div>
                     <div>
@@ -41,6 +52,7 @@ function Login() {
                             id='password'
                             className='shadow-sm bg-transparent border border-[#9F9F9F] outline-none text-gray-900 text-sm rounded-lg block w-full p-2.5'
                             required
+                            autoComplete='off'
                         />
                     </div>
                     <button
