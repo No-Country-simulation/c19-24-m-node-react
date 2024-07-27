@@ -10,6 +10,7 @@ import userRoutes from './routes/usersRoutes.js';
 import testimonialsRoutes from './routes/testimonialsRoutes.js';
 import matchRoutes from './routes/matchRoutes.js'; 
 import petsRoutes from './routes/petsRoutes.js';
+import adoptionRoutes from './routes/adoptionRoutes.js';
 
 const PORT = options.PORT || 8080;
 
@@ -53,6 +54,7 @@ app.use("/users", userRoutes);
 app.use("/testimonials", testimonialsRoutes);
 app.use("/pets", petsRoutes);
 app.use("/match", matchRoutes);
+app.use("/adoptions", adoptionRoutes);
 
 app.use(errorHandler);
 
