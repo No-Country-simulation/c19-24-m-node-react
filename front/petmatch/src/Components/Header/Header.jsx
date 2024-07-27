@@ -1,13 +1,14 @@
-
-import Logo from '../../Assets/Logos/logo.svg';
+import Logo from "../../Assets/Logos/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import SearchPopUp from "../Search Pop-up/SearchPopUp";
+import PetsContext from "../../Context/GlobalContext";
 
 function Header() {
     const navigate = useNavigate();
 
-    const [petsForSearch, setPetsforsearch] = useState([]);
+    const { allPets } = useContext(PetsContext);
+
     const [isVisible, setIsVisible] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
@@ -23,24 +24,6 @@ function Header() {
         setSearchResults(results);
     };
 
-    useEffect(() => {
-        try {
-            const getPets = async () => {
-                const res = await fetch(
-                    "https://c19-24-m-node.onrender.com/pets"
-                );
-                const data = await res.json();
-                // console.log(data);
-                if (data.status === "success") setPetsforsearch(data.payload);
-            };
-
-            getPets();
-        } catch (err) {
-            console.log(err);
-        }
-    }, []);
-
-    // console.log(petsForSearch, "PETS FOR SEARCH");
     const simulateSearch = (query) => {
         if (query === "") {
             return [];
@@ -48,7 +31,7 @@ function Header() {
 
         const lowerCaseQuery = query.toLowerCase();
 
-        return petsForSearch.filter(
+        return allPets.filter(
             (pet) =>
                 pet.sex.toLowerCase().includes(lowerCaseQuery) ||
                 pet.breed.toLowerCase().includes(lowerCaseQuery) ||
@@ -59,9 +42,10 @@ function Header() {
     return (
         <header>
             <nav className='bg-transparent relative z-20'>
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-
-                    <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+                    <a
+                        href='/'
+                        className='flex items-center space-x-3 rtl:space-x-reverse'>
                         <img src={Logo} className='w-48' alt='logo' />
                     </a>
 
