@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TestimonialCard from "./TestimonialCard";
 
@@ -78,12 +78,10 @@ const testomios = [
     },
 ];
 
-
 function Testimonials() {
-
     useEffect(() => {
         AOS.init({
-            duration: 1000, 
+            duration: 1000,
         });
     }, []);
 
@@ -96,25 +94,32 @@ function Testimonials() {
         autoplay: true,
         autoplaySpeed: 0,
         cssEase: "linear",
-        pauseOnHover: false
+        pauseOnHover: false,
     };
 
     return (
-        <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16'>
+        <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16 overflow-hidden'>
             <h3 className='text-[#416A32] lg:text-5xl text-3xl text-center font-bold md:pb-16 pb-10'>
                 Testimonios
             </h3>
-            <section className='mx-auto max-w-screen-xl rounded-2xl px-8 relative' data-aos="zoom-out-up">
+            <section
+                className='mx-auto max-w-screen-xl rounded-2xl px-8 relative'
+                data-aos='zoom-out-up'>
                 <Slider {...settings}>
                     {testomios &&
                         testomios.map((test, index) => (
-                            <div key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                            <div
+                                key={index}
+                                data-aos='fade-up'
+                                data-aos-delay={index * 100}>
                                 <TestimonialCard
                                     key={index}
                                     owner={test.dueño}
                                     pet={test.mascota}
                                     testimonial={test.testimonio}
-                                    img={"https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"}
+                                    img={
+                                        "https://images.dog.ceo/breeds/mastiff-bull/n02108422_1923.jpg"
+                                    }
                                 />
                             </div>
                         ))}
@@ -122,13 +127,13 @@ function Testimonials() {
             </section>
         </section>
     );
-};
+}
 
 export default Testimonials;
 
 //Te dejo el codigo que vos hiciste asi ves que es lo que cambie
-    
-    /* return (
+
+/* return (
         <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16' >
             <h3 className='text-[#416A32] lg:text-5xl text-3xl text-center font-bold md:pb-16 pb-10'>
                 Testimonios
