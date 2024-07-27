@@ -34,6 +34,17 @@ class PetManager {
         }
     }
 
+    getRandomPet = async () =>{
+        try{
+            const pets = await PetModel.find();
+
+            const randomPet = pets[Math.floor(Math.random() * pets.length)];
+            return randomPet
+        } catch (error){
+            console.log(error)
+        }
+    }
+
     updatePet = async (filter, bodyUpdate) => {
         try {
             const updatedPet = await PetModel.findOneAndUpdate(filter, bodyUpdate);

@@ -50,11 +50,33 @@ class User {
     //! usuarios
     static createUser = async (req, res) => {
         try {
-            const {password} = req.body;
-            const user = {
+            // const {password} = req.body;
+            const { first_name, last_name, email, date_of_birth, address, password } = req.body;
+
+            const existingUser = await UserModel.findOne({ email });
+            if (existingUser) {
+                return res.status(400).send({
+                    status: 'error',
+                    message: 'El usuario ya existe'
+                });
+            }
+
+            /* const user = {
                 ...req.body,
                 pets_like: [],
                 pets_not_like: []
+            }; */
+
+            const user = {
+                first_name,
+                last_name,
+                email,
+                date_of_birth,
+                address,
+                password: hashPassword,
+                pets_like: [],
+                pets_not_like: [],
+                rol: 'user'
             };
 
             const hashPassword = await createHashPassword(password);
