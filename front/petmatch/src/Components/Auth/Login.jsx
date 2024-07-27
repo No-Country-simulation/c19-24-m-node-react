@@ -1,7 +1,49 @@
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import LogInImg from "../../Assets/AuthImg/LogInImg.png";
 
 function Login() {
+
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+      });
+      
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [id]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:8080/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Asume que el token se encuentra en data.token
+                localStorage.setItem('token', data.token);
+                alert('Inicio de sesión exitoso');
+                // Redirige al usuario o realiza alguna acción después de un inicio de sesión exitoso
+            } else {
+                alert(data.message || 'Error al iniciar sesión');
+            }
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+            alert('Error al iniciar sesión');
+        }
+    };
+
     return (
         <section className='min-h-screen grid grid-cols-2 items-center p-8'>
             <div className='row-start-1 row-end-2 flex justify-center self-center mt-[2rem] pt-[2rem]'>
@@ -16,7 +58,7 @@ function Login() {
                     className='object-cover'
                 />
 
-                <form className='flex flex-col gap-y-5 w-[25rem]'>
+                <form className='flex flex-col gap-y-5 w-[25rem]' onSubmit={handleSubmit}>
                     <div>
                         <label
                             htmlFor='email'
@@ -27,6 +69,8 @@ function Login() {
                             type='email'
                             id='email'
                             className='shadow-sm bg-transparent border border-[#9F9F9F] outline-none text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                            value={formData.email}
+                            onChange={handleChange}
                             required
                         />
                     </div>
@@ -40,6 +84,8 @@ function Login() {
                             type='password'
                             id='password'
                             className='shadow-sm bg-transparent border border-[#9F9F9F] outline-none text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                            value={formData.password}
+                            onChange={handleChange}
                             required
                         />
                     </div>

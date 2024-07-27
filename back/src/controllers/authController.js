@@ -74,6 +74,7 @@ class Auth {
             }
 
             const token = jwt.sign(user, "jwt-secret-word", { expiresIn: "8h" }); //el exprire podriamos sacarlo, es mas q nada para q se te desconecte automaticamente pasada cierta cantidad de tiempo
+            console.log('token', token)
 
             //setamos la cookie
             //con maxAge indicamos el tiempo de vida osea cuando expira
