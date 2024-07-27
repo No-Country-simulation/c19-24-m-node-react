@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogInImg from "../../Assets/AuthImg/LogInImg.png";
 
 function Login() {
-
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-      });
-      
+    });
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [id]: value
+        setFormData((prevState) => ({
+            ...prevState,
+            [id]: value,
         }));
     };
 
@@ -29,16 +30,19 @@ function Login() {
             });
 
             const data = await response.json();
-
             if (response.ok) {
-                localStorage.setItem('token', data.token);
-                alert('Inicio de sesión exitoso');
+                if (data.payload) {
+                    localStorage.setItem('token', data.payload);
+                    navigate('/');
+                } else {
+                    setError('Token no recibido');
+                }
             } else {
-                alert(data.message || 'Error al iniciar sesión');
+                setError(data.payload || 'Error al iniciar sesión');
             }
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
-            alert('Error al iniciar sesión');
+            setError('Error del servidor');
         }
     };
 
@@ -49,13 +53,12 @@ function Login() {
                     La Felicidad <br /> Empieza Aquí
                 </span>
             </div>
-            <div className='row-span-2 justify-self-center  self-start flex flex-col items-center gap-y-10 bg-white rounded-lg'>
+            <div className='row-span-2 justify-self-center self-start flex flex-col items-center gap-y-10 bg-white rounded-lg'>
                 <img
                     src={LogInImg}
                     alt='Imagen Crear Cuenta'
                     className='object-cover'
                 />
-
                 <form className='flex flex-col gap-y-5 w-[25rem]' onSubmit={handleSubmit}>
                     <div>
                         <label
@@ -67,9 +70,9 @@ function Login() {
                             type='email'
                             id='email'
                             className='shadow-sm bg-transparent border border-[#9F9F9F] outline-none text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                            required
                             value={formData.email}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                     <div>
@@ -82,11 +85,12 @@ function Login() {
                             type='password'
                             id='password'
                             className='shadow-sm bg-transparent border border-[#9F9F9F] outline-none text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                            required
                             value={formData.password}
                             onChange={handleChange}
-                            required
                         />
                     </div>
+                    {error && <div className="text-red-500">{error}</div>}
                     <button
                         type='submit'
                         className='text-white bg-[#416A32] outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-auto mt-5'>

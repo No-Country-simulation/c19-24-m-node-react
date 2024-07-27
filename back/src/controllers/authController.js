@@ -84,18 +84,6 @@ class Auth {
                 payload: token
             });
 
-            // res.cookie('jwt-cookie', token, {
-            //     httpOnly: true,
-            //     expiresIn: "2h",
-            //     secure:true,
-            //     sameSite:'none', --> aca capaz no hace falta ya q se deploya el front en render tambien
-            //     }).status(200).json({ status : "success", token})
-
-            res.send({
-                status: "success",
-                payload: user
-            });
-
         } catch (error) {
             console.log(error);
         }
