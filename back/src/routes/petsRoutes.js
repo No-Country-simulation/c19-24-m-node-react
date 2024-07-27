@@ -1,10 +1,11 @@
 import { Router } from 'express'
 import { PetController } from '../controllers/petController.js';
+import { authCheck } from '../middelwares/authCheck.js';
 
 const router = Router();
 
 //obtener todos las mascotasª
-router.get('/', PetController.getPets);
+router.get('/', authCheck(), PetController.getPets);
 
 //Mascota aleatoria
 router.get('/randomPet', PetController.getRandomPet);
