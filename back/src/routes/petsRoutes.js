@@ -6,6 +6,9 @@ const router = Router();
 //obtener todos las mascotasª
 router.get('/', PetController.getPets);
 
+//Mascota aleatoria
+router.get('/randomPet', PetController.getRandomPet);
+
 //obtener mascota por id
 router.get('/:id', PetController.getPetById);
 

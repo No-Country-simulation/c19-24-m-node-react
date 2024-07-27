@@ -23,6 +23,26 @@ class PetController {
             console.log(error);
         }
     }
+    static getRandomPet = async (req, res) =>{
+            try {
+                const randomPet = await PM.getRandomPet();
+
+                if (!randomPet) {
+                    return res.status(500).send({
+                        status: "error",
+                        payload: "No se logro obtener una mascota aleatoria"
+                    })
+                }
+
+                res.send({
+                    status: "success",
+                    payload: randomPet
+                })
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
     static getPetById = async (req, res) => {
         try {
@@ -47,6 +67,8 @@ class PetController {
             console.log(error);
         }
     }
+
+    
 
     static createPet = async (req, res) => {
         try {
