@@ -16,7 +16,7 @@ const PORT = options.PORT || 8080;
 
 const app = express();
 
-var whitelist = ['http://localhost:3000', /** other domains if any */ ]
+var whitelist = ['http://localhost:3000', 'http://localhost:8080' /** other domains if any */ ]
 var corsOptions = {
   credentials: true,
   origin: function(origin, callback) {
@@ -26,7 +26,7 @@ var corsOptions = {
       callback(new Error('Not allowed by CORS'))
     }
   }
-}
+} 
 
 app.use(cors(corsOptions));
 
