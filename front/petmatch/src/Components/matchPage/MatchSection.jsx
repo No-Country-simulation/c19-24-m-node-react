@@ -125,7 +125,7 @@ const MatchSection = () => {
                     Ver Más Compañeros
                 </button>
             </div>
-            <Details show={showDetails} onClose={handleCloseDetails} />
+            <Details show={showDetails} onClose={handleCloseDetails} dog={dog} />
         </div>
     );
 };
