@@ -10,6 +10,9 @@ class MatchController {
         try {
             const petId = req.params.id;
             const authHeader = req.headers.authorization;
+            console.log(req.headers);
+            console.log(req.headers.authorization);
+            console.log(authHeader);
 
             if (!authHeader) {
                 return res.status(401).send({

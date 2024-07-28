@@ -7,9 +7,27 @@ const MatchSection = () => {
     const navigate = useNavigate();
     const [showDetails, setShowDetails] = useState(false);
     const [dog, setDog] = useState(null);
+    const [pets, setPets] = useState([]);
+    const [count, setCount] = useState(0);
 
     const handleShowDetails = () => setShowDetails(true);
     const handleCloseDetails = () => setShowDetails(false);
+
+    //trae una cantidad fija de animalitos de la DB
+    useEffect(() => {
+        fetch('http://localhost:8080/pets/petsQuantity/16')
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 'success') {
+                    setPets(data.payload);
+                    console.log(data.payload);
+                } else {
+                    console.error('Error:', data.payload);
+                }
+            })
+            .catch((error) => console.error('Error fetching dog:', error));
+    }, [])
+    
 
     useEffect(() => {
         fetch('http://localhost:8080/pets/randomPet')
@@ -45,6 +63,10 @@ const MatchSection = () => {
             if (response.ok) {
                 console.log('Pet added to likes:', data);
                 alert("Perro añadido a favoritos!");
+
+                setCount(prevState => prevState + 1);
+                setDog(pets[count]);
+
             } else {
                 console.error('Error adding pet to likes:', data);
                 alert("Error al añadir el perro a favoritos.");
@@ -76,6 +98,9 @@ const MatchSection = () => {
             if (response.ok) {
                 console.log('Pet added to dislikes:', data);
                 alert("Perro añadido a no favoritos!");
+
+                setCount(prevState => prevState + 1);
+                setDog(pets[count]);
             } else {
                 console.error('Error adding pet to dislikes:', data);
                 alert("Error al añadir el perro a no favoritos.");

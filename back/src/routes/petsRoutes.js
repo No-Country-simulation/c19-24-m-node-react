@@ -8,7 +8,7 @@ const router = Router();
 router.get('/', authCheck(), PetController.getPets);
 
 //obtener un numero determinado de mascotas 
-router.get('/petsQuantity/:num', authCheck(), PetController.getNumPets);
+router.get('/petsQuantity/:num',  PetController.getNumPets);
 
 //Mascota aleatoria
 router.get('/randomPet', PetController.getRandomPet);
