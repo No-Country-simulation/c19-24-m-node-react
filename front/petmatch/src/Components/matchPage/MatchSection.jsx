@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Details from "../detailsPopUp/Details";
 
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,9 @@ const MatchSection = () => {
     const [dog, setDog] = useState(null);
     const [pets, setPets] = useState([]);
     const [count, setCount] = useState(0);
+    const dogImg = useRef(null);
+
+    const [showImage, setShowImage] = useState(true);
 
     const handleShowDetails = () => setShowDetails(true);
     const handleCloseDetails = () => setShowDetails(false);
@@ -62,10 +65,17 @@ const MatchSection = () => {
             const data = await response.json();
             if (response.ok) {
                 console.log('Pet added to likes:', data);
-                alert("Perro añadido a favoritos!");
+                // alert("Perro añadido a favoritos!");
+
+                setShowImage(!showImage);
 
                 setCount(prevState => prevState + 1);
                 setDog(pets[count]);
+
+                setTimeout(() => {
+                    setShowImage(showImage);
+                }, 1000);
+
 
             } else {
                 console.error('Error adding pet to likes:', data);
@@ -101,6 +111,7 @@ const MatchSection = () => {
 
                 setCount(prevState => prevState + 1);
                 setDog(pets[count]);
+
             } else {
                 console.error('Error adding pet to dislikes:', data);
                 alert("Error al añadir el perro a no favoritos.");
@@ -124,14 +135,15 @@ const MatchSection = () => {
                 <button className='absolute right-96 top-1/2 transform -translate-y-1/2 text-red-500 text-3xl focus:outline-none' onClick={handleDislike}>
                     ❌
                 </button>
-                <div className='bg-white shadow-lg rounded-lg overflow-hidden w-64 mx-8'>
-                    <img
+                <div className='bg-white shadow-lg rounded-lg overflow-hidden w-64 mx-8' >
+                    <img ref={dogImg}
+                        style={{ opacity: showImage ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
                         src={dog.img}
                         alt={dog.name}
                         className='w-full h-48 object-cover'
                     />
                     <div className=' bg-white text-center py-2'>
-                        <h3 className='text-sm font-semibold'>{dog.name}</h3>
+                        <h3 className='text-sm font-semibold' style={{ opacity: showImage ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}>{dog.name}</h3>
                     </div>
                 </div>
                 <button className='absolute left-96 top-1/2 transform -translate-y-1/2 text-pink-500 text-3xl' onClick={handleLike}>
