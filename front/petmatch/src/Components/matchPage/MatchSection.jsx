@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const MatchSection = () => {
     const navigate = useNavigate();
-    const [showDetails, setShowDetails] = useState(false); //manejador de estado para que haga el popup de details.
-
+    const [showDetails, setShowDetails] = useState(false);
     const [dog, setDog] = useState(null);
 
     const handleShowDetails = () => setShowDetails(true);
@@ -25,29 +24,39 @@ const MatchSection = () => {
             .catch((error) => console.error('Error fetching dog:', error));
     }, []);
 
-    const handleLike = () => {
-        if (dog) {
-            fetch(`http://localhost:8080/match/like/${dog._id}`, {
+    const handleLike = async () => {
+        const token = localStorage.getItem('token');
+    
+        if (!token) {
+            alert("Debes iniciar sesión para añadir a favoritos.");
+            return;
+        }
+    
+        try {
+            const response = await fetch(`http://localhost:8080/match/like/${dog._id}`, {
                 method: 'PUT',
-                credentials: 'include', //cookies en la solicitud
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.status === 'success') {
-                    console.log('Like added:', data.payload);
-                } else {
-                    console.error('Error:', data.payload);
-                }
-            })
-            .catch((error) => console.error('Error adding like:', error));
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                console.log('Pet added to likes:', data);
+                alert("Perro añadido a favoritos!");
+            } else {
+                console.error('Error adding pet to likes:', data);
+                alert("Error al añadir el perro a favoritos.");
+            }
+        } catch (error) {
+            console.error('Error adding pet to likes:', error);
+            alert("Error al añadir el perro a favoritos.");
         }
     };
 
     if (!dog) {
-        return <div>Loading...</div>;
+        return <div>Loading...</div>; // O algún otro mensaje de carga
     }
 
     return (

@@ -8,42 +8,46 @@ const MM = new MatchManager();
 class MatchController {
     static addPetLike = async (req, res) => {
         try {
-            console.log(req.body);
-
             const petId = req.params.id;
+            const authHeader = req.headers.authorization;
 
-            // const { petId } = req.body;
+            if (!authHeader) {
+                return res.status(401).send({
+                    status: "error",
+                    payload: "No token provided"
+                });
+            }
 
-            // const tokenInfo = req.cookies["jwt-cookie"];
+            const token = authHeader.split(' ')[1];
+            const decoded = jwt.verify(token, "jwt-secret-word");
 
-            // if (!tokenInfo) {
-            //     return res.status(401).send({
-            //         status: "error",
-            //         payload: "No token provided"
-            //     });
-            // }
+            if (!decoded) {
+                return res.status(401).send({
+                    status: "error",
+                    payload: "Invalid token"
+                });
+            }
 
-            // const decodedInfo = jwt.decode(tokenInfo);
+            const userId = decoded.id;
 
-            // const { id, rol, email } = decodedInfo; //id de usuario
+            const result = await MM.addPetLike(userId, petId);
 
-            let id = "669faf2661d609c77d3e789e";
-
-            let aux = "";
-
-            aux = await MM.addPetLike(id, petId);
-            
-            console.log(aux);
+            if (result.status === "error") {
+                return res.status(400).send(result);
+            }
 
             res.send({
-                status : "success",
-                payload : aux
-            })
-
+                status: "success",
+                payload: result
+            });
         } catch (error) {
             console.log(error);
+            res.status(500).send({
+                status: "error",
+                payload: "Server error"
+            });
         }
-    }
+    };
 
     static addPetNotLike = async (req, res) => {
         try {
