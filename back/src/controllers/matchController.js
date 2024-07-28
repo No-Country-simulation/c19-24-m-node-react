@@ -52,38 +52,54 @@ class MatchController {
     static addPetNotLike = async (req, res) => {
         try {
             const petId = req.params.id;
-
-            // const { petId } = req.body;
-
-            const tokenInfo = req.cookies["jwt-cookie"];
-
-            const decodedInfo = jwt.decode(tokenInfo);
-
-            const { id, rol, email } = decodedInfo; //id de usuario
-
-            // let id = "669faf2661d609c77d3e789e";
-
-            let aux = "";
-
-            // if (id !== undefined) {
-            //     aux = await MM.addPetNotLike(id, petId);
-            // }
-            // else {
-            //     aux = await MM.addPetNotLike(id, petId);
-            // }
-
-            aux = await MM.addPetNotLike(id, petId);
-
-
+            const authHeader = req.headers.authorization;
+    
+            if (!authHeader) {
+                return res.status(401).send({
+                    status: "error",
+                    payload: "No token provided"
+                });
+            }
+    
+            const token = authHeader.split(' ')[1];
+            const decoded = jwt.verify(token, "jwt-secret-word");
+    
+            if (!decoded) {
+                return res.status(401).send({
+                    status: "error",
+                    payload: "Invalid token"
+                });
+            }
+    
+            const userId = decoded.id;
+    
+            const user = await UM.getUserById(userId);
+            if (!user) {
+                return res.status(404).send({
+                    status: "error",
+                    payload: "User not found"
+                });
+            }
+    
+            if (!user.pets_not_like) {
+                user.pets_not_like = [];
+            }
+    
+            user.pets_not_like.push({ not_like: petId });
+            await user.save();
+    
             res.send({
-                status : "success",
-                payload : aux
-            })
-
+                status: "success",
+                payload: user.pets_not_like
+            });
         } catch (error) {
             console.log(error);
+            res.status(500).send({
+                status: "error",
+                payload: "Server error"
+            });
         }
-    }
+    };
 }
 
 export { MatchController };

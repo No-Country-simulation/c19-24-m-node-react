@@ -55,6 +55,37 @@ const MatchSection = () => {
         }
     };
 
+    const handleDislike = async () => {
+        const token = localStorage.getItem('token');
+    
+        if (!token) {
+            alert("Debes iniciar sesión para añadir a no favoritos.");
+            return;
+        }
+    
+        try {
+            const response = await fetch(`http://localhost:8080/match/notlike/${dog._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                console.log('Pet added to dislikes:', data);
+                alert("Perro añadido a no favoritos!");
+            } else {
+                console.error('Error adding pet to dislikes:', data);
+                alert("Error al añadir el perro a no favoritos.");
+            }
+        } catch (error) {
+            console.error('Error adding pet to dislikes:', error);
+            alert("Error al añadir el perro a no favoritos.");
+        }
+    };
+
     if (!dog) {
         return <div>Loading...</div>; // O algún otro mensaje de carga
     }
@@ -65,7 +96,7 @@ const MatchSection = () => {
                 ¡Encuentra a tu Match perfecto!
             </h2>
             <div className='relative'>
-                <button className='absolute right-96 top-1/2 transform -translate-y-1/2 text-red-500 text-3xl focus:outline-none'>
+                <button className='absolute right-96 top-1/2 transform -translate-y-1/2 text-red-500 text-3xl focus:outline-none' onClick={handleDislike}>
                     ❌
                 </button>
                 <div className='bg-white shadow-lg rounded-lg overflow-hidden w-64 mx-8'>

@@ -46,7 +46,6 @@ class MatchManager {
 
     addPetNotLike = async (idUser, idPet) => {
         try {
-
             const user = await UM.getUserById(idUser);
 
             if (!user) {
@@ -59,9 +58,9 @@ class MatchManager {
                 return "No se encontro la mascota";
             }
 
-            user.pets_not_like.push({not_like : pet._id});
+            user.pets_not_like.push({ not_like: pet._id });
 
-            user.save();
+            await user.save();
             
             return user;
 
