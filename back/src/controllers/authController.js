@@ -74,6 +74,7 @@ class Auth {
             }
 
             const token = jwt.sign(user, "jwt-secret-word", { expiresIn: "8h" }); //el exprire podriamos sacarlo, es mas q nada para q se te desconecte automaticamente pasada cierta cantidad de tiempo
+            console.log('token', token)
 
             //setamos la cookie
             //con maxAge indicamos el tiempo de vida osea cuando expira
@@ -81,18 +82,6 @@ class Auth {
             res.cookie("jwt-cookie", token, { httpOnly: true, maxAge: 3600000 }).json({
                 status: "success",
                 payload: token
-            });
-
-            // res.cookie('jwt-cookie', token, {
-            //     httpOnly: true,
-            //     expiresIn: "2h",
-            //     secure:true,
-            //     sameSite:'none', --> aca capaz no hace falta ya q se deploya el front en render tambien
-            //     }).status(200).json({ status : "success", token})
-
-            res.send({
-                status: "success",
-                payload: user
             });
 
         } catch (error) {
