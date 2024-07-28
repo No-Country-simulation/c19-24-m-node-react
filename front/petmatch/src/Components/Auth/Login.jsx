@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LogInImg from "../../Assets/AuthImg/LogInImg.png";
+import Swal from "sweetalert2";
 
 function Login() {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
+
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -33,6 +35,11 @@ function Login() {
             if (response.ok) {
                 if (data.payload) {
                     localStorage.setItem("token", data.payload);
+                    Swal.fire({
+                        title: "Bienvenido de vuelta",
+                        // text: "`${data.payload}`",
+                        icon: "success",
+                    });
                     navigate("/");
                 } else {
                     setError("Token no recibido");
@@ -75,6 +82,7 @@ function Login() {
                             required
                             value={formData.email}
                             onChange={handleChange}
+                            autoComplete='off'
                         />
                     </div>
                     <div>
@@ -90,6 +98,7 @@ function Login() {
                             required
                             value={formData.password}
                             onChange={handleChange}
+                            autoComplete='off'
                         />
                     </div>
                     {error && <div className='text-red-500'>{error}</div>}
