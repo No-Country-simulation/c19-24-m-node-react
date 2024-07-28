@@ -28,7 +28,7 @@ function AccountForm() {
                     <h1 className='text-[#416A32] text-3xl font-bold'>
                         Mi Información
                     </h1>
-                    <p className='text-[#242B33]'>
+                    <p className='text-[#242B33] mt-3'>
                         Completa tu información lo más preciso posible, así
                         podremos recomendarte una mascota que encaje contigo
                         perfectamente. Puedes actualizar la mayoría de tus datos
