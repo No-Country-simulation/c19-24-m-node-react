@@ -98,7 +98,9 @@ function Testimonials() {
     };
 
     return (
-        <section className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16 overflow-hidden'>
+        <section
+            id='Testimonials'
+            className='bg-[#D1E0CB] lg:py-28 md:py-20 py-16 overflow-hidden'>
             <h3 className='text-[#416A32] lg:text-5xl text-3xl text-center font-bold md:pb-16 pb-10'>
                 Testimonios
             </h3>
