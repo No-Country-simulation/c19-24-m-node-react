@@ -12,6 +12,8 @@ function Header() {
     const [isVisible, setIsVisible] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    //esto para el condicional del btn de adoptar una mascota
+    const token = localStorage.getItem("token");
 
     const handleClick = () => {
         setIsVisible(!isVisible);
@@ -41,13 +43,16 @@ function Header() {
 
     return (
         <header>
-            <nav className='bg-transparent relative z-10'>
+            <nav className='bg-transparent relative z-20'>
                 <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-                    <a
-                        href='/'
+                    {/* poner link de react router dom y q te redirija a match */}
+                    {/* <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                    </a> */}
+                    <Link
+                        to={"/"}
                         className='flex items-center space-x-3 rtl:space-x-reverse'>
                         <img src={Logo} className='w-48' alt='logo' />
-                    </a>
+                    </Link>
 
                     {/* Search button */}
                     <div className='flex md:order-2 md:space-x-3 relative'>
@@ -136,7 +141,9 @@ function Header() {
                             </svg>
                         </button>
                         <button
-                            onClick={() => navigate("/Sign-Up")}
+                            onClick={() =>
+                                navigate(!token ? "/Log-In" : "/Match")
+                            }
                             type='button'
                             className='text-white bg-[#2C7B10] hidden md:block w-[240px] font-medium rounded-full text-sm px-4 py-2 text-center'>
                             ¡Adopta un compañero!
