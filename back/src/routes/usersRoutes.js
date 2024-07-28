@@ -12,6 +12,9 @@ router.get('/:id', User.getUserById);
 //Crear un nuevo usuario
 router.post('/', User.createUser);
 
+//login de usuario
+router.post('/login', User.loginUser)
+
 //Eliminar usuario por id
 router.delete('/:id', User.deleteUser);
 

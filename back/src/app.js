@@ -10,27 +10,48 @@ import userRoutes from './routes/usersRoutes.js';
 import testimonialsRoutes from './routes/testimonialsRoutes.js';
 import matchRoutes from './routes/matchRoutes.js'; 
 import petsRoutes from './routes/petsRoutes.js';
+import adoptionRoutes from './routes/adoptionRoutes.js';
 
 const PORT = options.PORT || 8080;
 
 const app = express();
 
-connectDB();
+var whitelist = ['http://localhost:3000', 'http://localhost:8080' /** other domains if any */ ]
+var corsOptions = {
+  credentials: true,
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+} 
 
-//el tema de los cors
-app.use(cors());
+app.use(cors(corsOptions));
 
 // const corsOptions = {
 //   origin: true,
-//   credentials: true,
-// };
-// app.use(cors(corsOptions));
+//   credentials: true
+// }
+// app.options('*', cors(corsOptions));
+
+// app.all('*', (req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   res.header('Access-Control-Allow-Credentials', true);
+//   res.header('Content-Type', 'application/json; charset=utf-8')
+//   next();
+// });
+
+connectDB();
 
 
 //ESTO POR SI JODE LOS CORS
 // app.use(function (req, res, next) {
 //   // res.header("Access-Control-Allow-Origin", "*");
-//   const allowedOrigins = ['http://localhost:5173', 'URL del front'];
+//   const allowedOrigins = ['http://localhost:5173', 'http://localhost:3000/'];
 //   const origin = req.headers.origin;
 //   if (allowedOrigins.includes(origin)) {
 //       res.setHeader('Access-Control-Allow-Origin', origin);
@@ -53,6 +74,7 @@ app.use("/users", userRoutes);
 app.use("/testimonials", testimonialsRoutes);
 app.use("/pets", petsRoutes);
 app.use("/match", matchRoutes);
+app.use("/adoptions", adoptionRoutes);
 
 app.use(errorHandler);
 

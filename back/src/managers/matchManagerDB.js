@@ -5,41 +5,47 @@ const UM = new UserManager();
 const PM = new PetManager();
 
 class MatchManager {
-    addPetLike = async (idUser, idPet) => {
+    addPetLike = async (userId, petId) => {
         try {
+            const userManager = new UserManager();
+            const petManager = new PetManager();
 
-            const user = await UM.getUserById(idUser);
+            const user = await userManager.getUserById(userId);
 
             if (!user) {
-                return "No se logro encontrar al usuario";
+                return {
+                    status: "error",
+                    payload: "User not found"
+                };
             }
 
-            const pet = await PM.getPetById(idPet);
+            const pet = await petManager.getPetById(petId);
 
             if (!pet) {
-                return "No se encontro la mascota";
+                return {
+                    status: "error",
+                    payload: "Pet not found"
+                };
             }
 
-            user.pets_like.push({like : pet._id});
+            user.pets_like.push({ like: pet._id });
+            await user.save();
 
-            user.save();
-
-            // const filter = { _id: id };
-            // const update = { ...req.body };
-
-            // const updatedUser = await UM.updateUser(filter, bodyUpdate);
-            //para buscar solo el user
-            //el id del pet solo para agregarlo al array de user de like o not_like mirar el modelo de user
-            return user;
-
+            return {
+                status: "success",
+                payload: user.pets_like
+            };
         } catch (error) {
             console.log(error);
+            return {
+                status: "error",
+                payload: "Error adding pet like"
+            };
         }
     }
 
     addPetNotLike = async (idUser, idPet) => {
         try {
-
             const user = await UM.getUserById(idUser);
 
             if (!user) {
@@ -52,9 +58,9 @@ class MatchManager {
                 return "No se encontro la mascota";
             }
 
-            user.pets_not_like.push({not_like : pet._id});
+            user.pets_not_like.push({ not_like: pet._id });
 
-            user.save();
+            await user.save();
             
             return user;
 

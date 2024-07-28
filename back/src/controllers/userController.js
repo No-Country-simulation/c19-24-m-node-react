@@ -1,5 +1,7 @@
 import {UserManager} from "../managers/userManagerDB.js";
 import { createHashPassword } from "../utils/handlerPassword.js";
+import bcrypt from 'bcrypt';
+import { Auth } from "./authController.js";
 
 const UM = new UserManager();
 
@@ -23,6 +25,10 @@ class User {
             console.log(error);
         }
     };
+
+    static async loginUser(req, res) {
+        return Auth.login(req, res);
+    }
 
     static getUserById = async (req, res) => {
         try {
@@ -50,14 +56,36 @@ class User {
     //! usuarios
     static createUser = async (req, res) => {
         try {
-            const {password} = req.body;
-            const user = {
+            // const {password} = req.body;
+            const { first_name, last_name, email, date_of_birth, address, password } = req.body;
+
+            const existingUser = await UM.getUsers();
+            if (existingUser.find(user => user.email === email)) {
+                return res.status(409).send({
+                    status: "error",
+                    payload: `El email: ${email} ya se encuentra en uso`
+                });
+            }
+
+            /* const user = {
                 ...req.body,
                 pets_like: [],
                 pets_not_like: []
-            };
+            }; */
 
             const hashPassword = await createHashPassword(password);
+            
+            const user = {
+                first_name,
+                last_name,
+                email,
+                date_of_birth,
+                address,
+                password: hashPassword,
+                pets_like: [],
+                pets_not_like: [],
+                rol: 'user'
+            };
 
             user.password = hashPassword;
 
@@ -69,6 +97,8 @@ class User {
                     payload: "Error al intentar añadir un nuevo usuario a la DB",
                 });
             }
+
+            console.log(newUser);
 
             res.send({
                 status: "success",
