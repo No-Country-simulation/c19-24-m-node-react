@@ -20,6 +20,22 @@ export const PruebaCors = () => {
         console.log(res);
     }
 
+    const auxGetPetsQuantity = async () => {
+        const fetchPromise = await fetch("http://localhost:8080/pets/petsQuantity/13", {
+            method: "GET",
+            mode: "cors",
+            credentials : "include",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+
+        const res = await fetchPromise.json();
+
+        console.log(res);
+    }
+
     const auxPost = async (e) => {
         e.preventDefault();
 
@@ -69,6 +85,7 @@ export const PruebaCors = () => {
     return (
         <>
             <div onClick={auxGet}>PruebaCorsGet</div>
+            <div onClick={auxGetPetsQuantity}>PruebaCorsGet cantidad pets</div>
             <div onClick={auxPut}>PruebaCorsPut</div>
             <div>
             <form ref={form} className='flex flex-col gap-y-5 w-[25rem]' onSubmit={auxPost}>
