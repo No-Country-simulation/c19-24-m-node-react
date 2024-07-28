@@ -1,4 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
+
+/* 
+Falta:
+botones navbar te lleven a bajo en el home
+
+btn header adoptar un compañero tiene q redirigir a registro o iniciar sesion en caso de no haberte logueado
+si esyas logueado te tiene q redirigir a el match
+
+match le falta q cuando agregar un animalito a like o not like te muestre un animalito nuevo, hacer animaciones si sobra tiempo
+*/
+
 
 export const PruebaCors = () => {
 
@@ -6,6 +17,22 @@ export const PruebaCors = () => {
 
     const auxGet = async () => {
         const fetchPromise = await fetch("http://localhost:8080/pets/", {
+            method: "GET",
+            mode: "cors",
+            credentials : "include",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+
+        const res = await fetchPromise.json();
+
+        console.log(res);
+    }
+
+    const auxGetPetsQuantity = async () => {
+        const fetchPromise = await fetch("http://localhost:8080/pets/petsQuantity/13", {
             method: "GET",
             mode: "cors",
             credentials : "include",
@@ -32,7 +59,7 @@ export const PruebaCors = () => {
         const fetchPromise = await fetch("http://localhost:8080/auth/login", {
             method: "POST",
             mode: "cors",
-            credentials: 'include', //si se lo pones da error
+            credentials: 'include',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -61,14 +88,10 @@ export const PruebaCors = () => {
         console.log(res);
     }
 
-    // useEffect(() => {
-    //     aux();
-    // }, [])
-
-
     return (
         <>
             <div onClick={auxGet}>PruebaCorsGet</div>
+            <div onClick={auxGetPetsQuantity}>PruebaCorsGet cantidad pets</div>
             <div onClick={auxPut}>PruebaCorsPut</div>
             <div>
             <form ref={form} className='flex flex-col gap-y-5 w-[25rem]' onSubmit={auxPost}>
