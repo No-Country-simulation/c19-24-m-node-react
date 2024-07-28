@@ -18,16 +18,16 @@ function MatchCards({ name, age, breed, img }) {
                         <path
                             d='M13.5 4.5L4.5 13.5'
                             stroke='black'
-                            stroke-width='2'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
                         />
                         <path
                             d='M4.5 4.5L13.5 13.5'
                             stroke='black'
-                            stroke-width='2'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
                         />
                     </g>
                 </svg>
