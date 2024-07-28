@@ -1,20 +1,45 @@
 import React, { useState } from 'react';
 
-const Details = ({ show, onClose}) => {
-    const [selectedTab, setSelectedTab] = useState('Datos'); //manejador de estados para cambiar entre  secciones en details.
+const Details = ({ show, onClose, dog }) => {
+    const [selectedTab, setSelectedTab] = useState('Datos');
 
-    if (!show) {
+    if (!show || !dog) {
         return null;
     }
 
     const renderContent = () => {
         switch (selectedTab) {
             case 'Datos':
-                return <div>Datos generales</div>; //en este apartado iria lo traido en la base de datos que es distinto segun la seccion.
+                return (
+                    <div>
+                        <p><strong>Nombre:</strong> {dog.name}</p>
+                        <p><strong>Raza:</strong> {dog.breed}</p>
+                        <p><strong>Edad:</strong> {dog.age} años</p>
+                        <p><strong>Sexo:</strong> {dog.sex}</p>
+                        <p><strong>Peso:</strong> {dog.weight} kg</p>
+                        <p><strong>Tamaño Actual:</strong> {dog.size.current}</p>
+                        <p><strong>Tamaño Estimado:</strong> {dog.size.estimated}</p>
+                        <p><strong>Tiempo en el refugio:</strong> {dog.time_at_the_shelter}</p>
+                        <p><strong>Especie:</strong> {dog.specie}</p>
+                    </div>
+                );
             case 'Salud':
-                return <div>Ficha de salud</div>;
+                return (
+                    <div>
+                        <p><strong>Tratamientos previos:</strong> {dog.health.previous_treatments}</p>
+                        <p><strong>Desparacitado:</strong> {dog.health.dewormed}</p>
+                        <p><strong>Necesidad médica:</strong> {dog.health.medical_necessity}</p>
+                        <p><strong>Esterilizado:</strong> {dog.health.sterilization}</p>
+                        <p><strong>Vacunas:</strong> {dog.health.vaccines}</p>
+                        <p><strong>Historial de salud:</strong> {dog.health_history}</p>
+                    </div>
+                );
             case 'Personalidad':
-                return <div>Personalidad</div>;
+                return (
+                    <div>
+                        <p><strong>Personalidad:</strong> {dog.personality}</p>
+                    </div>
+                );
             default:
                 return null;
         }
@@ -26,7 +51,7 @@ const Details = ({ show, onClose}) => {
                 <button className="absolute top-0 right-0 m-4 text-2xl" onClick={onClose}>
                     &times;
                 </button>
-                <h2 className="text-xl font-bold mb-4 text-green-600">¡Conóceme mas</h2>
+                <h2 className="text-xl font-bold mb-4 text-green-600">¡Conóceme más!</h2>
                 <div className="flex justify-between border-b mb-4">
                     <button
                         className={`py-2 px-4 border-b-2 ${selectedTab === 'Datos' ? 'border-green-600' : 'border-transparent'} focus:outline-none`}

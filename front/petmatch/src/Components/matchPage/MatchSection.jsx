@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const MatchSection = () => {
     const navigate = useNavigate();
-    const [showDetails, setShowDetails] = useState(false); //manejador de estado para que haga el popup de details.
-
+    const [showDetails, setShowDetails] = useState(false);
     const [dog, setDog] = useState(null);
 
     const handleShowDetails = () => setShowDetails(true);
@@ -25,29 +24,70 @@ const MatchSection = () => {
             .catch((error) => console.error('Error fetching dog:', error));
     }, []);
 
-    const handleLike = () => {
-        if (dog) {
-            fetch(`http://localhost:8080/match/like/${dog._id}`, {
+    const handleLike = async () => {
+        const token = localStorage.getItem('token');
+    
+        if (!token) {
+            alert("Debes iniciar sesión para añadir a favoritos.");
+            return;
+        }
+    
+        try {
+            const response = await fetch(`http://localhost:8080/match/like/${dog._id}`, {
                 method: 'PUT',
-                credentials: 'include', //cookies en la solicitud
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.status === 'success') {
-                    console.log('Like added:', data.payload);
-                } else {
-                    console.error('Error:', data.payload);
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                console.log('Pet added to likes:', data);
+                alert("Perro añadido a favoritos!");
+            } else {
+                console.error('Error adding pet to likes:', data);
+                alert("Error al añadir el perro a favoritos.");
+            }
+        } catch (error) {
+            console.error('Error adding pet to likes:', error);
+            alert("Error al añadir el perro a favoritos.");
+        }
+    };
+
+    const handleDislike = async () => {
+        const token = localStorage.getItem('token');
+    
+        if (!token) {
+            alert("Debes iniciar sesión para añadir a no favoritos.");
+            return;
+        }
+    
+        try {
+            const response = await fetch(`http://localhost:8080/match/notlike/${dog._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
-            })
-            .catch((error) => console.error('Error adding like:', error));
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                console.log('Pet added to dislikes:', data);
+                alert("Perro añadido a no favoritos!");
+            } else {
+                console.error('Error adding pet to dislikes:', data);
+                alert("Error al añadir el perro a no favoritos.");
+            }
+        } catch (error) {
+            console.error('Error adding pet to dislikes:', error);
+            alert("Error al añadir el perro a no favoritos.");
         }
     };
 
     if (!dog) {
-        return <div>Loading...</div>;
+        return <div>Loading...</div>; // O algún otro mensaje de carga
     }
 
     return (
@@ -56,7 +96,7 @@ const MatchSection = () => {
                 ¡Encuentra a tu Match perfecto!
             </h2>
             <div className='relative'>
-                <button className='absolute right-96 top-1/2 transform -translate-y-1/2 text-red-500 text-3xl focus:outline-none'>
+                <button className='absolute right-96 top-1/2 transform -translate-y-1/2 text-red-500 text-3xl focus:outline-none' onClick={handleDislike}>
                     ❌
                 </button>
                 <div className='bg-white shadow-lg rounded-lg overflow-hidden w-64 mx-8'>
@@ -85,7 +125,7 @@ const MatchSection = () => {
                     Ver Más Compañeros
                 </button>
             </div>
-            <Details show={showDetails} onClose={handleCloseDetails} />
+            <Details show={showDetails} onClose={handleCloseDetails} dog={dog} />
         </div>
     );
 };

@@ -117,8 +117,6 @@ Este documento de alcance del proyecto debe ser revisado y aprobado por todas la
 - Simon [LinkedIn](https://www.linkedin.com/in/simon-moreno-/)
 
 
-# FRONT:
-
 
 # BACK:
 
