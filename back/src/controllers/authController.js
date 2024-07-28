@@ -79,10 +79,17 @@ class Auth {
             //setamos la cookie
             //con maxAge indicamos el tiempo de vida osea cuando expira
             //HttpOnly atributo de navegador creado para impedir que las aplicaciones del lado del cliente, creo q ademas evita q puedas sobreescribir la cookie (osea si la modificas q te tire de la pagina y te mande al login devuelta)
-            res.cookie("jwt-cookie", token, { httpOnly: true, maxAge: 3600000 }).json({
+            res.cookie("jwt-cookie", token, { httpOnly: false, maxAge: 3600000 }).json({ //capaz q para deploy haya q cambiar el httoOnly por true
                 status: "success",
                 payload: token
             });
+
+            // res.cookie('jwt-cookie', token, {
+            //     httpOnly: true,
+            //     expiresIn: "2h",
+            //     sameSite:'none',
+            //     secure:true,
+            //     }).status(200).json({ status : "success", token})
 
         } catch (error) {
             console.log(error);

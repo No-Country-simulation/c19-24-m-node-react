@@ -6,11 +6,13 @@ import Matches from "../Pages/Matches/Matches";
 import MatchPage from "../Pages/matchPage/MatchPage";
 import ComingSoon from "../Pages/Comming Soon/CommingSoon";
 import Catalogue from "../Pages/Catalogue/Catalogue";
+import { PruebaCors } from "../Pages/corsPrueba/PruebaCors";
 
 function AppRoutes() {
     return (
         <Routes>
             <Route path='*' element={<ComingSoon />} />
+            <Route path='/pruebascors' element={<PruebaCors />} />
             <Route path='/' element={<Home />} />
             <Route path='/Matches' element={<Matches />} />
             <Route path='/Match' element={<MatchPage />} />
