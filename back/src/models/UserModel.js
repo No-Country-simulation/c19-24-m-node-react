@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         },
         number: {
             type: Number,
-            required: true // No es obligatorio
+            required: false // No es obligatorio
         },
         city: {
             type: String,
