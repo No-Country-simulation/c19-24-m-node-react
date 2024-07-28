@@ -41,7 +41,7 @@ function Header() {
 
     return (
         <header>
-            <nav className='bg-transparent relative z-20'>
+            <nav className='bg-transparent relative z-10'>
                 <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
                     <a
                         href='/'
@@ -159,26 +159,34 @@ function Header() {
                             <li>
                                 {/* <a href="/" className="block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline">Match</a> */}
                                 <Link
-                                    to='/Match'
+                                    to='/Matches'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
-                                    Match
+                                    Matches
                                 </Link>
                             </li>
                             <li>
-                                {/* <a href="/" className="block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline">Nosotros</a> */}
-                                <Link
+                                <a
+                                    href='/#About-Us'
+                                    className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
+                                    Nosotros
+                                </a>
+                                {/* <Link
                                     to='/About-Us'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
                                     Nosotros
-                                </Link>
+                                </Link> */}
                             </li>
                             <li>
-                                {/* <a href="/" className="block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline">Testimonios</a> */}
-                                <Link
-                                    to='/Testimonials'
+                                <a
+                                    href='/#Testimonials'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
                                     Testimonios
-                                </Link>
+                                </a>
+                                {/* <Link
+                                    to='#Testimonials'
+                                    className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
+                                    Testimonios
+                                </Link> */}
                             </li>
                         </ul>
                     </div>
