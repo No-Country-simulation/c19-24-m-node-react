@@ -45,7 +45,12 @@ function Login() {
                     setError("Token no recibido");
                 }
             } else {
-                setError(data.payload || "Error al iniciar sesión");
+                // console.log(data.payload); // El mensaje de data.payload esta mal escrito
+                setError(
+                    "El usuario no se encuentra registrado" ||
+                        "Error al iniciar sesión"
+                );
+                // setError(data.payload || "Error al iniciar sesión");
             }
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
@@ -109,11 +114,11 @@ function Login() {
                     </button>
                 </form>
                 <button>
-                    ¿Ya tienes una cuenta?{" "}
+                    ¿No tienes una cuenta?{" "}
                     <Link
-                        to='/'
+                        to='/Sign-Up'
                         className='text-[#2C7B10] hover:underline font-semibold'>
-                        Inicia Sesión
+                        Crear cuenta
                     </Link>
                 </button>
             </div>
