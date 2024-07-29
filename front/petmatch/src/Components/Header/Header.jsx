@@ -26,6 +26,7 @@ function Header() {
         setSearchResults(results);
     };
 
+    // console.log(petsForSearch, "PETS FOR SEARCH");
     const simulateSearch = (query) => {
         if (query === "") {
             return [];
