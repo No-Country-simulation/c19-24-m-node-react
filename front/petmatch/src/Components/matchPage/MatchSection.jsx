@@ -89,7 +89,7 @@ const MatchSection = () => {
                 setTimeout(() => {
                     setCount((prevState) => prevState + 1);
                     setDog(pets[count]);
-                    setLikepets(data);
+                    setLikepets(data.payload);
                     setAnimation(""); // Limpia la clase de animación
                 }, 500); // Tiempo que coincide con la duración de la animación
 
