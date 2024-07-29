@@ -1,6 +1,6 @@
 import Logo from "../../Assets/Logos/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SearchPopUp from "../Search Pop-up/SearchPopUp";
 import PetsContext from "../../Context/GlobalContext";
 
@@ -13,7 +13,10 @@ function Header() {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     //esto para el condicional del btn de adoptar una mascota
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    const [token, setToken] = useState(localStorage.getItem("token"));
+
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
     const handleClick = () => {
         setIsVisible(!isVisible);
@@ -39,6 +42,18 @@ function Header() {
                 pet.breed.toLowerCase().includes(lowerCaseQuery) ||
                 pet.specie.toLowerCase().includes(lowerCaseQuery)
         );
+    };
+
+    // Carga el Token siempre que el componente se monte
+    useEffect(() => {
+        setToken(localStorage.getItem("token"));
+    }, []);
+
+    // Simular el log out
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setToken(null);
+        navigate("/");
     };
 
     return (
@@ -140,14 +155,75 @@ function Header() {
                                 />
                             </svg>
                         </button>
-                        <button
-                            onClick={() =>
-                                navigate(!token ? "/Log-In" : "/Match")
-                            }
-                            type='button'
-                            className='text-white bg-[#2C7B10] hidden md:block w-[240px] font-medium rounded-full text-sm px-4 py-2 text-center'>
-                            ¡Adopta un compañero!
-                        </button>
+
+                        {!token && (
+                            <button
+                                onClick={() =>
+                                    navigate(!token ? "/Log-In" : "/Match")
+                                }
+                                type='button'
+                                className='text-white bg-[#2C7B10] hidden md:block w-[240px] font-medium rounded-full text-sm px-4 py-2 text-center'>
+                                ¡Adopta un compañero!
+                            </button>
+                        )}
+
+                        {/* MODAL START */}
+                        {token && (
+                            <div className='relative'>
+                                <button
+                                    onClick={() =>
+                                        setIsDropdownVisible(!isDropdownVisible)
+                                    }
+                                    type='button'
+                                    className='text-white bg-[#2C7B10] hidden md:flex justify-between items-center w-[150px] font-medium rounded-full text-sm px-6 py-2 text-center'>
+                                    Mi cuenta
+                                    <span>
+                                        <svg
+                                            width='24'
+                                            height='24'
+                                            viewBox='0 0 24 24'
+                                            fill='none'
+                                            xmlns='http://www.w3.org/2000/svg'>
+                                            <path
+                                                d='M11.1808 15.8297L6.54199 9.20285C5.89247 8.27496 6.55629 7 7.68892 7L16.3111 7C17.4437 7 18.1075 8.27496 17.458 9.20285L12.8192 15.8297C12.4211 16.3984 11.5789 16.3984 11.1808 15.8297Z'
+                                                fill='#fff'
+                                            />
+                                        </svg>
+                                    </span>
+                                </button>
+
+                                {isDropdownVisible && (
+                                    <div className='absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg'>
+                                        <ul className='py-1'>
+                                            <li>
+                                                <Link
+                                                    to='/Account-Settings/:userId'
+                                                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
+                                                    Mi cuenta
+                                                </Link>
+                                            </li>
+
+                                            <li>
+                                                <Link
+                                                    to='/Matches'
+                                                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
+                                                    Matches
+                                                </Link>
+                                            </li>
+
+                                            <li>
+                                                <button
+                                                    onClick={handleLogout}
+                                                    className='w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
+                                                    Cerrar sesión
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                        {/* MODAL END */}
                     </div>
 
                     <div
@@ -166,9 +242,9 @@ function Header() {
                             <li>
                                 {/* <a href="/" className="block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline">Match</a> */}
                                 <Link
-                                    to='/Matches'
+                                    to='/Match'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
-                                    Matches
+                                    Match
                                 </Link>
                             </li>
                             <li>
