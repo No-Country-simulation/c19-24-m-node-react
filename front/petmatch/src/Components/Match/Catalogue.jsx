@@ -1,150 +1,173 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MatchCards from "./MatchCards";
+import PetsContext from "../../Context/GlobalContext";
 
-const randomPets = [
-    {
-        name: "Whiskers",
-        age: 5,
-        raze: "Cat",
-        breed: "Siamese",
-    },
-    {
-        name: "Fluffy",
-        raze: "Dog",
-        breed: "Poodle",
-    },
-    {
-        name: "Spike",
-        age: 2,
-        raze: "Porcupine",
-        breed: "Hedgehog",
-    },
-    {
-        name: "Mittens",
+// const randomPets = [
+//     {
+//         name: "Whiskers",
+//         age: 5,
+//         raze: "Cat",
+//         breed: "Siamese",
+//     },
+//     {
+//         name: "Fluffy",
+//         raze: "Dog",
+//         breed: "Poodle",
+//     },
+//     {
+//         name: "Spike",
+//         age: 2,
+//         raze: "Porcupine",
+//         breed: "Hedgehog",
+//     },
+//     {
+//         name: "Mittens",
 
-        raze: "Cat",
-        breed: "Calico",
-    },
-    {
-        name: "Fido",
+//         raze: "Cat",
+//         breed: "Calico",
+//     },
+//     {
+//         name: "Fido",
 
-        raze: "Dog",
-        breed: "Labrador",
-    },
-    {
-        name: "Mr. Tiddles",
-        age: 8,
-        raze: "Cat",
-        breed: "Persian",
-    },
-    {
-        name: "Rex",
-        age: 4,
-        raze: "Dog",
-        breed: "Bulldog",
-    },
-    {
-        name: "Lucky",
-        raze: "Goldfish",
-        breed: "Goldfish",
-    },
-    {
-        name: "Smokey",
-        age: 5,
-        raze: "Cat",
-        breed: "Maine Coon",
-    },
-    {
-        name: "Oreo",
-        age: 3,
-        raze: "Cat",
-        breed: "Tabby",
-    },
-    {
-        name: "Buddy",
-        raze: "Dog",
-        breed: "Golden Retriever",
-    },
-    {
-        name: "Ginger",
-        raze: "Cat",
-        breed: "Ginger Cat",
-    },
-];
+//         raze: "Dog",
+//         breed: "Labrador",
+//     },
+//     {
+//         name: "Mr. Tiddles",
+//         age: 8,
+//         raze: "Cat",
+//         breed: "Persian",
+//     },
+//     {
+//         name: "Rex",
+//         age: 4,
+//         raze: "Dog",
+//         breed: "Bulldog",
+//     },
+//     {
+//         name: "Lucky",
+//         raze: "Goldfish",
+//         breed: "Goldfish",
+//     },
+//     {
+//         name: "Smokey",
+//         age: 5,
+//         raze: "Cat",
+//         breed: "Maine Coon",
+//     },
+//     {
+//         name: "Oreo",
+//         age: 3,
+//         raze: "Cat",
+//         breed: "Tabby",
+//     },
+//     {
+//         name: "Buddy",
+//         raze: "Dog",
+//         breed: "Golden Retriever",
+//     },
+//     {
+//         name: "Ginger",
+//         raze: "Cat",
+//         breed: "Ginger Cat",
+//     },
+// ];
 
-const approvedPets = [
-    {
-        name: "Whiskers",
-        age: 5,
-        raze: "Cat",
-        breed: "Siamese",
-    },
-    {
-        name: "Fluffy",
-        raze: "Dog",
-        breed: "Poodle",
-    },
-    {
-        name: "Mr. Tiddles",
-        age: 8,
-        raze: "Cat",
-        breed: "Persian",
-    },
-    {
-        name: "Rex",
-        age: 4,
-        raze: "Dog",
-        breed: "Bulldog",
-    },
-    {
-        name: "Buddy",
-        raze: "Dog",
-        breed: "Golden Retriever",
-    },
-    {
-        name: "Ginger",
-        raze: "Cat",
-        breed: "Ginger Cat",
-    },
-];
+// const approvedPets = [
+//     {
+//         name: "Whiskers",
+//         age: 5,
+//         raze: "Cat",
+//         breed: "Siamese",
+//     },
+//     {
+//         name: "Fluffy",
+//         raze: "Dog",
+//         breed: "Poodle",
+//     },
+//     {
+//         name: "Mr. Tiddles",
+//         age: 8,
+//         raze: "Cat",
+//         breed: "Persian",
+//     },
+//     {
+//         name: "Rex",
+//         age: 4,
+//         raze: "Dog",
+//         breed: "Bulldog",
+//     },
+//     {
+//         name: "Buddy",
+//         raze: "Dog",
+//         breed: "Golden Retriever",
+//     },
+//     {
+//         name: "Ginger",
+//         raze: "Cat",
+//         breed: "Ginger Cat",
+//     },
+// ];
 
-const deniedPets = [
-    {
-        name: "Spike",
-        age: 2,
-        raze: "Porcupine",
-        breed: "Hedgehog",
-    },
-    {
-        name: "Mittens",
-        raze: "Cat",
-        breed: "Calico",
-    },
-    {
-        name: "Fido",
-        raze: "Dog",
-        breed: "Labrador",
-    },
-    {
-        name: "Lucky",
-        raze: "Goldfish",
-        breed: "Goldfish",
-    },
-    {
-        name: "Smokey",
-        age: 5,
-        raze: "Cat",
-        breed: "Maine Coon",
-    },
-    {
-        name: "Oreo",
-        age: 3,
-        raze: "Cat",
-        breed: "Tabby",
-    },
-];
+// const deniedPets = [
+//     {
+//         name: "Spike",
+//         age: 2,
+//         raze: "Porcupine",
+//         breed: "Hedgehog",
+//     },
+//     {
+//         name: "Mittens",
+//         raze: "Cat",
+//         breed: "Calico",
+//     },
+//     {
+//         name: "Fido",
+//         raze: "Dog",
+//         breed: "Labrador",
+//     },
+//     {
+//         name: "Lucky",
+//         raze: "Goldfish",
+//         breed: "Goldfish",
+//     },
+//     {
+//         name: "Smokey",
+//         age: 5,
+//         raze: "Cat",
+//         breed: "Maine Coon",
+//     },
+//     {
+//         name: "Oreo",
+//         age: 3,
+//         raze: "Cat",
+//         breed: "Tabby",
+//     },
+// ];
 
 function Catalogue() {
+    const { likepets, dislikepets } = useContext(PetsContext);
+
+    let allPets = [];
+
+    const removeDuplicates = (array) => {
+        const seen = new Set();
+        return array.filter((item) => {
+            const petId = item.like._id;
+            const duplicate = seen.has(petId);
+            seen.add(petId);
+            return !duplicate && typeof item.like === "object";
+        });
+    };
+
+    //   const uniquePets = removeDuplicates(likepets.payload);
+    if (likepets && likepets.payload && Array.isArray(likepets.payload)) {
+        allPets = removeDuplicates(likepets.payload);
+        // allPets = likepets.payload;
+    }
+
+    // console.log(allPets);
+
     const [pets, setPets] = useState("all");
 
     const handleClick = (name) => {
@@ -172,9 +195,6 @@ function Catalogue() {
                     <section className='flex items-center justify-center lg:flex-wrap md:flex-nowrap flex-wrap xl:w-1/3 lg:w-2/5 w-full gap-2 lg:pt-0 pt-4'>
                         <section className='lg:w-full md:w-2/4 w-full'>
                             <button
-                                // className={`${
-                                //     pets === "all" ? styles.button__active : ""
-                                // } ${styles.button} w-full lg:text-base text-sm`}
                                 className={`${
                                     pets === "all"
                                         ? "bg-[#416A32] border-[#416A32] text-[#fcfcfc] font-bold"
@@ -224,20 +244,19 @@ function Catalogue() {
                 <section
                     className={`lg:pt-12 pt-6 flex items-center justify-start flex-wrap w-full xl:gap-x-12 md:gap-x-8 gap-x-2 gap-y-8`}>
                     {pets === "all" &&
-                        randomPets.map((pet, index) => {
+                        allPets.length > 0 &&
+                        allPets.map((pet, index) => {
                             return (
                                 <MatchCards
                                     key={index}
-                                    name={pet.name}
-                                    age={pet.age}
-                                    breed={pet.breed}
-                                    img={
-                                        "https://images.dog.ceo/breeds/pitbull/dog-3981540_1280.jpg"
-                                    }
+                                    name={pet.like.name}
+                                    age={pet.like.age}
+                                    breed={pet.like.breed}
+                                    img={pet.like.img}
                                 />
                             );
                         })}
-                    {pets === "approved" &&
+                    {/* {pets === "approved" &&
                         approvedPets.map((pet, index) => {
                             return (
                                 <MatchCards
@@ -246,12 +265,13 @@ function Catalogue() {
                                     age={pet.age}
                                     breed={pet.breed}
                                     img={
-                                        "https://images.dog.ceo/breeds/pitbull/dog-3981540_1280.jpg"
+                                        
                                     }
                                 />
                             );
-                        })}
-                    {pets === "denied" &&
+                        })
+                        } */}
+                    {/* {pets === "denied" &&
                         deniedPets.map((pet, index) => {
                             return (
                                 <MatchCards
@@ -264,7 +284,7 @@ function Catalogue() {
                                     }
                                 />
                             );
-                        })}
+                        })} */}
                 </section>
             </section>
         </section>
