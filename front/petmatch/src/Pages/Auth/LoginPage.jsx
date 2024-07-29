@@ -1,9 +1,15 @@
-import Login from "../../Components/Auth/Login"
+import Login from "../../Components/Auth/Login";
+import Footer from "../../Components/Footer/Footer";
+import Header from "../../Components/Header/Header";
 
-function LoginPage(){
+function LoginPage() {
     return (
-        <Login />
-    )
+        <>
+            <Header />
+            <Login />
+            <Footer />
+        </>
+    );
 }
 
-export default LoginPage
+export default LoginPage;

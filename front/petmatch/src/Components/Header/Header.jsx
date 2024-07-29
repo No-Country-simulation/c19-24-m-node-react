@@ -29,10 +29,10 @@ function Header() {
         try {
             const getPets = async () => {
                 const res = await fetch(
-                    "http://localhost:8080/pets"
+                    "https://c19-24-m-node.onrender.com/pets"
                 );
                 const data = await res.json();
-                console.log(data);
+                // console.log(data);
                 if (data.status === "success") setPetsforsearch(data.payload);
             };
 
