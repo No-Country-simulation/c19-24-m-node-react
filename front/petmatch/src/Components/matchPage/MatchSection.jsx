@@ -7,17 +7,23 @@ import PetsContext from "../../Context/GlobalContext";
 import Loader from "../Loading";
 
 const MatchSection = () => {
-    const { setDislikepets, setLikepets, setLoading } = useContext(PetsContext);
+    const {
+        setDislikepets,
+        setLikepets,
+        setLoading,
+        showDetails,
+        setShowDetails,
+    } = useContext(PetsContext);
 
     const navigate = useNavigate();
-    const [showDetails, setShowDetails] = useState(false);
+    // const [showDetails, setShowDetails] = useState(false);
     const [dog, setDog] = useState(null);
     const [pets, setPets] = useState([]);
     const [count, setCount] = useState(0);
     const [animation, setAnimation] = useState(""); // Estado para la animación
 
-    const handleShowDetails = () => setShowDetails(true);
-    const handleCloseDetails = () => setShowDetails(false);
+    // const handleShowDetails = () => setShowDetails(true);
+    // const handleCloseDetails = () => setShowDetails(false);
 
     //trae una cantidad fija de animalitos de la DB
     useEffect(() => {
@@ -220,7 +226,7 @@ const MatchSection = () => {
             <div className='mt-4 space-y-2 w-64'>
                 <button
                     className='bg-[#2C7B10] text-white px-4 py-2 rounded-lg w-full'
-                    onClick={handleShowDetails}>
+                    onClick={() => setShowDetails(true)}>
                     ¡Conóceme Más!
                 </button>
                 <button
@@ -231,7 +237,7 @@ const MatchSection = () => {
             </div>
             <Details
                 show={showDetails}
-                onClose={handleCloseDetails}
+                // onClose={handleCloseDetails}
                 dog={dog}
             />
         </div>
