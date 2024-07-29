@@ -6,7 +6,7 @@ function Dropdown({ title, options, isOpen, onToggle, onSelected }) {
     const handleSelect = (option) => {
         setSelectedOption(option);
 
-        onSelected();
+        onSelected(option);
     };
 
     return (
