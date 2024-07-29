@@ -7,11 +7,11 @@ import { PetsProvider } from "./Context/GlobalContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.StrictMode>
-        <PetsProvider>
-            <App />
-        </PetsProvider>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <PetsProvider>
+        <App />
+    </PetsProvider>
+    // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
