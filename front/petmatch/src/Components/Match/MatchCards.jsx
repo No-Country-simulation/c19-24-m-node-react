@@ -2,7 +2,7 @@ function MatchCards({ name, age, breed, img }) {
     return (
         <figure className='w-[48%] h-[192px] rounded-2xl relative text-[#2b2b2e] shadow-md md:w-full md:max-w-[206px] md:h-[200px] lg:max-w-[195px] lg:h-[220px] xl:max-w-[21.5%]'>
             <img
-                className='lg:max-h-[145px] md:max-h-[125px] h-full object-cover object-center w-full rounded-2xl max-h-[116px]'
+                className='lg:max-h-[145px] md:max-h-[125px] h-full object-cover object-top w-full rounded-2xl max-h-[116px]'
                 src={img}
                 alt={name}
                 loading='lazy'
@@ -18,16 +18,16 @@ function MatchCards({ name, age, breed, img }) {
                         <path
                             d='M13.5 4.5L4.5 13.5'
                             stroke='black'
-                            stroke-width='2'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
                         />
                         <path
                             d='M4.5 4.5L13.5 13.5'
                             stroke='black'
-                            stroke-width='2'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
                         />
                     </g>
                 </svg>
