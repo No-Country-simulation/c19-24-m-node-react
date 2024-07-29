@@ -29,7 +29,7 @@ function Header() {
         try {
             const getPets = async () => {
                 const res = await fetch(
-                    "https://c19-24-m-node.onrender.com/pets"
+                    "http://localhost:8080/pets"
                 );
                 const data = await res.json();
                 // console.log(data);

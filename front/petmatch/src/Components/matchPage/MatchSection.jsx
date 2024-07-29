@@ -24,7 +24,7 @@ const MatchSection = () => {
 
     //trae una cantidad fija de animalitos de la DB
     useEffect(() => {
-        fetch("http://localhost:8080/pets/petsQuantity/16")
+        fetch("http://localhost:8080/pets/petsQuantity/40")
             .then((response) => response.json())
             .then((data) => {
                 if (data.status === "success") {
