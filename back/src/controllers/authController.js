@@ -13,6 +13,8 @@ class Auth {
         try {
             const { email, password } = req.body;
 
+            let auxId = 0;
+
             if (!email) {
                 return res.status(400).send({
                     status: "error",
@@ -44,6 +46,8 @@ class Auth {
             else {
                 const userFind = await UM.getUserByEmail(email);
 
+                console.log(userFind);
+
                 if (!userFind) {
                     return res.status(400).send({
                         status: "error",
@@ -54,6 +58,9 @@ class Auth {
                 }
 
                 const { id } = userFind;
+                auxId = id;
+
+                console.log(id);
 
                 const isValid = await isValidPassword(password, userFind);
 
@@ -82,7 +89,7 @@ class Auth {
             res.cookie("jwt-cookie", token, { httpOnly: false, maxAge: 3600000 }).json({ //capaz q para deploy haya q cambiar el httoOnly por true
                 status: "success",
                 payload: token,
-                id
+                id : auxId
             });
 
             // res.cookie('jwt-cookie', token, {
