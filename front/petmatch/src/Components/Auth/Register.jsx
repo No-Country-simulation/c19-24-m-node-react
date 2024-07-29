@@ -83,11 +83,21 @@ function Register() {
             } else {
                 const text = await response.text();
                 console.error("Respuesta no JSON:", text);
-                alert("Ocurrió un error al crear el usuario");
+                // alert("Ocurrió un error al crear el usuario");
+                Swal.fire({
+                    title: "Ups",
+                    text: `Ocurrió un error al crear el usuario`,
+                    icon: "error",
+                });
             }
         } catch (error) {
             console.error("Error al crear el usuario:", error);
-            alert("Error al crear el usuario");
+            // alert("Error al crear el usuario");
+            Swal.fire({
+                title: "Ups",
+                text: `Ocurrió un error al crear el usuario`,
+                icon: "error",
+            });
         }
     };
 
