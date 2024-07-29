@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Details from "../detailsPopUp/Details";
 
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,9 @@ const MatchSection = () => {
     const [dog, setDog] = useState(null);
     const [pets, setPets] = useState([]);
     const [count, setCount] = useState(0);
+    const dogImg = useRef(null);
+
+    const [showImage, setShowImage] = useState(true);
     const [animation, setAnimation] = useState(""); // Estado para la animación
 
     // const handleShowDetails = () => setShowDetails(true);
@@ -93,6 +96,7 @@ const MatchSection = () => {
                 setAnimation("animate-slide-right"); // Agrega la clase de animación
 
                 setTimeout(() => {
+                    setShowImage(showImage);
                     setCount((prevState) => prevState + 1);
                     setDog(pets[count]);
                     setLikepets(data.payload);
@@ -222,7 +226,7 @@ const MatchSection = () => {
                     onClick={handleLike}>
                     ❤️
                 </button>
-            </div>
+            </div >
             <div className='mt-4 space-y-2 w-64'>
                 <button
                     className='bg-[#2C7B10] text-white px-4 py-2 rounded-lg w-full'
@@ -240,7 +244,7 @@ const MatchSection = () => {
                 // onClose={handleCloseDetails}
                 dog={dog}
             />
-        </div>
+        </div >
     );
 };
 
