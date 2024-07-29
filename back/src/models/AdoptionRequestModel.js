@@ -31,6 +31,14 @@ const adoptionRequestSchema = new Schema({
         type: Number,
         required: true
     },
+    identification_type: {
+        type: String,
+        required: true
+    },
+    identification: {
+        type: String,
+        required: true
+    },
 
 //Informacion del hogar
     type_of_home: {
@@ -67,6 +75,14 @@ const adoptionRequestSchema = new Schema({
         type: Boolean, 
         required: true
     }
+})
+
+adoptionRequestSchema.pre("find",function () {
+    this.populate("user_id pet_id");
+})
+
+adoptionRequestSchema.pre("findOne",function () {
+    this.populate("user_id pet_id");
 })
 
 const AdoptionRequest = model('adoption_requests', adoptionRequestSchema);
