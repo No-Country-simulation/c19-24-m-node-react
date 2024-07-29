@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Details from "../detailsPopUp/Details";
 
 import { useNavigate } from "react-router-dom";
@@ -14,17 +14,17 @@ const MatchSection = () => {
     const [dog, setDog] = useState(null);
     const [pets, setPets] = useState([]);
     const [count, setCount] = useState(0);
-    const [animation, setAnimation] = useState(""); // Estado para la animación
     const dogImg = useRef(null);
 
     const [showImage, setShowImage] = useState(true);
+    const [animation, setAnimation] = useState(""); // Estado para la animación
 
     const handleShowDetails = () => setShowDetails(true);
     const handleCloseDetails = () => setShowDetails(false);
 
     //trae una cantidad fija de animalitos de la DB
     useEffect(() => {
-        fetch("http://localhost:8080/pets/petsQuantity/40")
+        fetch("http://localhost:8080/pets/petsQuantity/16")
             .then((response) => response.json())
             .then((data) => {
                 if (data.status === "success") {
@@ -82,9 +82,7 @@ const MatchSection = () => {
             const data = await response.json();
             if (response.ok) {
                 console.log("Pet added to likes:", data);
-                // // alert("Perro añadido a favoritos!");
-
-                setShowImage(!showImage);
+                // alert("Perro añadido a favoritos!");
 
                 setCount((prevState) => prevState + 1);
                 setDog(pets[count]);
@@ -92,6 +90,7 @@ const MatchSection = () => {
                 setAnimation("animate-slide-right"); // Agrega la clase de animación
 
                 setTimeout(() => {
+                    setShowImage(showImage);
                     setCount((prevState) => prevState + 1);
                     setDog(pets[count]);
                     setLikepets(data.payload);
@@ -103,11 +102,6 @@ const MatchSection = () => {
                 //     text: "Perro añadido a favoritos!",
                 //     icon: "success",
                 // });
-                setTimeout(() => {
-                    setShowImage(showImage);
-                }, 1000);
-
-
             } else {
                 console.error("Error adding pet to likes:", data);
                 // alert("Error al añadir el perro a favoritos.");
@@ -173,7 +167,6 @@ const MatchSection = () => {
                     //     icon: "success",
                     // });
                 }, 500); // Tiempo que coincide con la duración de la animación
-
             } else {
                 console.error("Error adding pet to dislikes:", data);
                 // alert("Error al añadir el perro a no favoritos.");
@@ -211,16 +204,15 @@ const MatchSection = () => {
                     ❌
                 </button>
                 <div
-                    className={`bg-white shadow-lg rounded-lg overflow-hidden w-64 mx-8 ${animation}`} >
-                    <img ref={dogImg}
-                        style={{ opacity: showImage ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
+                    className={`bg-white shadow-lg rounded-lg overflow-hidden w-64 mx-8 ${animation}`}>
+                    <img
                         src={dog.img}
                         alt={dog.name}
                         loading='lazy'
                         className='w-full h-[245px] object-cover'
                     />
                     <div className=' bg-white text-center py-3'>
-                        <h3 className='text-sm font-semibold' style={{ opacity: showImage ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}>{dog.name}</h3>
+                        <h3 className='text-sm font-semibold'>{dog.name}</h3>
                     </div>
                 </div>
                 <button
@@ -228,7 +220,7 @@ const MatchSection = () => {
                     onClick={handleLike}>
                     ❤️
                 </button>
-            </div>
+            </div >
             <div className='mt-4 space-y-2 w-64'>
                 <button
                     className='bg-[#2C7B10] text-white px-4 py-2 rounded-lg w-full'
@@ -246,7 +238,7 @@ const MatchSection = () => {
                 onClose={handleCloseDetails}
                 dog={dog}
             />
-        </div>
+        </div >
     );
 };
 
