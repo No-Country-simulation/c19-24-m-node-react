@@ -26,8 +26,8 @@ function AppRoutes() {
             <Route path='/Match' element={<MatchPage />} />
             <Route path='/Sign-Up' element={<RegisterPage />} />
             <Route path='/Log-In' element={<LoginPage />} />
-            {/* <Route path='/Account-Settings/:userId' element={<AccountSettings />} />  */}
-            <Route path='/Account-Settings' element={<MyAccount />} />
+            <Route path='/Account-Settings/:userId' element={<MyAccount />} />
+            {/* <Route path='/Account-Settings' element={<MyAccount />} /> */}
 
             <Route path='/Catalogue' element={<Catalogue />} />
             <Route path='/About-Us' element={<ComingSoon />} />
