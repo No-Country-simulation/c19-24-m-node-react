@@ -81,7 +81,8 @@ class Auth {
             //HttpOnly atributo de navegador creado para impedir que las aplicaciones del lado del cliente, creo q ademas evita q puedas sobreescribir la cookie (osea si la modificas q te tire de la pagina y te mande al login devuelta)
             res.cookie("jwt-cookie", token, { httpOnly: false, maxAge: 3600000 }).json({ //capaz q para deploy haya q cambiar el httoOnly por true
                 status: "success",
-                payload: token
+                payload: token,
+                id
             });
 
             // res.cookie('jwt-cookie', token, {
