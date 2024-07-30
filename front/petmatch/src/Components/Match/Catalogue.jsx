@@ -3,7 +3,7 @@ import MatchCards from "./MatchCards";
 import PetsContext from "../../Context/GlobalContext";
 
 function Catalogue() {
-    const { likepets, dislikepets } = useContext(PetsContext);
+    const { likepets, dislikepets, userInfo } = useContext(PetsContext);
 
     let allPets = [];
 
@@ -18,12 +18,19 @@ function Catalogue() {
     };
 
     //   const uniquePets = removeDuplicates(likepets.payload);
-    if (likepets && likepets.payload && Array.isArray(likepets.payload)) {
+    if (
+        likepets.length > 0 &&
+        likepets.payload &&
+        Array.isArray(likepets.payload)
+    ) {
         allPets = removeDuplicates(likepets.payload);
         // allPets = likepets.payload;
+    } else {
+        allPets = removeDuplicates(userInfo.pets_like);
     }
 
-    // console.log(allPets);
+    console.log(userInfo.pets_like);
+    console.log(likepets);
 
     const [pets, setPets] = useState("all");
 

@@ -26,13 +26,16 @@ function Login() {
         e.preventDefault();
         try {
             // const response = await fetch("http://localhost:8080/users/login", {
-            const response = await fetch("https://c19-24-m-node.onrender.com/users/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
+            const response = await fetch(
+                "https://c19-24-m-node.onrender.com/users/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
 
             const data = await response.json();
             if (response.ok) {
@@ -44,7 +47,7 @@ function Login() {
                         icon: "success",
                     });
                     // console.log(data);
-                    console.log(data.id);
+                    // console.log(data.id);
                     setUserID(data.id);
                     navigate("/");
                 } else {
