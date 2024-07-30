@@ -1,10 +1,14 @@
 import CatalogueGrid from "../../Components/CatalogueGrid";
+import Footer from "../../Components/Footer/Footer";
+import Header from "../../Components/Header/Header";
 
 function Catalogue() {
     return (
-        <div>
+        <>
+            <Header />
             <CatalogueGrid />
-        </div>
+            <Footer />
+        </>
     );
 }
 

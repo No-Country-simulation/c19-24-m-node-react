@@ -1,32 +1,36 @@
 import express from "express";
 import { errorHandler } from "./middelwares/errorHandler.js";
-import {connectDB} from './config/dbConfig.js';
-import {options} from './config/config.js';
-import __dirname from './utils.js';
-import authRoutes from './routes/authRoutes.js';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import userRoutes from './routes/usersRoutes.js';
-import testimonialsRoutes from './routes/testimonialsRoutes.js';
-import matchRoutes from './routes/matchRoutes.js'; 
-import petsRoutes from './routes/petsRoutes.js';
-import adoptionRoutes from './routes/adoptionRoutes.js';
+import { connectDB } from "./config/dbConfig.js";
+import { options } from "./config/config.js";
+import __dirname from "./utils.js";
+import authRoutes from "./routes/authRoutes.js";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import userRoutes from "./routes/usersRoutes.js";
+import testimonialsRoutes from "./routes/testimonialsRoutes.js";
+import matchRoutes from "./routes/matchRoutes.js";
+import petsRoutes from "./routes/petsRoutes.js";
+import adoptionRoutes from "./routes/adoptionRoutes.js";
 
 const PORT = options.PORT || 8080;
 
 const app = express();
 
-var whitelist = ['http://localhost:3000', 'http://localhost:8080' /** other domains if any */ ]
-var corsOptions = {
-  credentials: true,
-  origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-} 
+const whitelist = [
+    "http://localhost:3000",
+    "http://localhost:8080", 
+    "https://c19-24-m-node.onrender.com",/** other domains if any */,
+];
+const corsOptions = {
+    credentials: true,
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+};
 
 app.use(cors(corsOptions));
 
@@ -46,7 +50,6 @@ app.use(cors(corsOptions));
 // });
 
 connectDB();
-
 
 //ESTO POR SI JODE LOS CORS
 // app.use(function (req, res, next) {
@@ -79,7 +82,7 @@ app.use("/adoptions", adoptionRoutes);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
-  console.log(
-    `Escuchando el puerto ${PORT}, iniciando express en http://localhost:${PORT}/`
-  );
+    console.log(
+        `Escuchando el puerto ${PORT}, iniciando express en http://localhost:${PORT}/`
+    );
 });

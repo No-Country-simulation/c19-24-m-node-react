@@ -5,7 +5,7 @@ import { authCheck } from '../middelwares/authCheck.js';
 const router = Router();
 
 //obtener todos las mascotasª
-router.get('/', authCheck(), PetController.getPets);
+router.get('/', PetController.getPets);
 
 //obtener un numero determinado de mascotas 
 router.get('/petsQuantity/:num',  PetController.getNumPets);

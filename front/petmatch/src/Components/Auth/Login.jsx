@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LogInImg from "../../Assets/AuthImg/LogInImg.png";
+import Swal from "sweetalert2";
 
 function Login() {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
+
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -21,28 +23,39 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/users/login', {
-                method: 'POST',
+            // const response = await fetch("http://localhost:8080/users/login", {
+            const response = await fetch("https://c19-24-m-node.onrender.com/users/login", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
             });
 
             const data = await response.json();
             if (response.ok) {
                 if (data.payload) {
-                    localStorage.setItem('token', data.payload);
-                    navigate('/');
+                    localStorage.setItem("token", data.payload);
+                    Swal.fire({
+                        title: "Bienvenido de vuelta",
+                        // text: "`${data.payload}`",
+                        icon: "success",
+                    });
+                    navigate("/");
                 } else {
-                    setError('Token no recibido');
+                    setError("Token no recibido");
                 }
             } else {
-                setError(data.payload || 'Error al iniciar sesión');
+                // console.log(data.payload); // El mensaje de data.payload esta mal escrito
+                setError(
+                    "El usuario no se encuentra registrado" ||
+                        "Error al iniciar sesión"
+                );
+                // setError(data.payload || "Error al iniciar sesión");
             }
         } catch (error) {
-            console.error('Error al iniciar sesión:', error);
-            setError('Error del servidor');
+            console.error("Error al iniciar sesión:", error);
+            setError("Error del servidor");
         }
     };
 
@@ -59,7 +72,9 @@ function Login() {
                     alt='Imagen Crear Cuenta'
                     className='object-cover'
                 />
-                <form className='flex flex-col gap-y-5 w-[25rem]' onSubmit={handleSubmit}>
+                <form
+                    className='flex flex-col gap-y-5 w-[25rem]'
+                    onSubmit={handleSubmit}>
                     <div>
                         <label
                             htmlFor='email'
@@ -73,6 +88,7 @@ function Login() {
                             required
                             value={formData.email}
                             onChange={handleChange}
+                            autoComplete='off'
                         />
                     </div>
                     <div>
@@ -88,9 +104,10 @@ function Login() {
                             required
                             value={formData.password}
                             onChange={handleChange}
+                            autoComplete='off'
                         />
                     </div>
-                    {error && <div className="text-red-500">{error}</div>}
+                    {error && <div className='text-red-500'>{error}</div>}
                     <button
                         type='submit'
                         className='text-white bg-[#416A32] outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-auto mt-5'>
@@ -98,11 +115,11 @@ function Login() {
                     </button>
                 </form>
                 <button>
-                    ¿Ya tienes una cuenta?{" "}
+                    ¿No tienes una cuenta?{" "}
                     <Link
-                        to='/'
+                        to='/Sign-Up'
                         className='text-[#2C7B10] hover:underline font-semibold'>
-                        Inicia Sesión
+                        Crear cuenta
                     </Link>
                 </button>
             </div>

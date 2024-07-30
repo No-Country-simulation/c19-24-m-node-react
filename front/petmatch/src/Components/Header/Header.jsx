@@ -1,18 +1,22 @@
-
-import Logo from '../../Assets/Logos/logo.svg';
+import Logo from "../../Assets/Logos/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SearchPopUp from "../Search Pop-up/SearchPopUp";
+import PetsContext from "../../Context/GlobalContext";
 
 function Header() {
     const navigate = useNavigate();
 
-    const [petsForSearch, setPetsforsearch] = useState([]);
+    const { allPets } = useContext(PetsContext);
+
     const [isVisible, setIsVisible] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     //esto para el condicional del btn de adoptar una mascota
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    const [token, setToken] = useState(localStorage.getItem("token"));
+
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
     const handleClick = () => {
         setIsVisible(!isVisible);
@@ -25,23 +29,6 @@ function Header() {
         setSearchResults(results);
     };
 
-    useEffect(() => {
-        try {
-            const getPets = async () => {
-                const res = await fetch(
-                    "https://c19-24-m-node.onrender.com/pets"
-                );
-                const data = await res.json();
-                // console.log(data);
-                if (data.status === "success") setPetsforsearch(data.payload);
-            };
-
-            getPets();
-        } catch (err) {
-            console.log(err);
-        }
-    }, []);
-
     // console.log(petsForSearch, "PETS FOR SEARCH");
     const simulateSearch = (query) => {
         if (query === "") {
@@ -50,7 +37,7 @@ function Header() {
 
         const lowerCaseQuery = query.toLowerCase();
 
-        return petsForSearch.filter(
+        return allPets.filter(
             (pet) =>
                 pet.sex.toLowerCase().includes(lowerCaseQuery) ||
                 pet.breed.toLowerCase().includes(lowerCaseQuery) ||
@@ -58,15 +45,28 @@ function Header() {
         );
     };
 
+    // Carga el Token siempre que el componente se monte
+    useEffect(() => {
+        setToken(localStorage.getItem("token"));
+    }, []);
+
+    // Simular el log out
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setToken(null);
+        navigate("/");
+    };
+
     return (
         <header>
             <nav className='bg-transparent relative z-20'>
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-
+                <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
                     {/* poner link de react router dom y q te redirija a match */}
                     {/* <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     </a> */}
-                    <Link to={"/"} className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <Link
+                        to={"/"}
+                        className='flex items-center space-x-3 rtl:space-x-reverse'>
                         <img src={Logo} className='w-48' alt='logo' />
                     </Link>
 
@@ -156,12 +156,75 @@ function Header() {
                                 />
                             </svg>
                         </button>
-                        <button
-                                    onClick={() => navigate(!token ? "/Log-In" : "/Match")}
+
+                        {!token && (
+                            <button
+                                onClick={() =>
+                                    navigate(!token ? "/Log-In" : "/Match")
+                                }
+                                type='button'
+                                className='text-white bg-[#2C7B10] hidden md:block w-[240px] font-medium rounded-full text-sm px-4 py-2 text-center'>
+                                ¡Adopta un compañero!
+                            </button>
+                        )}
+
+                        {/* MODAL START */}
+                        {token && (
+                            <div className='relative'>
+                                <button
+                                    onClick={() =>
+                                        setIsDropdownVisible(!isDropdownVisible)
+                                    }
                                     type='button'
-                                    className='text-white bg-[#2C7B10] hidden md:block w-[240px] font-medium rounded-full text-sm px-4 py-2 text-center'>
-                                    ¡Adopta un compañero!
+                                    className='text-white bg-[#2C7B10] hidden md:flex justify-between items-center w-[150px] font-medium rounded-full text-sm px-6 py-2 text-center'>
+                                    Mi cuenta
+                                    <span>
+                                        <svg
+                                            width='24'
+                                            height='24'
+                                            viewBox='0 0 24 24'
+                                            fill='none'
+                                            xmlns='http://www.w3.org/2000/svg'>
+                                            <path
+                                                d='M11.1808 15.8297L6.54199 9.20285C5.89247 8.27496 6.55629 7 7.68892 7L16.3111 7C17.4437 7 18.1075 8.27496 17.458 9.20285L12.8192 15.8297C12.4211 16.3984 11.5789 16.3984 11.1808 15.8297Z'
+                                                fill='#fff'
+                                            />
+                                        </svg>
+                                    </span>
                                 </button>
+
+                                {isDropdownVisible && (
+                                    <div className='absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg'>
+                                        <ul className='py-1'>
+                                            <li>
+                                                <Link
+                                                    to='/Account-Settings/:userId'
+                                                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
+                                                    Mi cuenta
+                                                </Link>
+                                            </li>
+
+                                            <li>
+                                                <Link
+                                                    to='/Matches'
+                                                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
+                                                    Matches
+                                                </Link>
+                                            </li>
+
+                                            <li>
+                                                <button
+                                                    onClick={handleLogout}
+                                                    className='w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
+                                                    Cerrar sesión
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                        {/* MODAL END */}
                     </div>
 
                     <div
@@ -186,20 +249,28 @@ function Header() {
                                 </Link>
                             </li>
                             <li>
-                                {/* <a href="/" className="block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline">Nosotros</a> */}
-                                <Link
+                                <a
+                                    href='/#About-Us'
+                                    className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
+                                    Nosotros
+                                </a>
+                                {/* <Link
                                     to='/About-Us'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
                                     Nosotros
-                                </Link>
+                                </Link> */}
                             </li>
                             <li>
-                                {/* <a href="/" className="block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline">Testimonios</a> */}
-                                <Link
-                                    to='/Testimonials'
+                                <a
+                                    href='/#Testimonials'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
                                     Testimonios
-                                </Link>
+                                </a>
+                                {/* <Link
+                                    to='#Testimonials'
+                                    className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
+                                    Testimonios
+                                </Link> */}
                             </li>
                         </ul>
                     </div>

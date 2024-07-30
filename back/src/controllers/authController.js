@@ -13,6 +13,8 @@ class Auth {
         try {
             const { email, password } = req.body;
 
+            let auxId = 0;
+
             if (!email) {
                 return res.status(400).send({
                     status: "error",
@@ -44,6 +46,8 @@ class Auth {
             else {
                 const userFind = await UM.getUserByEmail(email);
 
+                console.log(userFind);
+
                 if (!userFind) {
                     return res.status(400).send({
                         status: "error",
@@ -54,6 +58,9 @@ class Auth {
                 }
 
                 const { id } = userFind;
+                auxId = id;
+
+                console.log(id);
 
                 const isValid = await isValidPassword(password, userFind);
 
@@ -81,7 +88,8 @@ class Auth {
             //HttpOnly atributo de navegador creado para impedir que las aplicaciones del lado del cliente, creo q ademas evita q puedas sobreescribir la cookie (osea si la modificas q te tire de la pagina y te mande al login devuelta)
             res.cookie("jwt-cookie", token, { httpOnly: false, maxAge: 3600000 }).json({ //capaz q para deploy haya q cambiar el httoOnly por true
                 status: "success",
-                payload: token
+                payload: token,
+                id : auxId
             });
 
             // res.cookie('jwt-cookie', token, {
