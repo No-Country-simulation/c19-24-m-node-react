@@ -12,10 +12,10 @@ export const getPets = async () => {
     }
 };
 
-export const getUserID = async () => {
+export const getUserID = async (_id) => {
     try {
         // let url = `${baseURL}/pets`;
-        let url = `http://localhost:8080/users}`;
+        let url = `http://localhost:8080/users/${_id}`;
         const res = await fetch(url);
         const data = await res.json();
         console.log(data);
@@ -24,5 +24,3 @@ export const getUserID = async () => {
         console.log(err);
     }
 };
-
-// getUserID();
