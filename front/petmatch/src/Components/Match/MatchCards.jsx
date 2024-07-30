@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function MatchCards({ name, age, breed, img }) {
+    const navigate = useNavigate();
+
     return (
         <figure className='w-[48%] h-[192px] rounded-2xl relative text-[#2b2b2e] shadow-md md:w-full md:max-w-[206px] md:h-[200px] lg:max-w-[195px] lg:h-[220px] xl:max-w-[21.5%]'>
             <img
@@ -41,7 +45,11 @@ function MatchCards({ name, age, breed, img }) {
                         </span>
                     )}
                 </p>
-                <p className='text-sm capitalize text-gray-500'>{breed}</p>
+                <div className="flex justify-between items-center text-base">
+                    <p className='text-sm capitalize text-gray-500'>{breed}</p>
+                    {/* aca modificar el btn para q se vea mas bonito y obtener el userid de alguna manera para q cuando se le da al btn de adoptar q te redireccione al formulario */}
+                    <button onClick={navigate("/Account-Settings/:userId")} className="bg-cyan-500 hover:bg-cyan-600">Adoptar</button>
+                </div>
             </figcaption>
         </figure>
     );

@@ -23,7 +23,8 @@ function AppRoutes() {
             <Route path='/pruebascors' element={<PruebaCors />} />
             <Route path='/' element={<Home />} />
             <Route path='/Matches' element={<Matches />} />
-            <Route path='/Match' element={<MatchPage />} />
+            {/* desde matches se podria hacer lo mismo q con MyAcoount para asi poder obtener el id desde la url */}
+            <Route path='/Match' element={<MatchPage />} /> 
             <Route path='/Sign-Up' element={<RegisterPage />} />
             <Route path='/Log-In' element={<LoginPage />} />
             <Route path='/Account-Settings/:userId' element={<MyAccount />} />

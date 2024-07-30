@@ -4,7 +4,9 @@ import Header from "../../Components/Header/Header";
 import { useParams } from "react-router-dom";
 
 function MyAccount() {
-    const { userId } = useParams();
+    // const { userId } = useParams();
+
+    // console.log(userId);
 
     return (
         <section className='bg-[#F4F4F4]'>
