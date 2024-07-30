@@ -11,6 +11,7 @@ import MyAccount from "../Pages/Auth/MyAccount";
 import PetsContext from "../Context/GlobalContext";
 import { useContext } from "react";
 import Loader from "../Components/Loading";
+import AboutPage from "../Components/aboutPage/AboutPage";
 
 function AppRoutes() {
     const { loading } = useContext(PetsContext);
@@ -30,7 +31,7 @@ function AppRoutes() {
             {/* <Route path='/Account-Settings' element={<MyAccount />} /> */}
 
             <Route path='/Catalogue' element={<Catalogue />} />
-            <Route path='/About-Us' element={<ComingSoon />} />
+            <Route path='/About-Us' element={<AboutPage/>} />
             <Route path='/Admin' element={<ComingSoon />} />
             <Route path='/Blog' element={<ComingSoon />} />
         </Routes>
