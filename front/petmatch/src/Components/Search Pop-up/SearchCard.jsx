@@ -5,7 +5,7 @@ function SearchCard({ data }) {
     return (
         <figure className='flex flex-col justify-center items-center w-[150px] shadow-md border rounded-md relative group'>
             <img
-                className='object-cover w-full h-[110px] rounded-md'
+                className='object-cover object-top w-full h-[110px] rounded-md'
                 src={img}
                 alt={name}
                 loading='lazy'
