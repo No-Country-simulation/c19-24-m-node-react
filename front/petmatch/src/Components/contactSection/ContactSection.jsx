@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import ConfettiGenerator from "confetti-js";
 
 function ContactSection() {
     const navigate = useNavigate();
@@ -11,6 +13,28 @@ function ContactSection() {
             duration: 1000,
         });
     }, []);
+
+    const confettiRef = useRef(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: "¡Muy bien!",
+            text: "Te responderemos a la brevedad",
+            icon: "success",
+        }).then(() => {
+            // Initialize confetti
+            const confettiSettings = { target: confettiRef.current };
+            const confetti = new ConfettiGenerator(confettiSettings);
+            confetti.render();
+
+            // Stop confetti after 5 seconds
+            setTimeout(() => {
+                confetti.clear();
+            }, 5000);
+        });
+    };
 
     return (
         // <section>
@@ -41,40 +65,45 @@ function ContactSection() {
                     </button>
                 </div>
                 <div className='lg:w-1/2 w-full p-4 sm:p-10' data-aos='fade-up'>
-                    <form className='space-y-4'>
+                    <form className='space-y-4' onSubmit={handleSubmit}>
                         <input
                             type='text'
                             placeholder='Nombre y Apellido *'
-                            className='w-full p-4 border rounded'
+                            className='outline-gray-400 outline-1 w-full p-4 border rounded'
                             data-aos='fade-up'
                             data-aos-delay='100'
+                            required
                         />
                         <input
                             type='tel'
                             placeholder='Teléfono *'
-                            className='w-full p-4 border rounded'
+                            className='outline-gray-400 outline-1 w-full p-4 border rounded'
                             data-aos='fade-up'
                             data-aos-delay='200'
+                            required
                         />
                         <input
                             type='email'
                             placeholder='Correo electrónico *'
-                            className='w-full p-4 border rounded'
+                            className='outline-gray-400 outline-1 w-full p-4 border rounded'
                             data-aos='fade-up'
                             data-aos-delay='300'
+                            required
                         />
                         <input
                             type='text'
                             placeholder='Asunto *'
-                            className='w-full p-4 border rounded'
+                            className='outline-gray-400 outline-1 w-full p-4 border rounded'
                             data-aos='fade-up'
                             data-aos-delay='400'
+                            required
                         />
                         <textarea
                             placeholder='Escribe tu mensaje...'
-                            className='w-full p-4 border rounded h-32'
+                            className='w-full p-4 border rounded h-32 outline-gray-400 outline-1'
                             data-aos='fade-up'
-                            data-aos-delay='500'></textarea>
+                            data-aos-delay='500'
+                            required></textarea>
                         <button
                             type='submit'
                             className='w-full bg-bgGreen text-white py-4 px-4 rounded'
@@ -85,6 +114,18 @@ function ContactSection() {
                     </form>
                 </div>
             </div>
+            <canvas
+                ref={confettiRef}
+                style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    zIndex: 10,
+                    pointerEvents: "none",
+                    width: "100%",
+                    height: "100vh",
+                }}
+            />
         </section>
     );
 }
