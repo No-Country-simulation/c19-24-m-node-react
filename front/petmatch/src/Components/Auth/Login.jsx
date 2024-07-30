@@ -46,8 +46,7 @@ function Login() {
                         // text: "`${data.payload}`",
                         icon: "success",
                     });
-                    // console.log(data);
-                    // console.log(data.id);
+                    
                     setUserID(data.id);
                     navigate("/");
                 } else {
