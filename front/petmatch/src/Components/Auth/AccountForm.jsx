@@ -5,8 +5,12 @@ import { getUserInfo } from "../../Helpers/API";
 import PetsContext from "../../Context/GlobalContext";
 import Swal from "sweetalert2";
 import ConfettiGenerator from "confetti-js";
+import { useParams } from "react-router-dom";
 
 function AccountForm() {
+    const { userId } = useParams();
+    console.log(userId); //proba hacer un fetch con el id del usuario a ver si sigue el error q hasta q no añadis a un animalito desde el match se rompe
+
     const [openDropdown, setOpenDropdown] = useState(null);
     const [dropdownValues, setDropdownValues] = useState({
         experience: "",
