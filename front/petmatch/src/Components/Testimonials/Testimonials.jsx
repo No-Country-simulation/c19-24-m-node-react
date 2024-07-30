@@ -30,7 +30,7 @@ function Testimonials() {
     const getTestimonials = async () => {
         try {
             // let url = `${baseURL}/pets`;
-            let url = `http://localhost:8080/testimonials/`;
+            let url = `https://c19-24-m-react.onrender.com/testimonials/`;
             const res = await fetch(url);
             const data = await res.json();
             if (data.status === "success") setTestimonials(data.payload);
