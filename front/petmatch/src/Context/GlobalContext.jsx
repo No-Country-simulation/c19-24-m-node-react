@@ -14,6 +14,7 @@ const PetsProvider = ({ children }) => {
 
     const [showDetails, setShowDetails] = useState(false);
     const [userID, setUserID] = useState(null);
+    const [userInfo, setUserInfo] = useState(null);
 
     const getAllPets = async () => {
         setLoading(true);
@@ -48,6 +49,8 @@ const PetsProvider = ({ children }) => {
         setShowDetails,
         userID,
         setUserID,
+        userInfo,
+        setUserInfo,
     };
 
     return <PetsContext.Provider value={data}>{children}</PetsContext.Provider>;
