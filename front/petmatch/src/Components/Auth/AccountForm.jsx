@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import FormBanner from "../FormBanner";
+import { getUserID } from "../../Helpers/API";
+import PetsContext from "../../Context/GlobalContext";
+import Swal from "sweetalert2";
+import ConfettiGenerator from "confetti-js";
 
 function AccountForm() {
     const [openDropdown, setOpenDropdown] = useState(null);
     const [dropdownValues, setDropdownValues] = useState({});
+    const confettiRef = useRef(null);
+
+    const [userInfo, setUserInfo] = useState([]);
+
+    const { setLoading, setError } = useContext(PetsContext);
 
     const handleDropdownToggle = (index) => {
         setOpenDropdown(openDropdown === index ? null : index);
@@ -20,7 +29,51 @@ function AccountForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        console.log(dropdownValues);
+
+        const allFieldsFilled = Object.values(dropdownValues).every(
+            (value) => value !== undefined
+        );
+
+        if (allFieldsFilled) {
+            Swal.fire({
+                title: "¡Muy bien!",
+                text: "Te has suscrito correctamente.",
+                icon: "success",
+            }).then(() => {
+                // Initialize confetti
+                const confettiSettings = { target: confettiRef.current };
+                const confetti = new ConfettiGenerator(confettiSettings);
+                confetti.render();
+
+                // Stop confetti after 5 seconds
+                setTimeout(() => {
+                    confetti.clear();
+                }, 5000);
+            });
+        }
     };
+
+    const getUserInfo = async () => {
+        setLoading(true);
+
+        try {
+            const data = await getUserID();
+
+            // setUserInfo(data);
+
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            setError(true);
+        }
+    };
+
+    // useEffect(() => {
+    //     getUserInfo();
+    // }, []);
+
     return (
         <main className='mx-auto max-w-screen-xl my-16'>
             <section className='bg-white p-16 shadow-md rounded-md'>
@@ -92,7 +145,7 @@ function AccountForm() {
                             className='py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/3'
                             type='text'
                             placeholder='Teléfono'
-                            pattern='\d{10}' // 10 dígitos para el teléfono
+                            // pattern='\d{15}' // 15 dígitos para el teléfono
                             autoComplete='off'
                         />
                         <input
@@ -211,6 +264,18 @@ function AccountForm() {
                 </form>
             </section>
             <FormBanner />
+            <canvas
+                ref={confettiRef}
+                style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    zIndex: 10,
+                    pointerEvents: "none",
+                    width: "100%",
+                    height: "100vh",
+                }}
+            />
         </main>
     );
 }

@@ -12,6 +12,8 @@ const PetsProvider = ({ children }) => {
     const [likepets, setLikepets] = useState([]);
     const [dislikepets, setDislikepets] = useState([]);
 
+    const [showDetails, setShowDetails] = useState(false);
+
     const getAllPets = async () => {
         setLoading(true);
 
@@ -41,6 +43,8 @@ const PetsProvider = ({ children }) => {
         setDislikepets,
         likepets,
         setLikepets,
+        showDetails,
+        setShowDetails,
     };
 
     return <PetsContext.Provider value={data}>{children}</PetsContext.Provider>;

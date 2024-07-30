@@ -1,143 +1,17 @@
 import { useContext, useState } from "react";
 import CatalogueFilter from "./CatalogueFilter";
 import PetsContext from "../Context/GlobalContext";
-
-// const products = [
-//     {
-//         id: 1,
-//         name: "Earthen Bottle",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
-//         imageAlt:
-//             "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-//     },
-//     {
-//         id: 2,
-//         name: "Nomad Tumbler",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
-//         imageAlt:
-//             "Olive drab green insulated bottle with flared screw lid and flat top.",
-//     },
-//     {
-//         id: 3,
-//         name: "Focus Paper Refill",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-//         imageAlt:
-//             "Person using a pen to cross a task off a productivity paper card.",
-//     },
-//     {
-//         id: 4,
-//         name: "Machined ",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-//         imageAlt: "Hand holding black machined steel  with brass tip and top.",
-//     },
-//     {
-//         id: 5,
-//         name: "Earthen Bottle",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
-//         imageAlt:
-//             "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-//     },
-//     {
-//         id: 6,
-//         name: "Nomad Tumbler",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
-//         imageAlt:
-//             "Olive drab green insulated bottle with flared screw lid and flat top.",
-//     },
-//     {
-//         id: 7,
-//         name: "Focus Paper Refill",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-//         imageAlt:
-//             "Person using a pen to cross a task off a productivity paper card.",
-//     },
-//     {
-//         id: 8,
-//         name: "Machined ",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-//         imageAlt: "Hand holding black machined steel  with brass tip and top.",
-//     },
-//     {
-//         id: 9,
-//         name: "Earthen Bottle",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
-//         imageAlt:
-//             "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-//     },
-//     {
-//         id: 10,
-//         name: "Nomad Tumbler",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
-//         imageAlt:
-//             "Olive drab green insulated bottle with flared screw lid and flat top.",
-//     },
-//     {
-//         id: 11,
-//         name: "Focus Paper Refill",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-//         imageAlt:
-//             "Person using a pen to cross a task off a productivity paper card.",
-//     },
-//     {
-//         id: 12,
-//         name: "Machined ",
-//         href: "#",
-//         age: "7",
-//         gender: "macho",
-//         imageSrc:
-//             "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-//         imageAlt: "Hand holding black machined steel  with brass tip and top.",
-//     },
-//     // More products...
-// ];
+import Details from "./detailsPopUp/Details";
 
 function CatalogueGrid() {
     const [isOpen, setIsOpen] = useState(false);
-    const { allPets } = useContext(PetsContext);
+    const [selectedDog, setSelectedDog] = useState(null);
+    const { allPets, setShowDetails, showDetails } = useContext(PetsContext);
+
+    const handleShowDetails = (dog) => {
+        setSelectedDog(dog);
+        setShowDetails(true);
+    };
 
     return (
         <section className='flex justify-between items-start bg-white w-[90%] rounded-lg shadow-md  m-auto  my-10 p-10 max-w-screen-xl mx-auto relative'>
@@ -170,7 +44,7 @@ function CatalogueGrid() {
                                             aria-hidden='true'>
                                             <path
                                                 fillRule='evenodd'
-                                                d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
+                                                d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z'
                                                 clipRule='evenodd'
                                             />
                                         </svg>
@@ -219,11 +93,8 @@ function CatalogueGrid() {
                         {allPets.map((pet, index) => (
                             <div
                                 key={index}
-                                className=' p-3 bg-gray-100 shadow-md rounded-md space-y-3'>
-                                <a
-                                    key={index}
-                                    href={pet.href}
-                                    className='group'>
+                                className='p-3 bg-gray-100 shadow-md rounded-md space-y-3'>
+                                <a href={pet.href} className='group'>
                                     <div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7'>
                                         <img
                                             alt={pet.name}
@@ -231,7 +102,7 @@ function CatalogueGrid() {
                                             className='h-[180px] w-[220px] object-cover object-center group-hover:opacity-75'
                                         />
                                     </div>
-                                    <div className=' flex items-start justify-between p-2 mt-1'>
+                                    <div className='flex items-start justify-between p-2 mt-1'>
                                         <h3 className='text-sm text-gray-700'>
                                             {pet.name}
                                         </h3>
@@ -239,13 +110,15 @@ function CatalogueGrid() {
                                             <p className='text-xs font-light'>
                                                 {pet.sex}
                                             </p>
-                                            <p className='text-sm font-light '>
+                                            <p className='text-sm font-light'>
                                                 {pet.age} años
                                             </p>
                                         </div>
                                     </div>
                                 </a>
-                                <button className='bg-[#5DA045]  flex items-center  justify-center py-2 rounded-3xl w-full text-white'>
+                                <button
+                                    onClick={() => handleShowDetails(pet)}
+                                    className='bg-[#5DA045] flex items-center justify-center py-2 rounded-3xl w-full text-white'>
                                     ¡Conócelo!
                                 </button>
                             </div>
@@ -253,23 +126,9 @@ function CatalogueGrid() {
                     </div>
                 </div>
             </div>
+            {selectedDog && <Details show={showDetails} dog={selectedDog} />}
         </section>
     );
 }
 
 export default CatalogueGrid;
-
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
