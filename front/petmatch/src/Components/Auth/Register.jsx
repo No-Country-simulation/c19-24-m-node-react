@@ -32,7 +32,8 @@ function Register() {
         }
 
         try {
-            const response = await fetch("http://localhost:8080/users/", {
+            // const response = await fetch("http://localhost:8080/users/", {
+            const response = await fetch("https://c19-24-m-node.onrender.com/users/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
