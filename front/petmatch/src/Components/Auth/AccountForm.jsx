@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import FormBanner from "../FormBanner";
 import { getUserID } from "../../Helpers/API";
@@ -11,9 +11,7 @@ function AccountForm() {
     const [dropdownValues, setDropdownValues] = useState({});
     const confettiRef = useRef(null);
 
-    const [userInfo, setUserInfo] = useState([]);
-
-    const { setLoading, setError } = useContext(PetsContext);
+    const { userInfo } = useContext(PetsContext);
 
     const handleDropdownToggle = (index) => {
         setOpenDropdown(openDropdown === index ? null : index);
@@ -29,8 +27,6 @@ function AccountForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(dropdownValues);
 
         const allFieldsFilled = Object.values(dropdownValues).every(
             (value) => value !== undefined
@@ -55,24 +51,26 @@ function AccountForm() {
         }
     };
 
-    const getUserInfo = async () => {
-        setLoading(true);
+    // const getUserInfo = async () => {
+    //     setLoading(true);
 
-        try {
-            const data = await getUserID();
+    //     try {
+    //         const data = await getUserID(userID);
 
-            // setUserInfo(data);
+    //         setUserInfo(data);
 
-            setLoading(false);
-        } catch (error) {
-            setLoading(false);
-            setError(true);
-        }
-    };
+    //         setLoading(false);
+    //     } catch (error) {
+    //         setLoading(false);
+    //         setError(true);
+    //     }
+    // };
 
     // useEffect(() => {
     //     getUserInfo();
     // }, []);
+
+    console.log(userInfo);
 
     return (
         <main className='mx-auto max-w-screen-xl my-16'>
