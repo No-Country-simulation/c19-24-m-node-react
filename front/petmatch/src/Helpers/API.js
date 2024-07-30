@@ -13,11 +13,11 @@ export const getPets = async () => {
     }
 };
 
-export const getUserID = async (_id) => {
+export const getUserInfo = async (_id) => {
     try {
         // let url = `${baseURL}/pets`;
         // let url = `http://localhost:8080/users}`;
-        let url = `https://c19-24-m-node.onrender.com/users}`;
+        let url = `https://c19-24-m-node.onrender.com/users${_id}`;
         const res = await fetch(url);
         const data = await res.json();
         console.log(data);
