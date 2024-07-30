@@ -14,6 +14,7 @@ export const getPets = async () => {
 };
 
 export const getUserInfo = async (_id) => {
+    console.log(_id);
     try {
         // let url = `${baseURL}/pets`;
         // let url = `http://localhost:8080/users}`;
