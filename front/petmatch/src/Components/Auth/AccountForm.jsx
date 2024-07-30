@@ -92,7 +92,7 @@ function AccountForm() {
         return age;
     };
 
-    const age = calculateAge(userInfo.date_of_birth);
+    // const age = calculateAge(userInfo.date_of_birth);
 
     return (
         <main className='mx-auto max-w-screen-xl my-16'>
@@ -185,17 +185,13 @@ function AccountForm() {
                             autoComplete='off'
                         />
                         <input
-                            className={`${
-                                userInfo
-                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
-                                    : ""
-                            } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/6`}
-                            type='text'
+                            className={`py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/6`}
+                            type='number'
                             placeholder='Edad'
                             // pattern='\d{1,2}' // 1 o 2 dígitos para la edad
                             required
                             autoComplete='off'
-                            value={`${userInfo ? age : ""}`}
+                            defaultValue={""}
                         />
                         <input
                             className={`${
