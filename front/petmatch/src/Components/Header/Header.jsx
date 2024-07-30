@@ -7,7 +7,9 @@ import PetsContext from "../../Context/GlobalContext";
 function Header() {
     const navigate = useNavigate();
 
-    const { allPets } = useContext(PetsContext);
+    const { allPets, userID } = useContext(PetsContext);
+
+    // console.log(userID.id);
 
     const [isVisible, setIsVisible] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -198,7 +200,7 @@ function Header() {
                                         <ul className='py-1'>
                                             <li>
                                                 <Link
-                                                    to='/Account-Settings/:userId'
+                                                    to={`/Account-Settings/${userID}`}
                                                     className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'>
                                                     Mi cuenta
                                                 </Link>

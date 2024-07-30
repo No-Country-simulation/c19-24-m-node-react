@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LogInImg from "../../Assets/AuthImg/LogInImg.png";
 import Swal from "sweetalert2";
+import PetsContext from "../../Context/GlobalContext";
 
 function Login() {
+    const { setUserID } = useContext(PetsContext);
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -41,6 +43,9 @@ function Login() {
                         // text: "`${data.payload}`",
                         icon: "success",
                     });
+                    // console.log(data);
+                    console.log(data.id);
+                    setUserID(data.id);
                     navigate("/");
                 } else {
                     setError("Token no recibido");
