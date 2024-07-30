@@ -1,17 +1,26 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import FormBanner from "../FormBanner";
-import { getUserID } from "../../Helpers/API";
+import { getUserInfo } from "../../Helpers/API";
 import PetsContext from "../../Context/GlobalContext";
 import Swal from "sweetalert2";
 import ConfettiGenerator from "confetti-js";
 
 function AccountForm() {
     const [openDropdown, setOpenDropdown] = useState(null);
-    const [dropdownValues, setDropdownValues] = useState({});
+    const [dropdownValues, setDropdownValues] = useState({
+        experience: "",
+        hours: "",
+        housing: "",
+        kids: "",
+        knowledge: "",
+        pet: "",
+        time: "",
+        travel: "",
+    });
     const confettiRef = useRef(null);
 
-    const { userInfo } = useContext(PetsContext);
+    const { userID, setUserInfo, userInfo } = useContext(PetsContext);
 
     const handleDropdownToggle = (index) => {
         setOpenDropdown(openDropdown === index ? null : index);
@@ -29,8 +38,11 @@ function AccountForm() {
         e.preventDefault();
 
         const allFieldsFilled = Object.values(dropdownValues).every(
-            (value) => value !== undefined
+            (value) => value !== ""
         );
+
+        console.log(allFieldsFilled, "ALL FIELDS");
+        console.log(dropdownValues, "DROP VALUES");
 
         if (allFieldsFilled) {
             Swal.fire({
@@ -51,24 +63,36 @@ function AccountForm() {
         }
     };
 
-    // const getUserInfo = async () => {
-    //     setLoading(true);
+    const getInfo = async () => {
+        try {
+            const data = await getUserInfo(userID);
+            setUserInfo(data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-    //     try {
-    //         const data = await getUserID(userID);
+    useEffect(() => {
+        getInfo();
+    }, []);
 
-    //         setUserInfo(data);
+    const calculateAge = (fecha) => {
+        const today = new Date();
+        const birthDate = new Date(fecha);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDifference = today.getMonth() - birthDate.getMonth();
 
-    //         setLoading(false);
-    //     } catch (error) {
-    //         setLoading(false);
-    //         setError(true);
-    //     }
-    // };
+        if (
+            monthDifference < 0 ||
+            (monthDifference === 0 && today.getDate() < birthDate.getDate())
+        ) {
+            age--;
+        }
 
-    // useEffect(() => {
-    //     getUserInfo();
-    // }, []);
+        return age;
+    };
+
+    const age = calculateAge(userInfo.date_of_birth);
 
     console.log(userInfo);
 
@@ -95,20 +119,30 @@ function AccountForm() {
                     className='flex flex-col gap-y-4 items-start justify-center'>
                     <div className='flex items-center justify-between w-full gap-x-4'>
                         <input
-                            className='py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2'
+                            className={`${
+                                userInfo
+                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    : ""
+                            } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2`}
                             type='text'
                             placeholder='Nombres'
-                            pattern='[A-Za-z\s]+' // Solo letras y espacios
+                            // pattern='[A-Za-z\s]+' // Solo letras y espacios
                             required
                             autoComplete='off'
+                            value={`${userInfo ? userInfo.first_name : ""}`}
                         />
                         <input
-                            className='py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2'
+                            className={`${
+                                userInfo
+                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    : ""
+                            } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2`}
                             type='text'
                             placeholder='Apellidos'
-                            pattern='[A-Za-z\s]+' // Solo letras y espacios
+                            // pattern='[A-Za-z\s]+' // Solo letras y espacios
                             required
                             autoComplete='off'
+                            value={`${userInfo ? userInfo.last_name : ""}`}
                         />
                     </div>
                     <div className='flex items-center justify-between w-full gap-x-4'>
@@ -125,17 +159,22 @@ function AccountForm() {
                             className='py-2 px-3 outline-none border border-gray-300 rounded-md bg-white'
                             type='text'
                             placeholder='Número de Identificación'
-                            pattern='\d+' // Solo números
+                            // pattern='\d+' // Solo números
                             required
                             autoComplete='off'
                         />
                         <input
-                            className='py-2 px-3 outline-none border border-gray-300 rounded-md bg-white'
+                            className={`${
+                                userInfo
+                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    : ""
+                            } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2`}
                             type='email'
                             placeholder='Correo Electrónico'
-                            pattern='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+                            // pattern='^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
                             required
                             autoComplete='off'
+                            value={`${userInfo ? userInfo.email : ""}`}
                         />
                     </div>
                     <div className='flex items-center justify-between w-full gap-x-4'>
@@ -143,24 +182,35 @@ function AccountForm() {
                             className='py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/3'
                             type='text'
                             placeholder='Teléfono'
+                            required
                             // pattern='\d{15}' // 15 dígitos para el teléfono
                             autoComplete='off'
                         />
                         <input
-                            className='py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/6'
+                            className={`${
+                                userInfo
+                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    : ""
+                            } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/6`}
                             type='text'
                             placeholder='Edad'
-                            pattern='\d{1,2}' // 1 o 2 dígitos para la edad
+                            // pattern='\d{1,2}' // 1 o 2 dígitos para la edad
                             required
                             autoComplete='off'
+                            value={`${userInfo ? age : ""}`}
                         />
                         <input
-                            className='py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-2/3'
+                            className={`${
+                                userInfo
+                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    : ""
+                            } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2`}
                             type='text'
                             placeholder='Dirección '
-                            pattern='.{5,}' // Al menos 5 caracteres
+                            // pattern='.{5,}' // Al menos 5 caracteres
                             required
                             autoComplete='off'
+                            value={`${userInfo ? userInfo.address.city : ""}`}
                         />
                     </div>
                     <div className='flex items-center justify-between w-full gap-x-4'>
