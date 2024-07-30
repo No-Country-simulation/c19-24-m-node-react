@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Details from "../detailsPopUp/Details";
 
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ const MatchSection = () => {
     const [dog, setDog] = useState(null);
     const [pets, setPets] = useState([]);
     const [count, setCount] = useState(0);
-    const dogImg = useRef(null);
+    // const dogImg = useRef(null);
 
     const [showImage, setShowImage] = useState(true);
     const [animation, setAnimation] = useState(""); // Estado para la animación

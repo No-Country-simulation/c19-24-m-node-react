@@ -94,8 +94,6 @@ function AccountForm() {
 
     const age = calculateAge(userInfo.date_of_birth);
 
-    console.log(userInfo);
-
     return (
         <main className='mx-auto max-w-screen-xl my-16'>
             <section className='bg-white p-16 shadow-md rounded-md'>
