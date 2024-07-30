@@ -41,8 +41,8 @@ function AccountForm() {
             (value) => value !== ""
         );
 
-        console.log(allFieldsFilled, "ALL FIELDS");
-        console.log(dropdownValues, "DROP VALUES");
+        // console.log(allFieldsFilled, "ALL FIELDS");
+        // console.log(dropdownValues, "DROP VALUES");
 
         if (allFieldsFilled) {
             Swal.fire({
