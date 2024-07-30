@@ -13,6 +13,7 @@ const PetsProvider = ({ children }) => {
     const [dislikepets, setDislikepets] = useState([]);
 
     const [showDetails, setShowDetails] = useState(false);
+    const [userID, setUserID] = useState(null);
 
     const getAllPets = async () => {
         setLoading(true);
@@ -45,6 +46,8 @@ const PetsProvider = ({ children }) => {
         setLikepets,
         showDetails,
         setShowDetails,
+        userID,
+        setUserID,
     };
 
     return <PetsContext.Provider value={data}>{children}</PetsContext.Provider>;
