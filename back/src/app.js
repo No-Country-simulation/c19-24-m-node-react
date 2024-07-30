@@ -16,11 +16,11 @@ const PORT = options.PORT || 8080;
 
 const app = express();
 
-var whitelist = [
+const whitelist = [
     "http://localhost:3000",
     "http://localhost:8080" /** other domains if any */,
 ];
-var corsOptions = {
+const corsOptions = {
     credentials: true,
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
