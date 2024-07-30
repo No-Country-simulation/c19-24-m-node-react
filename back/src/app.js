@@ -17,8 +17,10 @@ const PORT = options.PORT || 8080;
 const app = express();
 
 const whitelist = [
-    "http://localhost:3000",
-    "http://localhost:8080" /** other domains if any */,
+    "http://localhost:3000", //parece q la white liste solo toma el primero
+    "https://c19-24-m-react.onrender.com",
+    "http://localhost:8080", 
+    "https://c19-24-m-node.onrender.com",/** other domains if any */,
 ];
 const corsOptions = {
     credentials: true,

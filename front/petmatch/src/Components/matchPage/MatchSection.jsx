@@ -30,7 +30,8 @@ const MatchSection = () => {
 
     //trae una cantidad fija de animalitos de la DB
     useEffect(() => {
-        fetch("http://localhost:8080/pets/petsQuantity/16")
+        // fetch("http://localhost:8080/pets/petsQuantity/16")
+        fetch("https://c19-24-m-node.onrender.com/pets/petsQuantity/16")
             .then((response) => response.json())
             .then((data) => {
                 if (data.status === "success") {
@@ -46,7 +47,8 @@ const MatchSection = () => {
     }, []);
 
     useEffect(() => {
-        fetch("http://localhost:8080/pets/randomPet")
+        // fetch("http://localhost:8080/pets/randomPet")
+        fetch("https://c19-24-m-node.onrender.com/pets/randomPet")
             .then((response) => response.json())
             .then((data) => {
                 if (data.status === "success") {
@@ -75,7 +77,8 @@ const MatchSection = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:8080/match/like/${dog._id}`,
+                // `http://localhost:8080/match/like/${dog._id}`,
+                `https://c19-24-m-node.onrender.com/match/like/${dog._id}`,
                 {
                     method: "PUT",
                     headers: {
@@ -143,7 +146,8 @@ const MatchSection = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:8080/match/notlike/${dog._id}`,
+                // `http://localhost:8080/match/notlike/${dog._id}`,
+                `https://c19-24-m-node.onrender.com/match/notlike/${dog._id}`,
                 {
                     method: "PUT",
                     headers: {

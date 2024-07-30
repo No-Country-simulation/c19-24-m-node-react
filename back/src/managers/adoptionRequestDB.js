@@ -14,7 +14,7 @@ class AdoptionRequestManager {
 
     getAdoptionRequestById = async (id) => {
         try {
-            const adoptionRequest = await AdoptionRequestModel.findOne({ _id: id }); //puede ser q tengas q pasar el objeto como {_id : id}
+            const adoptionRequest = await AdoptionRequestModel.findOne({ _id: id });
 
             return adoptionRequest;
 
