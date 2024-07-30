@@ -35,7 +35,7 @@ const MatchSection = () => {
             .then((data) => {
                 if (data.status === "success") {
                     setPets(data.payload);
-                    console.log(data.payload);
+                    // console.log(data.payload);
                     setLoading(false);
                 } else {
                     setLoading(false);
@@ -226,7 +226,7 @@ const MatchSection = () => {
                     onClick={handleLike}>
                     ❤️
                 </button>
-            </div >
+            </div>
             <div className='mt-4 space-y-2 w-64'>
                 <button
                     className='bg-[#2C7B10] text-white px-4 py-2 rounded-lg w-full'
@@ -244,7 +244,7 @@ const MatchSection = () => {
                 // onClose={handleCloseDetails}
                 dog={dog}
             />
-        </div >
+        </div>
     );
 };
 

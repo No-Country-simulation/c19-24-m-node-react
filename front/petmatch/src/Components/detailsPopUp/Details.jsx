@@ -9,7 +9,7 @@ const Details = ({ show, dog }) => {
         return null;
     }
 
-    console.log(dog, "DOG DETAILS");
+    // console.log(dog, "DOG DETAILS");
 
     const renderContent = () => {
         switch (selectedTab) {
