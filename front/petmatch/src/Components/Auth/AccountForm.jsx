@@ -80,24 +80,24 @@ function AccountForm() {
         getInfo();
     }, []);
 
-    const calculateAge = (fecha) => {
-        const today = new Date();
-        const birthDate = new Date(fecha);
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const monthDifference = today.getMonth() - birthDate.getMonth();
+    // const calculateAge = (fecha) => {
+    //     const today = new Date();
+    //     const birthDate = new Date(fecha);
+    //     let age = today.getFullYear() - birthDate.getFullYear();
+    //     const monthDifference = today.getMonth() - birthDate.getMonth();
 
-        if (
-            monthDifference < 0 ||
-            (monthDifference === 0 && today.getDate() < birthDate.getDate())
-        ) {
-            age--;
-        }
+    //     if (
+    //         monthDifference < 0 ||
+    //         (monthDifference === 0 && today.getDate() < birthDate.getDate())
+    //     ) {
+    //         age--;
+    //     }
 
-        return age;
-    };
+    //     return age;
+    // };
 
-    console.log(userInfo.date_of_birth);
-    const age = calculateAge(userInfo.date_of_birth);
+    // console.log(userInfo.date_of_birth);
+    // const age = calculateAge(userInfo.date_of_birth);
 
     return (
         <main className='mx-auto max-w-screen-xl my-16'>
@@ -200,8 +200,8 @@ function AccountForm() {
                             // pattern='\d{1,2}' // 1 o 2 dígitos para la edad
                             required
                             autoComplete='off'
-                            // defaultValue={""}
-                            value={`${userInfo ? age : ""}`}
+                            defaultValue={""}
+                            // value={`${userInfo ? age : ""}`}
                         />
                         <input
                             className={`${
