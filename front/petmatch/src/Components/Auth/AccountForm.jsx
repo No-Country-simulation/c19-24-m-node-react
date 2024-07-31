@@ -5,11 +5,11 @@ import { getUserInfo } from "../../Helpers/API";
 import PetsContext from "../../Context/GlobalContext";
 import Swal from "sweetalert2";
 import ConfettiGenerator from "confetti-js";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 function AccountForm() {
-    const { userId } = useParams();
-    console.log(userId); //proba hacer un fetch con el id del usuario a ver si sigue el error q hasta q no añadis a un animalito desde el match se rompe
+    // const { userId } = useParams();
+    // console.log(userId); //proba hacer un fetch con el id del usuario a ver si sigue el error q hasta q no añadis a un animalito desde el match se rompe
 
     const [openDropdown, setOpenDropdown] = useState(null);
     const [dropdownValues, setDropdownValues] = useState({
@@ -96,7 +96,8 @@ function AccountForm() {
         return age;
     };
 
-    // const age = calculateAge(userInfo.date_of_birth);
+    console.log(userInfo.date_of_birth);
+    const age = calculateAge(userInfo.date_of_birth);
 
     return (
         <main className='mx-auto max-w-screen-xl my-16'>
@@ -123,7 +124,7 @@ function AccountForm() {
                         <input
                             className={`${
                                 userInfo
-                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    ? "bg-gray-300 cursor-not-allowed pointer-events-none"
                                     : ""
                             } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2`}
                             type='text'
@@ -136,7 +137,7 @@ function AccountForm() {
                         <input
                             className={`${
                                 userInfo
-                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    ? "bg-gray-300 cursor-not-allowed pointer-events-none"
                                     : ""
                             } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2`}
                             type='text'
@@ -168,7 +169,7 @@ function AccountForm() {
                         <input
                             className={`${
                                 userInfo
-                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    ? "bg-gray-300 cursor-not-allowed pointer-events-none"
                                     : ""
                             } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2`}
                             type='email'
@@ -189,18 +190,23 @@ function AccountForm() {
                             autoComplete='off'
                         />
                         <input
-                            className={`py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/6`}
-                            type='number'
+                            className={`${
+                                userInfo
+                                    ? "bg-gray-300 cursor-not-allowed pointer-events-none"
+                                    : ""
+                            } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/6`}
+                            type='text'
                             placeholder='Edad'
                             // pattern='\d{1,2}' // 1 o 2 dígitos para la edad
                             required
                             autoComplete='off'
-                            defaultValue={""}
+                            // defaultValue={""}
+                            value={`${userInfo ? age : ""}`}
                         />
                         <input
                             className={`${
                                 userInfo
-                                    ? "bg-gray-200 cursor-not-allowed pointer-events-none"
+                                    ? "bg-gray-300 cursor-not-allowed pointer-events-none"
                                     : ""
                             } py-2 px-3 outline-none border border-gray-300 rounded-md bg-white w-1/2`}
                             type='text'

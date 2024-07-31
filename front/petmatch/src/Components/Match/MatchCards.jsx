@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import PetsContext from "../../Context/GlobalContext";
 
 function MatchCards({ name, age, breed, img }) {
     const navigate = useNavigate();
+
+    const { userID } = useContext(PetsContext);
 
     return (
         <figure className='w-[48%] h-[192px] rounded-2xl relative text-[#2b2b2e] shadow-md md:w-full md:max-w-[206px] md:h-[200px] lg:max-w-[195px] lg:h-[220px] xl:max-w-[21.5%]'>
@@ -45,10 +49,16 @@ function MatchCards({ name, age, breed, img }) {
                         </span>
                     )}
                 </p>
-                <div className="flex justify-between items-center text-base">
-                    <p className='text-sm capitalize text-gray-500'>{breed}</p>
+                <div className='flex justify-between items-center text-base'>
+                    <p className='text-sm capitalize text-gray-500 mt-0.5'>
+                        {breed}
+                    </p>
                     {/* aca modificar el btn para q se vea mas bonito y obtener el userid de alguna manera para q cuando se le da al btn de adoptar q te redireccione al formulario */}
-                    <button onClick={navigate("/Account-Settings/:userId")} className="bg-cyan-500 hover:bg-cyan-600">Adoptar</button>
+                    <button
+                        onClick={() => navigate(`/Account-Settings/${userID}`)}
+                        className='bg-[#2C7B10] hover:bg-[#2e7415] mt-0.5 text-xs text-white font-semibold py-1 px-2 rounded-md'>
+                        Adoptar
+                    </button>
                 </div>
             </figcaption>
         </figure>

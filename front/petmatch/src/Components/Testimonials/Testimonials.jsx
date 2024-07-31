@@ -29,11 +29,9 @@ function Testimonials() {
 
     const getTestimonials = async () => {
         try {
-            // let url = `${baseURL}/pets`;
             let url = `https://c19-24-m-node.onrender.com/testimonials/`;
             const res = await fetch(url);
             const data = await res.json();
-            console.log(data);
             if (data.status === "success") setTestimonials(data.payload);
         } catch (err) {
             console.log(err);
