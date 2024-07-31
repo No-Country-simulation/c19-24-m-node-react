@@ -103,10 +103,10 @@ const MatchSection = () => {
 
                 setTimeout(() => {
                     setShowImage(showImage);
-                    setCount((prevState) => prevState + 1);
-                    setDog(pets[count]);
                     setAnimation(""); // Limpia la clase de animación
                 }, 500); // Tiempo que coincide con la duración de la animación
+                setCount((prevState) => prevState + 1);
+                setDog(pets[count]);
 
                 // Swal.fire({
                 //     title: "Muy bien!",

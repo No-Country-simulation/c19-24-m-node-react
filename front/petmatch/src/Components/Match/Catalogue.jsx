@@ -5,7 +5,7 @@ import PetsContext from "../../Context/GlobalContext";
 function Catalogue() {
     const { likepets, userInfo } = useContext(PetsContext);
 
-    // const { pets_like } = userInfo;
+    const { pets_like } = userInfo;
 
     let allPets = [];
 
@@ -31,10 +31,10 @@ function Catalogue() {
     if (likepets.length > 0) {
         allPets = removeDuplicates(likepets.payload);
     } 
-    // else if (pets_like && pets_like.length > 0) {
-    //     console.log(pets_like, "pets_like");
-    //     allPets = removeDuplicates(pets_like);
-    // }
+    else if (pets_like && pets_like.length > 0) {
+        console.log(pets_like, "pets_like");
+        allPets = removeDuplicates(pets_like);
+    }
 
     // else {
     //     allPets = removeDuplicates(likepets.payload);
