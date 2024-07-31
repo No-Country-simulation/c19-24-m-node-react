@@ -3,7 +3,9 @@ import MatchCards from "./MatchCards";
 import PetsContext from "../../Context/GlobalContext";
 
 function Catalogue() {
-    const { likepets, dislikepets, userInfo } = useContext(PetsContext);
+    const { likepets, userInfo } = useContext(PetsContext);
+
+    const { pets_like } = userInfo;
 
     let allPets = [];
 
@@ -17,20 +19,25 @@ function Catalogue() {
         });
     };
 
+    console.log(likepets, "LIKEPETS FROM THE STATUS PAGE");
+    console.log(userInfo, "USERINFO FROM THE STATUS PAGE");
+
     //   const uniquePets = removeDuplicates(likepets.payload);
-    if (
-        likepets.length > 0 &&
-        likepets.payload &&
-        Array.isArray(likepets.payload)
-    ) {
+    // if (
+    //     likepets.payload.length > 0 &&
+    //     likepets.payload &&
+    //     Array.isArray(likepets.payload)
+    // ) {
+    if (likepets.length > 0) {
         allPets = removeDuplicates(likepets.payload);
-        // allPets = likepets.payload;
-    } else {
-        allPets = removeDuplicates(userInfo.pets_like);
+    } else if (pets_like && pets_like.length > 0) {
+        console.log(pets_like, "pets_like");
+        allPets = removeDuplicates(pets_like);
     }
 
-    console.log(userInfo.pets_like);
-    console.log(likepets);
+    // else {
+    //     allPets = removeDuplicates(likepets.payload);
+    // }
 
     const [pets, setPets] = useState("all");
 
@@ -39,6 +46,10 @@ function Catalogue() {
     };
 
     return (
+        // <>
+        //     {allPets == [] ? (
+        //         <div>...loading</div>
+        //     ) : (
         <section className={`bg-[#f4f4f4] lg:px-8 py-16 p-0 w-full`}>
             <section
                 className={`bg-white border lg:py-12 lg:px-10 md:px-6 px-4 py-12 rounded-none md:rounded-[20px] flex justify-between items-center flex-col max-w-screen-xl mx-auto`}>
@@ -120,38 +131,11 @@ function Catalogue() {
                                 />
                             );
                         })}
-                    {/* {pets === "approved" &&
-                        approvedPets.map((pet, index) => {
-                            return (
-                                <MatchCards
-                                    key={index}
-                                    name={pet.name}
-                                    age={pet.age}
-                                    breed={pet.breed}
-                                    img={
-                                        
-                                    }
-                                />
-                            );
-                        })
-                        } */}
-                    {/* {pets === "denied" &&
-                        deniedPets.map((pet, index) => {
-                            return (
-                                <MatchCards
-                                    key={index}
-                                    name={pet.name}
-                                    age={pet.age}
-                                    breed={pet.breed}
-                                    img={
-                                        "https://images.dog.ceo/breeds/pitbull/dog-3981540_1280.jpg"
-                                    }
-                                />
-                            );
-                        })} */}
                 </section>
             </section>
         </section>
+        //     )}
+        // </>
     );
 }
 

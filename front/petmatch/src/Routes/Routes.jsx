@@ -11,6 +11,7 @@ import MyAccount from "../Pages/Auth/MyAccount";
 import PetsContext from "../Context/GlobalContext";
 import { useContext } from "react";
 import Loader from "../Components/Loading";
+import AboutPage from "../Components/aboutPage/AboutPage";
 
 function AppRoutes() {
     const { loading } = useContext(PetsContext);
@@ -23,14 +24,15 @@ function AppRoutes() {
             <Route path='/pruebascors' element={<PruebaCors />} />
             <Route path='/' element={<Home />} />
             <Route path='/Matches' element={<Matches />} />
-            <Route path='/Match' element={<MatchPage />} />
+            {/* desde matches se podria hacer lo mismo q con MyAcoount para asi poder obtener el id desde la url */}
+            <Route path='/Match' element={<MatchPage />} /> 
             <Route path='/Sign-Up' element={<RegisterPage />} />
             <Route path='/Log-In' element={<LoginPage />} />
             <Route path='/Account-Settings/:userId' element={<MyAccount />} />
             {/* <Route path='/Account-Settings' element={<MyAccount />} /> */}
 
             <Route path='/Catalogue' element={<Catalogue />} />
-            <Route path='/About-Us' element={<ComingSoon />} />
+            <Route path='/About-Us' element={<AboutPage/>} />
             <Route path='/Admin' element={<ComingSoon />} />
             <Route path='/Blog' element={<ComingSoon />} />
         </Routes>

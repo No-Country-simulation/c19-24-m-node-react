@@ -96,13 +96,15 @@ const MatchSection = () => {
                 setCount((prevState) => prevState + 1);
                 setDog(pets[count]);
                 // setLikepets(data);
+                console.log(data, "AFTER Liked");
+                console.log(pets[count], "AFTER Liked Liked");
+                setLikepets(pets[count]);
                 setAnimation("animate-slide-right"); // Agrega la clase de animación
 
                 setTimeout(() => {
                     setShowImage(showImage);
                     setCount((prevState) => prevState + 1);
                     setDog(pets[count]);
-                    setLikepets(data.payload);
                     setAnimation(""); // Limpia la clase de animación
                 }, 500); // Tiempo que coincide con la duración de la animación
 
