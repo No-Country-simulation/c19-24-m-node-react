@@ -251,16 +251,16 @@ function Header() {
                                 </Link>
                             </li>
                             <li>
-                                <a
+                                {/* <a
                                     href='/#About-Us'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
                                     Nosotros
-                                </a>
-                                {/* <Link
+                                </a> */}
+                                <Link
                                     to='/About-Us'
                                     className='block py-2 px-3 text-black rounded md:p-0 md:dark:hover:underline'>
                                     Nosotros
-                                </Link> */}
+                                </Link>
                             </li>
                             <li>
                                 <a
