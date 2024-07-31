@@ -2,7 +2,7 @@ import Logo from "../Assets/Logos/logo.svg";
 
 function Loader() {
     return (
-        <section className='fixed h-screen w-screen bg-white flex flex-col items-center justify-center z-30'>
+        <section className='fixed top-0 h-screen w-screen bg-white flex flex-col items-center justify-center z-30'>
             <figure>
                 <img src={Logo} alt='PetMatch Logo' loading='lazy' />
                 <figcaption className='text-[#2C7B10] mt-3 font-semibold'>
