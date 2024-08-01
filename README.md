@@ -117,16 +117,16 @@ La aplicación se considerará completa cuando cumpla con los siguientes criteri
 
 #### Backend ⚙️
 
-| Nombre      | GitHub                                            | LinkedIn                                                                         |
-| ----------- | ------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Ulises      | [GitHub](https://github.com/Ulises-Rodriguez-809) | [LinkedIn](https://www.linkedin.com/in/ulises-rodriguez-desarrolloweb-fullstack) |
-| Christopher | [GitHub](https://github.com/Chris-4-0-2)          | [LinkedIn](http://www.linkedin.com/in/christopher-manzueta)                      |
+| Nombre               | GitHub                                            | LinkedIn                                                                         |
+| -------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Ulises Rodriguez     | [GitHub](https://github.com/Ulises-Rodriguez-809) | [LinkedIn](https://www.linkedin.com/in/ulises-rodriguez-desarrolloweb-fullstack) |
+| Christopher Manzueta | [GitHub](https://github.com/Chris-4-0-2)          | [LinkedIn](http://www.linkedin.com/in/christopher-manzueta)                      |
 
 #### QA 🧪
 
-| Nombre   | GitHub                                | LinkedIn                                                            |
-| -------- | ------------------------------------- | ------------------------------------------------------------------- |
-| Gabriela | [GitHub](https://github.com/lagabyok) | [LinkedIn](https://www.linkedin.com/in/gabriela-coronel-43a0a4286/) |
+| Nombre           | GitHub                                | LinkedIn                                                            |
+| ---------------- | ------------------------------------- | ------------------------------------------------------------------- |
+| Gabriela Coronel | [GitHub](https://github.com/lagabyok) | [LinkedIn](https://www.linkedin.com/in/gabriela-coronel-43a0a4286/) |
 
 #### Diseño UX/UI 🎨
 
