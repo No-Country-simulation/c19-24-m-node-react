@@ -12,7 +12,7 @@ import matchRoutes from "./routes/matchRoutes.js";
 import petsRoutes from "./routes/petsRoutes.js";
 import adoptionRoutes from "./routes/adoptionRoutes.js";
 
-const PORT = options.PORT || 8080;
+const PORT = options.PORT || 3000;
 
 const app = express();
 
