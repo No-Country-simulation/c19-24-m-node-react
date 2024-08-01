@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./front/petmatch/src/Assets/Logos/logo.svg" alt="PetMatch Logo" width="200"/>
+  <img src="./front/petmatch/src/Assets/Logos/logo.svg" alt="PetMatch Logo" width="400"/>
 </p>
 
 # PetMatch 🐾
