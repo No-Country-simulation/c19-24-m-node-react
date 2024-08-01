@@ -149,14 +149,17 @@ Este informe proporciona una descripción general del back-end del proyecto, inc
 
 ### Arquitectura 🏛️
 
-La arquitectura del back-end se basa en un diseño monolítico, compuesto por una serie de servicios independientes y escalables. Esta arquitectura permite una mayor flexibilidad, modularidad y facilidad de mantenimiento.
+La arquitectura del back-end está basada en un enfoque monolítico, que integra todas las funcionalidades en una única aplicación cohesiva. La estructura modular que implementamos proporciona una clara separación de responsabilidades, lo que facilita el mantenimiento y la escalabilidad de la aplicación.
 
-Los servicios principales del back-end incluyen:
+#### Flujo de Solicitudes
 
-1. **Servicio de autenticación:** Responsable de la autenticación y autorización de usuarios.
-2. **Servicio de datos:** Proporciona acceso a la base de datos y a los datos del proyecto.
-3. **Servicio de lógica de negocio:** Implementa la lógica de negocio del proyecto.
-4. **Servicio de mensajería:** Facilita la comunicación entre los servicios.
+1. Un usuario realiza una **solicitud** HTTP.
+2. La solicitud es manejada por la **ruta** correspondiente.
+3. La ruta invoca el **controlador** adecuado.
+4. El controlador puede interactuar con los **servicios** para procesar la lógica de negocio.
+5. Los servicios acceden o modifican los datos a través de los **modelos**.
+6. **Middlewares** pueden interceptar la solicitud para realizar verificaciones o manejar errores.
+7. El controlador prepara y envía una **respuesta** al cliente.
 
 ### Tecnologías utilizadas 💻
 
